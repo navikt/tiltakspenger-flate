@@ -6,6 +6,7 @@ on:
 env:
   CI: true
   TZ: Europe/Amsterdam
+  PUBLIC_URL: /tpts-soknad-flate
 
 jobs:
   update-gh-pages:
