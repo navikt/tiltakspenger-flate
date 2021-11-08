@@ -1,0 +1,51 @@
+name: Deploy to dev
+on:
+  workflow_dispatch: # This workflow can be triggered manually from: https://github.com/navikt/tpts-soknad-flate/actions/workflows/deploy-dev.yaml
+  push:
+    branches:
+      - main
+env:
+  IMAGE_TAG: ${{ github.sha }}
+  IMAGE: ghcr.io/navikt/tpts-soknad-flate
+  IMAGE_LABEL: dev
+  docker_image: ghcr.io/navikt/tpts-soknad-flate:${{ github.sha }}
+  REACT_APP_BACKEND_API_ROOT: https://tpts-soknad.dev.intern.nav.no
+  CI: true
+  NODE_VERSION: '16.x'
+
+jobs:
+  build-docker-image:
+    runs-on: ubuntu-latest
+    name: Build and publish Docker image
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: ${{env.NODE_VERSION}}
+      - name: Install production artifact
+        run: npm ci
+      - name: Build
+        run: npm run build
+      - name: Build and publish Docker image
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_REPOSITORY} --password-stdin
+          docker build --tag ${docker_image} -f .docker/dev/Dockerfile .
+          docker push ${docker_image}
+  deploy-dev:
+    name: Deploy application to dev
+    needs:
+      - build-docker-image
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: dev-gcp
+          RESOURCE: .nais/nais-dev.yaml
+          VARS: .nais/dev-gcp.yaml
+          VAR: image=${{ env.docker_image }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
