@@ -1,6 +1,5 @@
 node_modules/*
-build
-.nais
+.nais/
 CODEOWNERS
 LICENSE.md
 README.md
