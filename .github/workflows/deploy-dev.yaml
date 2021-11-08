@@ -31,7 +31,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           echo ${GITHUB_TOKEN} | docker login ghcr.io -u ${GITHUB_REPOSITORY} --password-stdin
-          docker build --tag ${docker_image} -f .docker/dev/Dockerfile .
+          docker build --tag ${docker_image} .
           docker push ${docker_image}
   deploy-dev:
     name: Deploy application to dev
