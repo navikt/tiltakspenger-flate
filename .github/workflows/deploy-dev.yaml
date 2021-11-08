@@ -26,6 +26,9 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Install express
+        run: npm ci
+        working-directory: server
       - name: Build and publish Docker image
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
