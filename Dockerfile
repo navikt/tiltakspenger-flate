@@ -4,11 +4,10 @@ ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 ENV TZ="Europe/Oslo"
 
+COPY . .
 RUN npm ci
+
 RUN npm run build
-COPY build build
-# "Install" ts-node
-COPY server server
 
 WORKDIR server
 RUN npm ci
