@@ -24,7 +24,6 @@ spec:
       openid.provider: "azure"
       errorPath: ""
     application:
-      tenant: nav.no
       enabled: true
       claims:
         extra:
