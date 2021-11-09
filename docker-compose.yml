@@ -1,0 +1,16 @@
+version: "3.8"
+services:
+  wonderwall:
+    image: ghcr.io/nais/wonderwall:latest
+    command: >
+      --auto-login true
+      --openid.provider azure
+      --bind-address 0.0.0.0:3000
+      --ingress http://127.0.0.1:3000
+      --upstream-host host.docker.internal:8080
+    ports:
+      - "3000:3000"
+    environment:
+      AZURE_APP_WELL_KNOWN_URL: ${AZURE_APP_WELL_KNOWN_URL}
+      AZURE_APP_CLIENT_ID: ${AZURE_APP_CLIENT_ID}
+      AZURE_APP_JWK: ${AZURE_APP_JWK}
