@@ -30,6 +30,9 @@ spec:
           - "NAVident"
         # groups:
         #  - id: "de1a64fd-70d7-4cb2-84e9-6c9fdf948f1b" # TPTS i Azure AD
+      replyURLs:
+        - "https://tpts-soknad-flate.dev.intern.nav.no/oauth2/callback"
+        - "http://127.0.0.1:3000/oauth2/callback"
   env:
     - name: CORS_DOMAIN
       value: "*"
