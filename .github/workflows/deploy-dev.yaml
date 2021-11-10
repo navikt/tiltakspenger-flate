@@ -37,7 +37,7 @@ jobs:
           docker build --tag ${docker_image} .
           docker push ${docker_image}
       - name: Notify Slack in case of build failure
-        if: ${{ failure() && (github.ref == 'refs/heads/main') }}
+        # if: ${{ failure() && (github.ref == 'refs/heads/main') }}
         run: |
           curl -X POST --data-urlencode "payload={ \"attachments\": [{ \"pretext\": \"[tpts-soknad-flate] Build failed :cry:\", \"color\": \"danger\", \"fields\": [ { \"title\": \"Author\", \"value\": \"$AUTHOR\", \"short\": false }, { \"title\": \"Commit\", \"value\": \"<https://github.com/navikt/tpts-soknad-flate/commit/$GITHUB_SHA%7C$GITHUB_SHA>\", \"short\": false } ] }] }" $WEBHOOK_URL
         env:
