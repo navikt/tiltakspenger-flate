@@ -1,23 +1,25 @@
 {
   "files": {
     "main.css": "/tpts-soknad-flate/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/tpts-soknad-flate/static/js/main.b93fda1a.chunk.js",
-    "main.js.map": "/tpts-soknad-flate/static/js/main.b93fda1a.chunk.js.map",
-    "runtime-main.js": "/tpts-soknad-flate/static/js/runtime-main.cb985c6d.js",
-    "runtime-main.js.map": "/tpts-soknad-flate/static/js/runtime-main.cb985c6d.js.map",
-    "static/js/2.2ca9620f.chunk.js": "/tpts-soknad-flate/static/js/2.2ca9620f.chunk.js",
-    "static/js/2.2ca9620f.chunk.js.map": "/tpts-soknad-flate/static/js/2.2ca9620f.chunk.js.map",
-    "static/js/3.eb91f496.chunk.js": "/tpts-soknad-flate/static/js/3.eb91f496.chunk.js",
-    "static/js/3.eb91f496.chunk.js.map": "/tpts-soknad-flate/static/js/3.eb91f496.chunk.js.map",
+    "main.js": "/tpts-soknad-flate/static/js/main.b36735c9.chunk.js",
+    "main.js.map": "/tpts-soknad-flate/static/js/main.b36735c9.chunk.js.map",
+    "runtime-main.js": "/tpts-soknad-flate/static/js/runtime-main.f250b00e.js",
+    "runtime-main.js.map": "/tpts-soknad-flate/static/js/runtime-main.f250b00e.js.map",
+    "static/css/2.3600ffa7.chunk.css": "/tpts-soknad-flate/static/css/2.3600ffa7.chunk.css",
+    "static/js/2.7559d2fa.chunk.js": "/tpts-soknad-flate/static/js/2.7559d2fa.chunk.js",
+    "static/js/2.7559d2fa.chunk.js.map": "/tpts-soknad-flate/static/js/2.7559d2fa.chunk.js.map",
+    "static/js/3.e97f953a.chunk.js": "/tpts-soknad-flate/static/js/3.e97f953a.chunk.js",
+    "static/js/3.e97f953a.chunk.js.map": "/tpts-soknad-flate/static/js/3.e97f953a.chunk.js.map",
     "index.html": "/tpts-soknad-flate/index.html",
+    "static/css/2.3600ffa7.chunk.css.map": "/tpts-soknad-flate/static/css/2.3600ffa7.chunk.css.map",
     "static/css/main.8c8b27cf.chunk.css.map": "/tpts-soknad-flate/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.2ca9620f.chunk.js.LICENSE.txt": "/tpts-soknad-flate/static/js/2.2ca9620f.chunk.js.LICENSE.txt",
-    "static/media/logo.6ce24c58.svg": "/tpts-soknad-flate/static/media/logo.6ce24c58.svg"
+    "static/js/2.7559d2fa.chunk.js.LICENSE.txt": "/tpts-soknad-flate/static/js/2.7559d2fa.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.cb985c6d.js",
-    "static/js/2.2ca9620f.chunk.js",
+    "static/js/runtime-main.f250b00e.js",
+    "static/css/2.3600ffa7.chunk.css",
+    "static/js/2.7559d2fa.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.b93fda1a.chunk.js"
+    "static/js/main.b36735c9.chunk.js"
   ]
 }
