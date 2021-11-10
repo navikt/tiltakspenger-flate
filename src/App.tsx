@@ -1,24 +1,16 @@
 import React from 'react';
-import logo from './logo.svg';
+import '@navikt/ds-css';
+import '@navikt/ds-css-internal';
 import './App.css';
+import { Header } from '@navikt/ds-react-internal';
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header>
+        <Header.Title href="/#home">NAV TPTS</Header.Title>
+        <Header.User name="Kong Harald" style={{ marginLeft: 'auto' }} />
+      </Header>
     </div>
   );
 }
