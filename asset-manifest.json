@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/tpts-soknad-flate/static/css/main.8c8b27cf.chunk.css",
-    "main.js": "/tpts-soknad-flate/static/js/main.d02df66f.chunk.js",
-    "main.js.map": "/tpts-soknad-flate/static/js/main.d02df66f.chunk.js.map",
-    "runtime-main.js": "/tpts-soknad-flate/static/js/runtime-main.647bf9cd.js",
-    "runtime-main.js.map": "/tpts-soknad-flate/static/js/runtime-main.647bf9cd.js.map",
-    "static/css/2.3600ffa7.chunk.css": "/tpts-soknad-flate/static/css/2.3600ffa7.chunk.css",
-    "static/js/2.b795f047.chunk.js": "/tpts-soknad-flate/static/js/2.b795f047.chunk.js",
-    "static/js/2.b795f047.chunk.js.map": "/tpts-soknad-flate/static/js/2.b795f047.chunk.js.map",
-    "static/js/3.5d2d0c76.chunk.js": "/tpts-soknad-flate/static/js/3.5d2d0c76.chunk.js",
-    "static/js/3.5d2d0c76.chunk.js.map": "/tpts-soknad-flate/static/js/3.5d2d0c76.chunk.js.map",
-    "index.html": "/tpts-soknad-flate/index.html",
-    "static/css/2.3600ffa7.chunk.css.map": "/tpts-soknad-flate/static/css/2.3600ffa7.chunk.css.map",
-    "static/css/main.8c8b27cf.chunk.css.map": "/tpts-soknad-flate/static/css/main.8c8b27cf.chunk.css.map",
-    "static/js/2.b795f047.chunk.js.LICENSE.txt": "/tpts-soknad-flate/static/js/2.b795f047.chunk.js.LICENSE.txt"
+    "main.css": "/tpts-tiltakspenger-flate/static/css/main.8c8b27cf.chunk.css",
+    "main.js": "/tpts-tiltakspenger-flate/static/js/main.ba79ceaf.chunk.js",
+    "main.js.map": "/tpts-tiltakspenger-flate/static/js/main.ba79ceaf.chunk.js.map",
+    "runtime-main.js": "/tpts-tiltakspenger-flate/static/js/runtime-main.94b9da4e.js",
+    "runtime-main.js.map": "/tpts-tiltakspenger-flate/static/js/runtime-main.94b9da4e.js.map",
+    "static/css/2.3600ffa7.chunk.css": "/tpts-tiltakspenger-flate/static/css/2.3600ffa7.chunk.css",
+    "static/js/2.3104400c.chunk.js": "/tpts-tiltakspenger-flate/static/js/2.3104400c.chunk.js",
+    "static/js/2.3104400c.chunk.js.map": "/tpts-tiltakspenger-flate/static/js/2.3104400c.chunk.js.map",
+    "static/js/3.52e5b9a8.chunk.js": "/tpts-tiltakspenger-flate/static/js/3.52e5b9a8.chunk.js",
+    "static/js/3.52e5b9a8.chunk.js.map": "/tpts-tiltakspenger-flate/static/js/3.52e5b9a8.chunk.js.map",
+    "index.html": "/tpts-tiltakspenger-flate/index.html",
+    "static/css/2.3600ffa7.chunk.css.map": "/tpts-tiltakspenger-flate/static/css/2.3600ffa7.chunk.css.map",
+    "static/css/main.8c8b27cf.chunk.css.map": "/tpts-tiltakspenger-flate/static/css/main.8c8b27cf.chunk.css.map",
+    "static/js/2.3104400c.chunk.js.LICENSE.txt": "/tpts-tiltakspenger-flate/static/js/2.3104400c.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.647bf9cd.js",
+    "static/js/runtime-main.94b9da4e.js",
     "static/css/2.3600ffa7.chunk.css",
-    "static/js/2.b795f047.chunk.js",
+    "static/js/2.3104400c.chunk.js",
     "static/css/main.8c8b27cf.chunk.css",
-    "static/js/main.d02df66f.chunk.js"
+    "static/js/main.ba79ceaf.chunk.js"
   ]
 }
