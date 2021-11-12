@@ -3,7 +3,10 @@ version: "3.8"
 services:
   wonderwall:
     image: ghcr.io/nais/wonderwall:latest
-    dns: 8.8.8.8 # Google's DNS server.
+    dns:
+      - 8.8.8.8 # Google's DNS server.
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     command: >
       --auto-login true
       --openid.provider azure
