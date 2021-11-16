@@ -2,6 +2,7 @@ import React from 'react';
 import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
+import Breadcrumbs from '../components/Breadcrumbs';
 
 const dataElement = {
   created: '02.02.2020',
@@ -37,7 +38,7 @@ const columns: any = [
 const ApplicationListPage = () => {
   return (
     <div>
-      <h1>Liste over søknader</h1>
+      <Breadcrumbs />
       <div className="flex flex-col items-start p-40">
         <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
           <Tabs>
