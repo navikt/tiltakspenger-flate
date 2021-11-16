@@ -5,14 +5,25 @@ import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 
 const dataElement = {
   created: '02.02.2020',
-  treatmentType: <BehandlingsTag behandling={Behandling.Klage} />,
+  treatmentType: <BehandlingsTag behandling={Behandling.Forlengelse} />,
   applicant: 'Sigurd Grøneng',
   tiltaksplass: 'Påmeldt',
   period: '01.12.2021-15.06.2021',
   status: '',
 };
 
-const data = [dataElement, dataElement, dataElement, dataElement, dataElement];
+const data = [
+  Behandling.FørsteGang,
+  Behandling.Forlengelse,
+  Behandling.ForlengelseIT,
+  Behandling.Revurdering,
+  Behandling.Klage,
+  Behandling.Stikkprøve,
+  Behandling.QA,
+].map((behandling) => ({
+  ...dataElement,
+  treatmentType: <BehandlingsTag behandling={behandling} />,
+}));
 
 const columns: any = [
   { key: 'created', name: 'Opprettet' },

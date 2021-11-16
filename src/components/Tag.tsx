@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 
-const Tag: FC = ({ children }) => {
+const Tag: FC<{ className?: string }> = ({ children, className = '' }) => {
   return (
-    <div className="border border-purple-200 bg-purple-100 rounded text-xs font-bold px-2">
+    <div className={`border rounded text-xs font-bold ${className}`}>
       {children}
     </div>
   );
