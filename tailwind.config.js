@@ -7,6 +7,7 @@ module.exports = {
       'gray-200': '#C6C2BF',
       'purple-100': '#E0DAE7',
       'purple-200': '#5C4378',
+      'blue-400': '#0067C5',
     },
     fontSize: {
       xs: '14px',

@@ -10,17 +10,9 @@ interface Props<T> {
   columns: Column<keyof T>[];
 }
 
-const BehandlingsTag = () => {
-  return (
-    <div className="h-20 w-20 flex justify-center border border-purple-200 bg-purple-100 rounded text-xs font-bold">
-      F
-    </div>
-  );
-};
-
 const Table = <T extends {}>({ data, columns }: Props<T>) => {
   return (
-    <table className="ml-40">
+    <table>
       <thead>
         <tr>
           {columns.map((column, index) => (
@@ -38,11 +30,7 @@ const Table = <T extends {}>({ data, columns }: Props<T>) => {
           >
             {columns.map((column, index) => (
               <td key={index} className="first:pl-16 pr-40">
-                {column.key === 'treatmentType' ? (
-                  <BehandlingsTag />
-                ) : (
-                  row[column.key]
-                )}
+                {row[column.key]}
               </td>
             ))}
           </tr>
