@@ -1,4 +1,5 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
 
 interface Column<Values> {
   name: string;
@@ -11,6 +12,14 @@ interface Props<T> {
 }
 
 const Table = <T extends {}>({ data, columns }: Props<T>) => {
+
+  const navigate = useNavigate();
+
+  function handleClick() {
+    console.log('trykket');
+    navigate('/DetailsPage');
+  }
+
   return (
     <table>
       <thead>
@@ -24,7 +33,8 @@ const Table = <T extends {}>({ data, columns }: Props<T>) => {
       </thead>
       <tbody>
         {data.map((row, index) => (
-          <tr
+
+          <tr onClick={handleClick}
             key={index}
             className="text-left h-32 odd:bg-gray-100 border-t-2 last:border-b-2 border-gray-200"
           >
@@ -33,7 +43,9 @@ const Table = <T extends {}>({ data, columns }: Props<T>) => {
                 {row[column.key]}
               </td>
             ))}
+
           </tr>
+
         ))}
       </tbody>
     </table>
