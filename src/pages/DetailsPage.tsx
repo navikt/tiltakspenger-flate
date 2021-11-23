@@ -1,8 +1,12 @@
 import React from "react";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 const DetailsPage = () => {
   return (
-    <div>Detaljer</div>
+    <div>
+      <Breadcrumbs />
+      Detaljer
+    </div>
   )
 };
 

@@ -7,12 +7,14 @@ const Divider = () => {
 
 const Breadcrumbs = () => {
   return (
-    <div className="flex p-16 space-x-16 bg-gray-100 border border-gray-200">
+    <div className="flex p-16 space-x-16">
       <div className="font-bold">Sigurd Grøneng</div>
       <Divider />
       <CopyableText text={'121212 12121'} />
       <Divider />
       <CopyableText text={'Sak-id: 9320293'} />
+      <Divider />
+      <div>Boenhet: 0220 (Asker)</div>
     </div>
   );
 };

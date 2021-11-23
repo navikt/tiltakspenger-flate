@@ -38,7 +38,7 @@ const columns: any = [
 const ApplicationListPage = () => {
   return (
     <div>
-      <Breadcrumbs />
+
       <div className="flex flex-col items-start p-40">
         <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
           <Tabs>
