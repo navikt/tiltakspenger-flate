@@ -26,7 +26,7 @@ const data = [
   treatmentType: <BehandlingsTag behandling={behandling} />,
 }));
 
-const columns: any = [
+const columns: { key: keyof typeof dataElement; name: string }[] = [
   { key: 'created', name: 'Opprettet' },
   { key: 'treatmentType', name: 'Behandlingstype' },
   { key: 'applicant', name: 'Søker' },

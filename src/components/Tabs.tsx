@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, ReactElement, useEffect, useState } from 'react';
 
 const selectedClass = 'border-opacity-100';
 interface TabProps {
@@ -21,7 +21,7 @@ export const Tab: FC<TabProps> = ({ children, selected, onClick }) => {
 };
 
 interface TabsProps {
-  onTabChange?: (tabIndex: number) => {};
+  onTabChange?: (tabIndex: number) => void;
 }
 export const Tabs: FC<TabsProps> = ({ children, onTabChange }) => {
   const [selectedIndex, setIndex] = useState(0);
@@ -33,7 +33,7 @@ export const Tabs: FC<TabsProps> = ({ children, onTabChange }) => {
   return (
     <div role="tablist">
       {React.Children.map(children, (child, index) => {
-        return React.cloneElement(child as any, {
+        return React.cloneElement(child as ReactElement, {
           selected: selectedIndex === index,
           onClick: () => setIndex(index),
         });
