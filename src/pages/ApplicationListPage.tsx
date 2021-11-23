@@ -3,7 +3,6 @@ import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import Breadcrumbs from '../components/Breadcrumbs';
-import Layout from '../components/Layout';
 
 const dataElement = {
   created: '02.02.2020',
@@ -73,20 +72,15 @@ const ApplicationListPage = () => {
       >
         Ping backend auth
       </button>
-      <Layout
-        sidebar={<div />}
-        content={
-          <div className="flex flex-col items-start p-40">
-            <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
-              <Tabs>
-                <Tab>Ikke behandlet</Tab>
-                <Tab>Behandlet</Tab>
-              </Tabs>
-            </div>
-            <Table columns={columns} data={data} />
-          </div>
-        }
-      ></Layout>
+      <div className="flex flex-col items-start p-40">
+        <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
+          <Tabs>
+            <Tab>Ikke behandlet</Tab>
+            <Tab>Behandlet</Tab>
+          </Tabs>
+        </div>
+        <Table columns={columns} data={data} />
+      </div>
     </div>
   );
 };

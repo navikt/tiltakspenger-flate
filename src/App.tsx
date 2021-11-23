@@ -5,6 +5,7 @@ import './App.css';
 import { Header } from '@navikt/ds-react-internal';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ApplicationListPage from './pages/ApplicationListPage';
+import DetailsPage from "./pages/DetailsPage";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         </Header>
         <Routes>
           <Route path={'/'} element={<ApplicationListPage />} />
+          <Route path={'/DetailsPage'} element={<DetailsPage />} />
         </Routes>
       </div>
     </Router>

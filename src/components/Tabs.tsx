@@ -10,8 +10,8 @@ export const Tab: FC<TabProps> = ({ children, selected, onClick }) => {
   return (
     <button
       onClick={onClick}
-      className={`p-16 font-bold hover:bg-gray-100 border-b-4 border-blue-400 border-opacity-0 ${
-        selected ? selectedClass : ''
+      className={`p-16 font-bold hover:bg-gray-100 border-b-4 border-blue-400  ${
+        selected ? selectedClass : 'border-opacity-0'
       }`}
       role="tab"
     >
