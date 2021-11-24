@@ -2,17 +2,17 @@ import Tag from './Tag';
 import React, { FC } from 'react';
 
 export enum Behandling {
-  FørsteGang,
+  ForsteGang,
   Forlengelse,
   ForlengelseIT,
   Revurdering,
   Klage,
-  Stikkprøve,
+  Stikkprove,
   QA,
 }
 
 const shortNames = {
-  [Behandling.FørsteGang]: {
+  [Behandling.ForsteGang]: {
     value: 'F',
     className: 'border-purple-200 bg-purple-100',
   },
@@ -32,7 +32,7 @@ const shortNames = {
     value: 'K',
     className: 'border-red-400 bg-red-200',
   },
-  [Behandling.Stikkprøve]: {
+  [Behandling.Stikkprove]: {
     value: 'S',
     className: 'border-red-400 bg-red-200',
   },
