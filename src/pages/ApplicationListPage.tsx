@@ -1,8 +1,7 @@
 import React from 'react';
-import Table from '../components/Table';
+import Table from '../components/applicationlist/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
-import Breadcrumbs from '../components/Breadcrumbs';
 
 const dataElement = {
   created: '02.02.2020',
@@ -14,12 +13,12 @@ const dataElement = {
 };
 
 const data = [
-  Behandling.FørsteGang,
+  Behandling.ForsteGang,
   Behandling.Forlengelse,
   Behandling.ForlengelseIT,
   Behandling.Revurdering,
   Behandling.Klage,
-  Behandling.Stikkprøve,
+  Behandling.Stikkprove,
   Behandling.QA,
 ].map((behandling) => ({
   ...dataElement,
@@ -59,7 +58,6 @@ const ApplicationListPage = () => {
 
   return (
     <div>
-      <Breadcrumbs />
       <button
         onClick={testServer}
         className="rounded p-4 bg-gray-100 border border-gray-200 mt-4"

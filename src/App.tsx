@@ -12,7 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <Header>
-          <Header.Title href="/#home">NAV TPTS</Header.Title>
+          <Header.Title href="/#home">NAV tiltakspenger</Header.Title>
           <Header.User name="Kong Harald" style={{ marginLeft: 'auto' }} />
         </Header>
         <Routes>
