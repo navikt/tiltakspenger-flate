@@ -2,6 +2,8 @@ import React from "react";
 import Breadcrumbs from "../components/Breadcrumbs";
 import Timeline from "./details/Timeline";
 import { Tab, Tabs } from "../components/Tabs";
+import CentreContent from "./details/CentreContent";
+
 
 const DetailsPage = () => {
   // @ts-ignore
@@ -17,6 +19,7 @@ const DetailsPage = () => {
             <Tab>Inngangsvilkår</Tab>
           </Tabs>
         </div>
+        <CentreContent />
       </div>
     </div>
   )
