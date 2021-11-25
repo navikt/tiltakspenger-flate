@@ -2,19 +2,17 @@ import React from 'react';
 import '@navikt/ds-css';
 import '@navikt/ds-css-internal';
 import './App.css';
-import { Header } from '@navikt/ds-react-internal';
+import { Dropdown, Header } from '@navikt/ds-react-internal';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ApplicationListPage from './pages/ApplicationListPage';
-import DetailsPage from "./pages/DetailsPage";
+import DetailsPage from './pages/DetailsPage';
+import Header1 from './components/Header';
 
 function App() {
   return (
     <Router>
       <div className="App">
-        <Header>
-          <Header.Title href="/#home">NAV tiltakspenger</Header.Title>
-          <Header.User name="Kong Harald" style={{ marginLeft: 'auto' }} />
-        </Header>
+        <Header1 />
         <Routes>
           <Route path={'/'} element={<ApplicationListPage />} />
           <Route path={'/DetailsPage'} element={<DetailsPage />} />

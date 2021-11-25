@@ -4,6 +4,8 @@ module.exports = {
   mode: 'jit',
   theme: {
     colors: {
+      white: '#ffffff',
+      black: '#262626',
       'gray-100': '#F8F8F8',
       'gray-200': '#C6C2BF',
       'purple-100': '#E0DAE7',
