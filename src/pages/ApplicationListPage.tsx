@@ -1,5 +1,5 @@
 import React from 'react';
-import Table from '../components/applicationlist/Table';
+import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 
