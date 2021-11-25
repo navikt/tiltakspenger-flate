@@ -1,6 +1,6 @@
 import { backendUrl } from './common';
 
-interface Soknad {
+export interface Soknad {
   dokumentInfoId: string;
   tittel: string;
   personIdent: string;

@@ -1,13 +1,10 @@
-import React from "react";
-import Breadcrumbs from "../components/Breadcrumbs";
-import Timeline from "./details/Timeline";
-import { Tab, Tabs } from "../components/Tabs";
-import CentreContent from "./details/CentreContent";
-
+import React from 'react';
+import Breadcrumbs from '../components/Breadcrumbs';
+import Timeline from './details/Timeline';
+import { Tab, Tabs } from '../components/Tabs';
+import CentreContent from './details/CentreContent';
 
 const DetailsPage = () => {
-  // @ts-ignore
-  // @ts-ignore
   return (
     <div>
       <Breadcrumbs />
@@ -22,7 +19,7 @@ const DetailsPage = () => {
         <CentreContent />
       </div>
     </div>
-  )
+  );
 };
 
 export default DetailsPage;

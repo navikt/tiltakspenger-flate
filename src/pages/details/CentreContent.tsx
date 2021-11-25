@@ -1,9 +1,17 @@
-import React from 'react';
-import { getSoknader } from '../../api/soknad';
+import React, { useEffect, useState } from 'react';
+import { getSoknader, Soknad } from '../../api/soknad';
 
 const CentreContent = () => {
-  const soknadsdata = getSoknader();
-  return <div>Her kommer soknadsdata</div>;
+  const [data, setData] = useState<Soknad[] | undefined>();
+  useEffect(() => {
+    getSoknader().then((soknadsdata) => {
+      setData(soknadsdata);
+    });
+  }, []);
+
+  console.log('data' + data);
+
+  return <div>{JSON.stringify(data)}</div>;
 };
 
 export default CentreContent;
