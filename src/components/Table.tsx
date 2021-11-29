@@ -35,7 +35,7 @@ const Table = <T extends object>({ data, columns }: Props<T>) => {
           <tr
             onClick={handleClick}
             key={index}
-            className="text-left h-32 odd:bg-gray-100 border-t-2 last:border-b-2 border-gray-200"
+            className="cursor-pointer text-left h-32 odd:bg-gray-100 border-t-2 last:border-b-2 border-gray-200"
           >
             {columns.map((column, index) => (
               <td key={index} className="first:pl-16 pr-40">
