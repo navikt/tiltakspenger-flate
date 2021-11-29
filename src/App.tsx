@@ -2,11 +2,11 @@ import React from 'react';
 import '@navikt/ds-css';
 import '@navikt/ds-css-internal';
 import './App.css';
-import { Dropdown, Header } from '@navikt/ds-react-internal';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import ApplicationListPage from './pages/ApplicationListPage';
 import DetailsPage from './pages/DetailsPage';
 import Header1 from './components/Header';
+import TestPage from './pages/TestPage';
 
 function App() {
   return (
@@ -15,7 +15,8 @@ function App() {
         <Header1 />
         <Routes>
           <Route path={'/'} element={<ApplicationListPage />} />
-          <Route path={'/DetailsPage'} element={<DetailsPage />} />
+          <Route path={'/soknad/:id'} element={<DetailsPage />} />
+          <Route path={'/test'} element={<TestPage />} />
         </Routes>
       </div>
     </Router>

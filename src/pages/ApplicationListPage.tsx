@@ -1,18 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
+import { getSoknader, Soknad } from '../api/soknad';
 
-const dataElement = {
-  created: '02.02.2020',
-  treatmentType: <BehandlingsTag behandling={Behandling.Forlengelse} />,
-  applicant: 'Sigurd Grøneng',
-  tiltaksplass: 'Påmeldt',
-  period: '01.12.2021-15.06.2021',
-  status: '',
-};
-
-const data = [
+const tags = [
   Behandling.ForsteGang,
   Behandling.Forlengelse,
   Behandling.ForlengelseIT,
@@ -20,56 +12,39 @@ const data = [
   Behandling.Klage,
   Behandling.Stikkprove,
   Behandling.QA,
-].map((behandling) => ({
-  ...dataElement,
-  treatmentType: <BehandlingsTag behandling={behandling} />,
-}));
+];
 
-const columns: { key: keyof typeof dataElement; name: string }[] = [
-  { key: 'created', name: 'Opprettet' },
-  { key: 'treatmentType', name: 'Behandlingstype' },
-  { key: 'applicant', name: 'Søker' },
-  { key: 'tiltaksplass', name: 'Tiltaksplass' },
-  { key: 'period', name: 'Periode' },
+const columns: {
+  key: keyof Soknad | 'type' | 'status';
+  name: string;
+}[] = [
+  { key: 'startdato', name: 'Opprettet' },
+  { key: 'type', name: 'Type' },
+  { key: 'tiltaksType', name: 'Behandlingstype' },
+  { key: 'fornavn', name: 'Søker' },
+  { key: 'tiltaksarrangorNavn', name: 'Tiltaksplass' },
+  { key: 'startdato', name: 'Periode' },
   { key: 'status', name: 'Status' },
 ];
 
 const ApplicationListPage = () => {
-  const testServer = () => {
-    fetch('/api/test')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log('ERROR');
-        console.log(err);
-      });
-  };
-  const testServerAuth = () => {
-    fetch('/api/application')
-      .then((res) => {
-        console.log(res);
-      })
-      .catch((err) => {
-        console.log('ERROR');
-        console.log(err);
-      });
-  };
+  const [soknader, setSoknader] = useState<
+    (Soknad & { status: string; type: JSX.Element })[] | undefined
+  >(undefined);
+
+  useEffect(() => {
+    getSoknader().then((soknader) => {
+      const enrichedSoknader = soknader.map((soknad, index) => ({
+        ...soknad,
+        status: 'Under behandling',
+        type: <BehandlingsTag behandling={tags[index]} />,
+      }));
+      setSoknader(enrichedSoknader);
+    });
+  }, []);
 
   return (
     <div>
-      <button
-        onClick={testServer}
-        className="rounded p-4 bg-gray-100 border border-gray-200 mt-4"
-      >
-        Ping backend
-      </button>
-      <button
-        onClick={testServerAuth}
-        className="rounded p-4 bg-gray-100 border border-gray-200 mt-4"
-      >
-        Ping backend auth
-      </button>
       <div className="flex flex-col items-start p-40">
         <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
           <Tabs>
@@ -77,7 +52,13 @@ const ApplicationListPage = () => {
             <Tab>Behandlet</Tab>
           </Tabs>
         </div>
-        <Table columns={columns} data={data} />
+        {soknader === undefined ? (
+          <div className="border border-sky-400 rounded-md p-2 animate-spin">
+            Laster data
+          </div>
+        ) : (
+          <Table columns={columns} data={soknader || []} />
+        )}
       </div>
     </div>
   );

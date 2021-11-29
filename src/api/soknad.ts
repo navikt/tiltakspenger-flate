@@ -24,6 +24,11 @@ export interface Soknad {
 }
 
 export const getSoknader = (): Promise<Soknad[]> => {
-  console.log('er i getSoknader');
-  return fetch(`${backendUrl}/mocksoknad`).then((res) => res.json());
+  return fetch(`${backendUrl}/api/mocksoknad`).then((res) => res.json());
+};
+
+export const getSoknad = (soknadId: string) => {
+  return fetch(`${backendUrl}/api/mocksoknad/${soknadId}`).then((res) =>
+    res.json()
+  );
 };

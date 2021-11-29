@@ -11,12 +11,15 @@ interface Props<T> {
   columns: Column<keyof T>[];
 }
 
-const Table = <T extends object>({ data, columns }: Props<T>) => {
+const Table = <T extends { dokumentInfoId: string }>({
+  data,
+  columns,
+}: Props<T>) => {
   const navigate = useNavigate();
 
-  function handleClick() {
+  function handleClick(sokandId: string) {
     console.log('trykket');
-    navigate('/DetailsPage');
+    navigate(`/soknad/${sokandId}`);
   }
 
   return (
@@ -33,7 +36,7 @@ const Table = <T extends object>({ data, columns }: Props<T>) => {
       <tbody>
         {data.map((row, index) => (
           <tr
-            onClick={handleClick}
+            onClick={() => handleClick(row.dokumentInfoId)}
             key={index}
             className="text-left h-32 odd:bg-gray-100 border-t-2 last:border-b-2 border-gray-200"
           >
