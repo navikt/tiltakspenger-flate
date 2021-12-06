@@ -6,6 +6,7 @@ module.exports = {
     colors: {
       white: '#ffffff',
       black: '#262626',
+      'gray-800': '#3E3832',
       'gray-100': '#F8F8F8',
       'gray-200': '#C6C2BF',
       'purple-100': '#E0DAE7',
@@ -16,12 +17,19 @@ module.exports = {
       'sky-200': '#E0F5FB',
       'sky-400': '#4E737C',
       'yellow-200': '#FFECCC',
+      'yellow-300': '#FFAA33',
       'yellow-400': '#D47B00',
       'stone-200': '#F1F1F1',
       'stone-400': '#6A6A6A',
+      'green-200': '#72ba74',
+      'green-400': '#48864d',
     },
     fontSize: {
       xs: '14px',
+      sm: '16px',
+      base: '18px',
+      lg: '20px',
+      xl: '20px',
     },
     extend: {
       spacing: {

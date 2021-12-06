@@ -1,74 +1,99 @@
 import React, { FC } from 'react';
 import { Soknad } from '../../api/soknad';
+import { SuccessStroke, WarningFilled } from '@navikt/ds-icons';
 
 interface Props {
   soknad: Soknad;
 }
 
-const JaNeiChip: FC<{ value: boolean }> = ({ value }) => {
+interface Requirement {
+  fulfilled: boolean;
+  description: string;
+}
+
+const getPrivateRequirements = (soknad: Soknad): Requirement[] => [
+  {
+    fulfilled: soknad.KVP,
+    description: 'Søknad om dagpenger ikke registrert',
+  },
+  {
+    fulfilled: soknad.KVP,
+    description: 'Ingen vedtak om statlige ytelser registrert',
+  },
+];
+const getKommunaleRequirements = (soknad: Soknad): Requirement[] => [
+  {
+    fulfilled: soknad.KVP,
+    description: 'KVP oppgitt',
+  },
+  {
+    fulfilled: soknad.KVP,
+    description: 'KVP utbetalinger registrert',
+  },
+  {
+    fulfilled: soknad.KVP,
+    description: 'Introduksjonsprogrammet oppgitt',
+  },
+  {
+    fulfilled: soknad.KVP,
+    description: 'Introduksjonsprogrammet registrert',
+  },
+];
+const getStatligeRequirements = (soknad: Soknad): Requirement[] => [
+  {
+    fulfilled: soknad.pensjonEtterlønn,
+    description: 'Søker oppgir å ha privat pensjonsordning',
+  },
+  {
+    fulfilled: soknad.pensjonEtterlønn,
+    description: 'Det er ikke registrert utbetalinger på privat pensjon',
+  },
+];
+
+const Section = ({
+  title,
+  requirements,
+}: {
+  title: string;
+  requirements: Requirement[];
+}) => {
   return (
-    <span
-      className={`border px-2 rounded-md ${
-        value ? 'border-sky-400 bg-sky-200' : 'bg-red-200 border-red-400'
-      }`}
-    >
-      {value ? 'Ja' : 'Nei'}
-    </span>
+    <div className="flex flex-col">
+      <h1 className="text-base font-bold text-left">{title}</h1>
+      {requirements.map((requirement, index) => (
+        <div key={index} className={'flex'}>
+          <span className={'flex items-center'}>
+            {requirement.fulfilled ? (
+              <SuccessStroke className="mr-2 text-green-400" />
+            ) : (
+              <WarningFilled className="mr-2 text-yellow-300" />
+            )}{' '}
+            {requirement.description}
+          </span>
+        </div>
+      ))}
+    </div>
   );
 };
 
 const CentreContent: FC<Props> = ({ soknad }) => {
-  const {
-    KVP,
-    institusjonsopphold,
-    tiltaksType,
-    pensjonEtterlønn,
-    tiltaksadresse,
-    tiltakspostnummer,
-    tiltaksdagerPerUke,
-    tiltaksarrangorNavn,
-  } = soknad;
-
   return (
-    <div className="flex space-x-8">
-      <div className="space-y-4 border-2 border-gray-200 shadow-xl p-4 rounded-md">
-        <h1 className="text-lg">Soknad</h1>
-        <div className="flex">
-          <span className="font-bold mr-4">Kvalifiseringsprogrammet:</span>
-          <JaNeiChip value={KVP} />
-        </div>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Institusjonsopphold:</span>
-          <JaNeiChip value={institusjonsopphold} />
-        </div>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Tiltakstype:</span>
-          <span>{tiltaksType}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Kvalifiseringsprogrammet:</span>
-          <JaNeiChip value={pensjonEtterlønn} />
-        </div>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Pensjon/etterlønn:</span>
-          <JaNeiChip value={pensjonEtterlønn} />
-        </div>
-      </div>
-      <div className="shadow-xl p-4 rounded-md border-gray-200 border-2 space-y-4">
-        <h1>Tiltak</h1>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Navn:</span>
-          <span>{tiltaksarrangorNavn}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Adresse:</span>
-          <span>{tiltaksadresse + ' ' + tiltakspostnummer}</span>
-        </div>
-        <div className="flex justify-between">
-          <span className="font-bold mr-4">Dager i uken:</span>
-          <span>{tiltaksdagerPerUke}</span>
-        </div>
-      </div>
+    <div className="flex flex-col">
+      <h1 className="text-xl font-bold">
+        Vilkår for tiltakspenger 12.01.2021 - 02.06.2021
+      </h1>
+      <Section
+        title={'Overlappende livsopphold - statlig'}
+        requirements={getStatligeRequirements(soknad)}
+      />
+      <Section
+        title={'Overlappende livsopphold - kommunalt'}
+        requirements={getKommunaleRequirements(soknad)}
+      />
+      <Section
+        title={'Overlappende livsopphold - private ordninger'}
+        requirements={getPrivateRequirements(soknad)}
+      />
     </div>
   );
 };

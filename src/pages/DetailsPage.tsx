@@ -1,15 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
-import Timeline from './details/Timeline';
-import { Tab, Tabs } from '../components/Tabs';
 import CentreContent from './details/CentreContent';
+import Timeline from '../components/Timeline';
+import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import { getSoknad, Soknad } from '../api/soknad';
+import { SuccessStroke } from '@navikt/ds-icons';
 
 const DetailsPage = () => {
   const { id: soknadId } = useParams();
 
-  const [soknad, setSoknad] = useState(undefined);
+  const [soknad, setSoknad] = useState<Soknad | undefined>(undefined);
 
   useEffect(() => {
     if (!soknadId) return;
@@ -17,17 +18,41 @@ const DetailsPage = () => {
   }, []);
 
   return (
-    <div>
+    <div className="flex flex-col">
       <Breadcrumbs />
       <Timeline />
-      <div className="flex flex-col items-start p-40">
-        <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
-          <Tabs>
-            <Tab>Utbetaling</Tab>
-            <Tab>Inngangsvilkår</Tab>
-          </Tabs>
+      <div className="grid grid-cols-12 flex-1">
+        <div className="col-span-2 border-r border-sky-400 p-8">
+          <div className="border-b border-gray-200 flex justify-between py-4">
+            <span className="flex">
+              <BehandlingsTag behandling={Behandling.Forlengelse} />
+              <span className="ml-2">Forlengelse</span>
+            </span>
+          </div>
+          <div className="flex flex-col items-start mt-4">
+            <h1 className="text-base font-bold text-left">Tiltak</h1>
+            <div>AMO kurs 100%</div>
+            <div>Klaras kaker</div>
+            <div>11.12.93-12.11.93</div>
+            <div>Status: gjennomføres</div>
+          </div>
+          <div className="flex flex-col items-start mt-4">
+            <h1 className="text-base font-bold text-left">Barn</h1>
+            <div>AMO kurs 100%</div>
+            <div>Klaras kaker</div>
+            <div>11.12.93-12.11.93</div>
+            <div>Status: gjennomføres</div>
+          </div>
         </div>
-        {soknad ? <CentreContent soknad={soknad} /> : null}
+        <div className="col-span-8 col-start-3">
+          <div className="flex flex-col items-start p-8">
+            <div className="self-stretch flex mb-16"></div>
+            {soknad ? <CentreContent soknad={soknad} /> : null}
+          </div>
+        </div>
+        <div className="col-span-2 border-l border-gray-200 flex flex-col p-8">
+          <span className="border-b border-gray-200">Historikk?</span>
+        </div>
       </div>
     </div>
   );

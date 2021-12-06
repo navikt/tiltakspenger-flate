@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
-import { getSoknader, Soknad } from '../api/soknad';
+import { getSoknader, SoknadMock } from '../api/soknadMock';
 
 const tags = [
   Behandling.ForsteGang,
@@ -15,7 +15,7 @@ const tags = [
 ];
 
 const columns: {
-  key: keyof Soknad | 'type' | 'status';
+  key: keyof SoknadMock | 'type' | 'status';
   name: string;
 }[] = [
   { key: 'startdato', name: 'Opprettet' },
@@ -29,7 +29,7 @@ const columns: {
 
 const ApplicationListPage = () => {
   const [soknader, setSoknader] = useState<
-    (Soknad & { status: string; type: JSX.Element })[] | undefined
+    (SoknadMock & { status: string; type: JSX.Element })[] | undefined
   >(undefined);
 
   useEffect(() => {

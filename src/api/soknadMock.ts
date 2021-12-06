@@ -1,6 +1,6 @@
 import { backendUrl } from './common';
 
-export interface Soknad {
+export interface SoknadMock {
   dokumentInfoId: string;
   tittel: string;
   personIdent: string;
@@ -23,12 +23,6 @@ export interface Soknad {
   tilleggsopplysninger: string;
 }
 
-export const getSoknader = (): Promise<Soknad[]> => {
+export const getSoknader = (): Promise<SoknadMock[]> => {
   return fetch(`${backendUrl}/api/mocksoknad`).then((res) => res.json());
-};
-
-export const getSoknad = (soknadId: string) => {
-  return fetch(`${backendUrl}/api/mocksoknad/${soknadId}`).then((res) =>
-    res.json()
-  );
 };
