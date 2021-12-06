@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { Outlet, useParams } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
-import CentreContent from './details/CentreContent';
-import Timeline from '../components/Timeline';
+import Timelines from '../components/timeline/Timelines';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import { getSoknad, Soknad } from '../api/soknad';
-import { SuccessStroke } from '@navikt/ds-icons';
+
+export const SoknadContext = React.createContext({
+  soknad: undefined as undefined | Soknad,
+});
 
 const DetailsPage = () => {
   const { id: soknadId } = useParams();
@@ -20,7 +22,7 @@ const DetailsPage = () => {
   return (
     <div className="flex flex-col">
       <Breadcrumbs />
-      <Timeline />
+      <Timelines />
       <div className="grid grid-cols-12 flex-1">
         <div className="col-span-2 border-r border-sky-400 p-8">
           <div className="border-b border-gray-200 flex justify-between py-4">
@@ -45,10 +47,9 @@ const DetailsPage = () => {
           </div>
         </div>
         <div className="col-span-8 col-start-3">
-          <div className="flex flex-col items-start p-8">
-            <div className="self-stretch flex mb-16"></div>
-            {soknad ? <CentreContent soknad={soknad} /> : null}
-          </div>
+          <SoknadContext.Provider value={{ soknad }}>
+            <Outlet />
+          </SoknadContext.Provider>
         </div>
         <div className="col-span-2 border-l border-gray-200 flex flex-col p-8">
           <span className="border-b border-gray-200">Historikk?</span>

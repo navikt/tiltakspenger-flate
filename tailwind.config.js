@@ -21,6 +21,7 @@ module.exports = {
       'yellow-400': '#D47B00',
       'stone-200': '#F1F1F1',
       'stone-400': '#6A6A6A',
+      'green-100': '#CCF1D6',
       'green-200': '#72ba74',
       'green-400': '#48864d',
     },

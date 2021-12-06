@@ -1,14 +1,17 @@
-import React, { CSSProperties, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
+import BoxTimeline from './BoxTimeline';
+import TimelineLabel from './TimelineLabel';
+import { months } from './months';
+import Timeline from './Timeline';
 
-const TimelineLabel = ({ label }: { label: string }) => {
-  return (
-    <span className="font-bold w-36 mr-2 border-r self-stretch py-2">
-      {label}
-    </span>
-  );
-};
+const payments = [
+  { id: '1', ok: true },
+  { id: '2', ok: true },
+  { id: '3', ok: true },
+  { id: '4', ok: false },
+];
 
-const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun'];
 const TimeLabels = () => {
   return (
     <div className="flex flex-row">
@@ -24,32 +27,6 @@ const TimeLabels = () => {
   );
 };
 
-const Timeline = ({
-  label,
-  style,
-  onClick,
-  selected,
-}: {
-  label: string;
-  style: CSSProperties;
-  onClick: () => void;
-  selected: boolean;
-}) => {
-  return (
-    <div className="flex items-center">
-      <TimelineLabel label={label} />
-      <button
-        tabIndex={0}
-        onClick={onClick}
-        className={`border border-red-400 rounded-full bg-red-200 p-4 ${
-          selected ? 'border-2' : ''
-        }`}
-        style={style}
-      />
-    </div>
-  );
-};
-
 const Timelines = ({
   onClickTimeline,
 }: {
@@ -57,8 +34,16 @@ const Timelines = ({
 }) => {
   const [selected, setSelected] = useState<string | undefined>(undefined);
 
+  const navigate = useNavigate();
+  const location = useLocation();
+
   useEffect(() => {
     if (!selected) return;
+
+    if (Number.isInteger(parseInt(selected))) {
+      navigate(`${location.pathname}/payment/${selected}`);
+    }
+
     onClickTimeline?.(selected);
   }, [selected]);
 
@@ -66,6 +51,11 @@ const Timelines = ({
     <div className="flex  p-4 border-b border-t border-sky-400">
       <div className="flex flex-col flex-1">
         <TimeLabels />
+        <BoxTimeline
+          items={payments}
+          selected={selected}
+          label={'Utbetalinger'}
+        />
         <Timeline
           onClick={() => setSelected('AAP')}
           selected={selected === 'AAP'}

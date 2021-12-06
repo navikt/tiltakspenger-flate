@@ -1,6 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useContext } from 'react';
 import { Soknad } from '../../api/soknad';
 import { SuccessStroke, WarningFilled } from '@navikt/ds-icons';
+import { SoknadContext } from '../DetailsPage';
 
 interface Props {
   soknad: Soknad;
@@ -98,4 +99,16 @@ const CentreContent: FC<Props> = ({ soknad }) => {
   );
 };
 
-export default CentreContent;
+const WrappedCenterContent = () => {
+  const { soknad } = useContext(SoknadContext);
+
+  return (
+    <div className="flex flex-col items-start p-8">
+      <div className="self-stretch flex mb-16">
+        {soknad ? <CentreContent soknad={soknad} /> : null}
+      </div>
+    </div>
+  );
+};
+
+export default WrappedCenterContent;
