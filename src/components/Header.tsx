@@ -2,6 +2,7 @@ import { Dropdown, Header } from '@navikt/ds-react-internal';
 import { ExternalLink, System } from '@navikt/ds-icons';
 import React from 'react';
 import { SearchBar } from './SearchBar';
+import { Link } from 'react-router-dom';
 
 const onSearch = (personId: string) => {
   return Promise.resolve();
@@ -10,7 +11,9 @@ const onSearch = (personId: string) => {
 const Header1 = () => {
   return (
     <Header>
-      <Header.Title href="/#home">NAV tiltakspenger</Header.Title>
+      <Link to={'/'} className="text-white flex">
+        <Header.Title>NAV tiltakspenger</Header.Title>
+      </Link>
       <SearchBar onSearch={onSearch} />
       <Dropdown>
         <Header.Button as={Dropdown.Toggle} style={{ marginLeft: 'auto' }}>
