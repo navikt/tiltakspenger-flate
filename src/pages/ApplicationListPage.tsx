@@ -1,8 +1,15 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
-import { getSoknader, SoknadMock } from '../api/soknadMock';
+import { useRequest } from '../api/common';
+import {
+  getPersonalia,
+  getSoknader,
+  getTiltakFraArena,
+  getValgtTiltak,
+  Soknad,
+} from '../api/soknad';
 
 const tags = [
   Behandling.ForsteGang,
@@ -14,11 +21,19 @@ const tags = [
   Behandling.QA,
 ];
 
+type SoknadWithStatus = Soknad & {
+  status: string;
+  type: JSX.Element;
+  fornavn: string;
+  tiltaksarrangorNavn: string;
+  startdato: string;
+};
+
 const columns: {
-  key: keyof SoknadMock | 'type' | 'status';
+  key: keyof SoknadWithStatus;
   name: string;
 }[] = [
-  { key: 'startdato', name: 'Opprettet' },
+  { key: 'opprettetDato', name: 'Opprettet' },
   { key: 'type', name: 'Type' },
   { key: 'tiltaksType', name: 'Behandlingstype' },
   { key: 'fornavn', name: 'Søker' },
@@ -28,36 +43,50 @@ const columns: {
 ];
 
 const ApplicationListPage = () => {
-  const [soknader, setSoknader] = useState<
-    (SoknadMock & { status: string; type: JSX.Element })[] | undefined
-  >(undefined);
+  const {
+    run: runGetSoknader,
+    error,
+    isLoading,
+    result: soknader,
+  } = useRequest(getSoknader);
+
+  console.log({ soknader });
 
   useEffect(() => {
-    getSoknader().then((soknader) => {
-      const enrichedSoknader = soknader.map((soknad, index) => ({
-        ...soknad,
-        status: 'Under behandling',
-        type: <BehandlingsTag behandling={tags[index]} />,
-      }));
-      setSoknader(enrichedSoknader);
-    });
+    runGetSoknader();
   }, []);
+
+  const enrichedSoknader: SoknadWithStatus = (soknader || ([] as Soknad[])).map(
+    (soknad, index) => ({
+      ...soknad,
+      fornavn: getPersonalia(soknad).fornavn,
+      tiltaksType: '?',
+      tiltaksarrangorNavn:
+        getTiltakFraArena(soknad)?.navn || getValgtTiltak(soknad),
+      startdato: getTiltakFraArena(soknad)?.startdato,
+      status: 'Under behandling',
+      type: <BehandlingsTag behandling={tags[index]} />,
+    })
+  );
 
   return (
     <div>
       <div className="flex flex-col items-start p-40">
-        <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
-          <Tabs>
-            <Tab>Ikke behandlet</Tab>
-            <Tab>Behandlet</Tab>
-          </Tabs>
-        </div>
-        {soknader === undefined ? (
-          <div className="border border-sky-400 rounded-md p-2 animate-spin">
-            Laster data
+        {error && (
+          <div className="border border-red-400 p-4 rounded-md bg-red-200">
+            {error.toString()}
           </div>
-        ) : (
-          <Table columns={columns} data={soknader || []} />
+        )}
+        {!!soknader?.length && (
+          <>
+            <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
+              <Tabs>
+                <Tab>Ikke behandlet</Tab>
+                <Tab>Behandlet</Tab>
+              </Tabs>
+            </div>
+            <Table columns={columns} data={(enrichedSoknader as any) || []} />
+          </>
         )}
       </div>
     </div>

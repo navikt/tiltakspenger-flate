@@ -7,7 +7,8 @@ import ApplicationListPage from './pages/ApplicationListPage';
 import DetailsPage from './pages/DetailsPage';
 import Header1 from './components/Header';
 import TestPage from './pages/TestPage';
-import CentreContent from './pages/details/CentreContent';
+import CentreContent from './pages/details/RequirementChecks';
+import PaymentsTable from './pages/details/PaymentsTable';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Routes>
           <Route path={'/'} element={<ApplicationListPage />} />
           <Route path={'/soknad/:id/*'} element={<DetailsPage />}>
-            <Route path="payment/:weekNumber" element={<div>Test</div>} />
+            <Route path="payment/:weekNumber" element={<PaymentsTable />} />
             <Route path={'*'} element={<CentreContent />} />
           </Route>
           <Route path={'/test'} element={<TestPage />} />

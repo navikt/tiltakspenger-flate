@@ -1,6 +1,12 @@
 import React, { FC, useContext } from 'react';
 import { Soknad } from '../../api/soknad';
-import { SuccessStroke, WarningFilled } from '@navikt/ds-icons';
+import {
+  Collapse,
+  Expand,
+  SuccessFilled,
+  SuccessStroke,
+  WarningFilled,
+} from '@navikt/ds-icons';
 import { SoknadContext } from '../DetailsPage';
 
 interface Props {
@@ -59,8 +65,18 @@ const Section = ({
   requirements: Requirement[];
 }) => {
   return (
-    <div className="flex flex-col">
-      <h1 className="text-base font-bold text-left">{title}</h1>
+    <details className="flex flex-col group mb-4">
+      <summary className="flex items-center justify-between">
+        <h1 className="text-base font-bold text-left flex items-center">
+          <SuccessStroke className="mr-2" />
+          {title}
+        </h1>
+        <div className="flex ml-2 items-center">
+          <span className="text-stone-400 mr-2">§2.3</span>
+          <Expand className="group-open:block hidden mr-2" />
+          <Collapse className="group-open:hidden block mr-2" />
+        </div>
+      </summary>
       {requirements.map((requirement, index) => (
         <div key={index} className={'flex'}>
           <span className={'flex items-center'}>
@@ -73,42 +89,58 @@ const Section = ({
           </span>
         </div>
       ))}
-    </div>
+    </details>
   );
 };
 
-const CentreContent: FC<Props> = ({ soknad }) => {
+const RequirementChecks: FC<Props> = ({ soknad }) => {
   return (
-    <div className="flex flex-col">
-      <h1 className="text-xl font-bold">
-        Vilkår for tiltakspenger 12.01.2021 - 02.06.2021
+    <div className="flex flex-col flex-1">
+      <h1 className="text-xl font-bold flex items-center">
+        <SuccessFilled className="text-green-400 mr-2" />
+        Vilkår for tiltakspenger
       </h1>
-      <Section
-        title={'Overlappende livsopphold - statlig'}
-        requirements={getStatligeRequirements(soknad)}
-      />
-      <Section
-        title={'Overlappende livsopphold - kommunalt'}
-        requirements={getKommunaleRequirements(soknad)}
-      />
-      <Section
-        title={'Overlappende livsopphold - private ordninger'}
-        requirements={getPrivateRequirements(soknad)}
-      />
-    </div>
-  );
-};
-
-const WrappedCenterContent = () => {
-  const { soknad } = useContext(SoknadContext);
-
-  return (
-    <div className="flex flex-col items-start p-8">
-      <div className="self-stretch flex mb-16">
-        {soknad ? <CentreContent soknad={soknad} /> : null}
+      <span>12.01.2021 - 02.06.2021</span>
+      <div className={'flex-1'}>
+        <Section
+          title={'Søknad dagpenger'}
+          requirements={getStatligeRequirements(soknad)}
+        />
+        <Section
+          title={'Statlige ytelser'}
+          requirements={getKommunaleRequirements(soknad)}
+        />
+        <Section
+          title={'Kommunale ytelser'}
+          requirements={getPrivateRequirements(soknad)}
+        />
+        <Section
+          title={'Institusjon m/kost og logi'}
+          requirements={getStatligeRequirements(soknad)}
+        />
+        <Section
+          title={'Private ordninger'}
+          requirements={getKommunaleRequirements(soknad)}
+        />
+        <Section
+          title={'Lønnsinntekt'}
+          requirements={getPrivateRequirements(soknad)}
+        />
       </div>
     </div>
   );
 };
 
-export default WrappedCenterContent;
+const WrappedRequirementChecks = () => {
+  const { soknad } = useContext(SoknadContext);
+
+  return (
+    <div className="flex flex-col items-start p-8">
+      <div className="self-stretch flex mb-16">
+        {soknad ? <RequirementChecks soknad={soknad} /> : null}
+      </div>
+    </div>
+  );
+};
+
+export default WrappedRequirementChecks;
