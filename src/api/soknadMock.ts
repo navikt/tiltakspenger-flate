@@ -1,4 +1,4 @@
-import { backendUrl } from './common';
+import { backendUrl, HTTP } from './common';
 
 export interface SoknadMock {
   dokumentInfoId: string;
@@ -24,5 +24,5 @@ export interface SoknadMock {
 }
 
 export const getSoknader = (): Promise<SoknadMock[]> => {
-  return fetch(`${backendUrl}/api/mocksoknad`).then((res) => res.json());
+  return HTTP.GET(`${backendUrl}/api/mocksoknad`);
 };
