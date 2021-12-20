@@ -10,7 +10,7 @@ export interface PersonState {
 export const getPerson = (id: string) => {
   //HTTP.GET(`${backendUrl}/person/sok`, {id});
   const p: PersonState = {
-    fnr: '16056233869',
+    fnr: '123456789',
     fornavn: 'Klara',
     etternavn: 'Helgemo',
   };
