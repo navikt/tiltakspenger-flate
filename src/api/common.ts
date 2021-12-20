@@ -50,7 +50,15 @@ export const useRequest = <T>(doFetch: () => Promise<T>) => {
 };
 
 const mockHTTP: typeof realHTTP = {
-  GET: (url: string, config?: RequestInit) => Promise.resolve(mockData[url]),
+  GET: (url: string, config?: RequestInit) => {
+    console.log(url, mockData);
+    const resolvedKey = Object.keys(mockData).find((key) =>
+      url.startsWith(key)
+    );
+    if (resolvedKey === undefined)
+      throw Error(`Mock data not found for key/path: ${url}`);
+    return Promise.resolve(mockData[resolvedKey]);
+  },
 };
 
 let usedHTTP: typeof realHTTP;

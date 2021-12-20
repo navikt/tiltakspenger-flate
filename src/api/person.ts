@@ -16,3 +16,7 @@ export const getPerson = (id: string) => {
   };
   return p;
 };
+
+export const findPerson = (fnr: string) => {
+  return HTTP.GET(`${backendUrl}/api/person?fnr=${fnr}`);
+};
