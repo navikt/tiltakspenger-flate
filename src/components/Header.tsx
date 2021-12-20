@@ -5,6 +5,7 @@ import { SearchBar } from './SearchBar';
 import { Link } from 'react-router-dom';
 import { fetchPerson } from '../state/person';
 import { useAddAlert, useRemoveAlert } from '../state/alerts';
+import { isValidFnr } from './fnrValidation';
 
 const Header1 = () => {
   const addAlert = useAddAlert();
@@ -20,11 +21,11 @@ const Header1 = () => {
     }
     const key = 'ugyldig-søk';
     removeAlert(key);
-    if (!erGyldigPersonId(personId)) {
+    if (!isValidFnr(personId)) {
       addAlert({
         key: key,
         message: `"${personId}" er ikke en gyldig aktør-ID/fødselsnummer.`,
-        type: 'feil',
+        type: 'error',
       });
     } else {
       fetchPerson(personId)

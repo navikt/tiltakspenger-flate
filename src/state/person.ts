@@ -43,13 +43,13 @@ export const personState = atom<PersonState | undefined>({
   default: undefined,
 });
 
-export const useHentPerson = () => {
+export const useFetchPerson = () => {
   const setPerson = useSetRecoilState(personState);
 
   return (id: string) => {
     setPerson(undefined);
 
-    return hentPerson(id)
+    return fetchPerson(id)
       .then((res) => {
         // @ts-ignore
         setPerson(res);
