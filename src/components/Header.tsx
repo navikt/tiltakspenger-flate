@@ -3,12 +3,47 @@ import { ExternalLink, System } from '@navikt/ds-icons';
 import React from 'react';
 import { SearchBar } from './SearchBar';
 import { Link } from 'react-router-dom';
-
-const onSearch = (personId: string) => {
-  return Promise.resolve();
-};
+import { fetchPerson } from '../state/person';
+import { useAddAlert, useRemoveAlert } from '../state/alerts';
 
 const Header1 = () => {
+  const addAlert = useAddAlert();
+  const removeAlert = useRemoveAlert();
+
+  const onSearch = (personId: string) => {
+    return Promise.resolve();
+  };
+  const onSøk = (personId: string) => {
+    if (personId.toLowerCase() === 'agurk') {
+      console.log('Agurk');
+      return Promise.resolve();
+    }
+    const key = 'ugyldig-søk';
+    removeAlert(key);
+    if (!erGyldigPersonId(personId)) {
+      addAlert({
+        key: key,
+        message: `"${personId}" er ikke en gyldig aktør-ID/fødselsnummer.`,
+        type: 'feil',
+      });
+    } else {
+      fetchPerson(personId)
+        .then(
+          (res: { person?: Person }) =>
+            res.person &&
+            history.push(`/person/${res.person.aktørId}/utbetaling`)
+        )
+        .catch((error) =>
+          addAlert({
+            key: key,
+            message: error.message,
+            type: error.type,
+          })
+        );
+    }
+    return Promise.resolve();
+  };
+
   return (
     <Header>
       <Link to={'/'} className="text-white flex">

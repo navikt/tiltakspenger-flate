@@ -3,27 +3,32 @@ import '@navikt/ds-css';
 import '@navikt/ds-css-internal';
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { RecoilRoot } from 'recoil';
 import ApplicationListPage from './pages/ApplicationListPage';
 import DetailsPage from './pages/DetailsPage';
 import Header1 from './components/Header';
 import TestPage from './pages/TestPage';
 import CentreContent from './pages/details/RequirementChecks';
 import PaymentsTable from './pages/details/PaymentsTable';
+import InfoMessage from './components/InfoMessage';
 
 function App() {
   return (
     <Router>
-      <div className="App">
-        <Header1 />
-        <Routes>
-          <Route path={'/'} element={<ApplicationListPage />} />
-          <Route path={'/soknad/:id/*'} element={<DetailsPage />}>
-            <Route path="payment/:weekNumber" element={<PaymentsTable />} />
-            <Route path={'*'} element={<CentreContent />} />
-          </Route>
-          <Route path={'/test'} element={<TestPage />} />
-        </Routes>
-      </div>
+      <RecoilRoot>
+        <div className="App">
+          <Header1 />
+          <InfoMessage />
+          <Routes>
+            <Route path={'/'} element={<ApplicationListPage />} />
+            <Route path={'/soknad/:id/*'} element={<DetailsPage />}>
+              <Route path="payment/:weekNumber" element={<PaymentsTable />} />
+              <Route path={'*'} element={<CentreContent />} />
+            </Route>
+            <Route path={'/test'} element={<TestPage />} />
+          </Routes>
+        </div>
+      </RecoilRoot>
     </Router>
   );
 }
