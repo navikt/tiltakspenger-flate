@@ -26,7 +26,8 @@ type SoknadWithStatus = Soknad & {
   type: JSX.Element;
   fornavn: string;
   tiltaksarrangorNavn: string;
-  startdato: string;
+  tiltaksType: string;
+  startdato: string | undefined;
 };
 
 const columns: {
@@ -46,35 +47,32 @@ const ApplicationListPage = () => {
   const {
     run: runGetSoknader,
     error,
-    isLoading,
     result: soknader,
   } = useRequest(getSoknader);
-
-  console.log({ soknader });
 
   useEffect(() => {
     runGetSoknader();
   }, []);
 
-  const enrichedSoknader: SoknadWithStatus = (soknader || ([] as Soknad[])).map(
-    (soknad, index) => ({
-      ...soknad,
-      fornavn: getPersonalia(soknad).fornavn,
-      tiltaksType: '?',
-      tiltaksarrangorNavn:
-        getTiltakFraArena(soknad)?.navn || getValgtTiltak(soknad),
-      startdato: getTiltakFraArena(soknad)?.startdato,
-      status: 'Under behandling',
-      type: <BehandlingsTag behandling={tags[index]} />,
-    })
-  );
+  const enrichedSoknader: SoknadWithStatus[] = (
+    soknader || ([] as Soknad[])
+  ).map((soknad, index) => ({
+    ...soknad,
+    fornavn: getPersonalia(soknad).fornavn,
+    tiltaksType: '?',
+    tiltaksarrangorNavn:
+      getTiltakFraArena(soknad)?.navn || getValgtTiltak(soknad),
+    startdato: getTiltakFraArena(soknad)?.startdato,
+    status: 'Under behandling',
+    type: <BehandlingsTag behandling={tags[index]} />,
+  }));
 
   return (
     <div>
       <div className="flex flex-col items-start p-40">
         {error && (
           <div className="border border-red-400 p-4 rounded-md bg-red-200">
-            {error.toString()}
+            {(error as string).toString()}
           </div>
         )}
         {!!soknader?.length && (
@@ -85,7 +83,7 @@ const ApplicationListPage = () => {
                 <Tab>Behandlet</Tab>
               </Tabs>
             </div>
-            <Table columns={columns} data={(enrichedSoknader as any) || []} />
+            <Table columns={columns} data={enrichedSoknader || []} />
           </>
         )}
       </div>

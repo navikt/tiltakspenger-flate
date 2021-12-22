@@ -1,8 +1,6 @@
 import { useState } from 'react';
 import mockData from '../mocks';
-import any = jasmine.any;
 
-// export const backendUrl = 'https://tpts-tiltakspenger-mottak.dev.intern.nav.no';
 export const backendUrl = '';
 
 const getBody = async (res: Response) => {
@@ -28,7 +26,7 @@ const realHTTP = {
 export const useRequest = <T>(doFetch: () => Promise<T>) => {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [result, setResult] = useState<T | undefined>();
-  const [error, setError] = useState<any>();
+  const [error, setError] = useState<unknown>();
 
   const run = async () => {
     try {
@@ -50,7 +48,7 @@ export const useRequest = <T>(doFetch: () => Promise<T>) => {
 };
 
 const mockHTTP: typeof realHTTP = {
-  GET: (url: string, config?: RequestInit) => {
+  GET: (url: string) => {
     console.log(url, mockData);
     const resolvedKey = Object.keys(mockData).find((key) =>
       url.startsWith(key)

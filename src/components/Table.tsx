@@ -11,7 +11,10 @@ interface Props<T> {
   columns: Column<keyof T>[];
 }
 
-const Table = <T extends { soknadId: string }>({ data, columns }: Props<T>) => {
+const Table = <T extends { soknadId: string | number }>({
+  data,
+  columns,
+}: Props<T>) => {
   const navigate = useNavigate();
 
   function handleClick(sokandId: string) {
@@ -32,7 +35,7 @@ const Table = <T extends { soknadId: string }>({ data, columns }: Props<T>) => {
       <tbody>
         {data.map((row, index) => (
           <tr
-            onClick={() => handleClick(row.soknadId)}
+            onClick={() => handleClick(row.soknadId.toString())}
             key={index}
             className="cursor-pointer text-left h-32 odd:bg-gray-100 border-t-2 last:border-b-2 border-gray-200"
           >

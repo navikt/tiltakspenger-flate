@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { Soknad } from '../../api/soknad';
+import { getValgtTiltak, Soknad } from '../../api/soknad';
 import {
   Collapse,
   Expand,
@@ -20,39 +20,39 @@ interface Requirement {
 
 const getPrivateRequirements = (soknad: Soknad): Requirement[] => [
   {
-    fulfilled: soknad.KVP,
+    fulfilled: true,
     description: 'Søknad om dagpenger ikke registrert',
   },
   {
-    fulfilled: soknad.KVP,
+    fulfilled: false,
     description: 'Ingen vedtak om statlige ytelser registrert',
   },
 ];
 const getKommunaleRequirements = (soknad: Soknad): Requirement[] => [
   {
-    fulfilled: soknad.KVP,
+    fulfilled: true,
     description: 'KVP oppgitt',
   },
   {
-    fulfilled: soknad.KVP,
+    fulfilled: false,
     description: 'KVP utbetalinger registrert',
   },
   {
-    fulfilled: soknad.KVP,
+    fulfilled: true,
     description: 'Introduksjonsprogrammet oppgitt',
   },
   {
-    fulfilled: soknad.KVP,
+    fulfilled: false,
     description: 'Introduksjonsprogrammet registrert',
   },
 ];
 const getStatligeRequirements = (soknad: Soknad): Requirement[] => [
   {
-    fulfilled: soknad.pensjonEtterlønn,
+    fulfilled: false,
     description: 'Søker oppgir å ha privat pensjonsordning',
   },
   {
-    fulfilled: soknad.pensjonEtterlønn,
+    fulfilled: true,
     description: 'Det er ikke registrert utbetalinger på privat pensjon',
   },
 ];

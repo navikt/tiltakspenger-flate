@@ -1,4 +1,4 @@
-import { atom, selector, useRecoilValue, useSetRecoilState } from 'recoil';
+import { atom, useSetRecoilState } from 'recoil';
 
 import { getPerson, PersonState } from '../api/person';
 

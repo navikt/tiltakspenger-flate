@@ -11,10 +11,10 @@ const Header1 = () => {
   const addAlert = useAddAlert();
   const removeAlert = useRemoveAlert();
 
-  const onSearch = (personId: string) => {
+  const onSearch = async (personId: string): Promise<void> => {
     if (personId.toLowerCase() === 'agurk') {
       console.log('Agurk');
-      return Promise.resolve();
+      return;
     }
     const key = 'ugyldig-søk';
     removeAlert(key);
@@ -25,14 +25,13 @@ const Header1 = () => {
         message: `"${personId}" er ikke en gyldig aktør-ID/fødselsnummer.`,
         type: 'error',
       });
+      return;
     } else {
       fetchPerson(personId);
-      return Promise.resolve();
+      return;
     }
   };
 
-  // @ts-ignore
-  // @ts-ignore
   return (
     <Header>
       <Link to={'/'} className="text-white flex">

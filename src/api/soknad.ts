@@ -30,13 +30,16 @@ export interface Soknad {
   versjon: number | null;
 }
 
-export const getPersonalia = (
-  soknad: Soknad
-): { fornavn: string; etternavn: string } =>
-  soknad.fakta.find((fakta) => fakta.key === 'personalia')!!.properties!!;
+interface Personalia {
+  fornavn: string;
+  etternavn: string;
+}
+export const getPersonalia = (soknad: Soknad): Personalia =>
+  soknad.fakta.find((fakta) => fakta.key === 'personalia')!
+    .properties! as unknown as Personalia;
 
 export const getValgtTiltak = (soknad: Soknad): string =>
-  soknad.fakta.find((fakta) => fakta.key === 'tiltaksliste.valgtTiltak')!!
+  soknad.fakta.find((fakta) => fakta.key === 'tiltaksliste.valgtTiltak')!
     .value as string;
 
 interface ArenaTiltak {
