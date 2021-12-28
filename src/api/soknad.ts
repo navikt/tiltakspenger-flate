@@ -58,11 +58,11 @@ export const getTiltakFraArena = (soknad: Soknad): ArenaTiltak | undefined =>
     ?.properties as unknown as ArenaTiltak;
 
 export const getSoknad = (soknadId: string): Promise<Soknad> => {
-  return HTTP.GET(`${backendUrl}/api/mocksoknad/1`);
+  return HTTP.GET(`${backendUrl}/api/soknad/${soknadId}`);
 };
 
 export const getSoknader = (): Promise<Soknad[]> => {
-  return HTTP.GET(`${backendUrl}/api/mocksoknad`);
+  return HTTP.GET(`${backendUrl}/api/soknad`);
 };
 
 export const getSoknaderRaw = (

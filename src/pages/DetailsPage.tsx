@@ -16,7 +16,7 @@ const DetailsPage = () => {
 
   useEffect(() => {
     if (!soknadId) return;
-    getSoknad(soknadId).then((soknad) => setSoknad(soknad));
+    getSoknad('1').then((soknad) => setSoknad(soknad));
     getSoknaderRaw('510869767', '533784070');
   }, []);
 
