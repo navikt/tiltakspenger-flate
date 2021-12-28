@@ -17,6 +17,7 @@
     "dev": "vite",
     "dev-mock": "vite --mode mock",
     "build": "tsc && vite build",
+    "build-mock": "tsc && vite build --mode mock",
     "serve": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "getenv": "node ./scripts/getDevEnv.js"
