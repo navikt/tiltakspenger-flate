@@ -11,8 +11,8 @@ export const getPerson = (id: string) => {
   //HTTP.GET(`${backendUrl}/person/sok`, {id});
   const p: PersonState = {
     fnr: '123456789',
-    fornavn: 'Klara',
-    etternavn: 'Helgemo',
+    fornavn: 'Taremel',
+    etternavn: 'Sløv',
   };
   return p;
 };

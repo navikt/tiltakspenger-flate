@@ -1,5 +1,5 @@
 export default {
-  fnr: '16056233869',
-  fornavn: 'Klara',
-  etternavn: 'Helgemo',
+  fnr: '12121212121',
+  fornavn: 'Taremel',
+  etternavn: 'Sløv',
 };

@@ -1,5 +1,5 @@
 import React, { FC, useContext } from 'react';
-import { getValgtTiltak, Soknad } from '../../api/soknad';
+import { Soknad } from '../../api/soknad';
 import {
   Collapse,
   Expand,
