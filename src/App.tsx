@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
 import ApplicationListPage from './pages/ApplicationListPage';
 import DetailsPage from './pages/DetailsPage';
-import Header1 from './components/Header';
+import Navbar from './components/Navbar';
 import TestPage from './pages/TestPage';
 import CentreContent from './pages/details/RequirementChecks';
 import PaymentsTable from './pages/details/PaymentsTable';
@@ -17,7 +17,7 @@ function App() {
     <Router>
       <RecoilRoot>
         <div className="App">
-          <Header1 />
+          <Navbar />
           <InfoMessage />
           <Routes>
             <Route path={'/'} element={<ApplicationListPage />} />

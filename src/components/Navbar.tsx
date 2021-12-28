@@ -2,12 +2,12 @@ import { Dropdown, Header } from '@navikt/ds-react-internal';
 import { ExternalLink, System } from '@navikt/ds-icons';
 import React from 'react';
 import { SearchBar } from './SearchBar';
-import { Link } from 'react-router-dom';
 import { fetchPerson } from '../state/person';
 import { useAddAlert, useRemoveAlert } from '../state/alerts';
 import { isValidFnr } from './fnrValidation';
+import { useNavigate } from 'react-router-dom';
 
-const Header1 = () => {
+const Navbar = () => {
   const addAlert = useAddAlert();
   const removeAlert = useRemoveAlert();
 
@@ -32,11 +32,14 @@ const Header1 = () => {
     }
   };
 
+  const navigate = useNavigate();
+  const goToHome = () => navigate('/');
+
   return (
     <Header>
-      <Link to={'/'} className="text-white flex">
-        <Header.Title>NAV tiltakspenger</Header.Title>
-      </Link>
+      <Header.Title onClick={goToHome} className="cursor-pointer">
+        NAV tiltakspenger
+      </Header.Title>
       <SearchBar onSearch={onSearch} />
       <Dropdown>
         <Header.Button as={Dropdown.Toggle} style={{ marginLeft: 'auto' }}>
@@ -67,4 +70,4 @@ const Header1 = () => {
   );
 };
 
-export default Header1;
+export default Navbar;
