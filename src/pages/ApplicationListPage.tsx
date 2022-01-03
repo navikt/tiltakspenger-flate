@@ -10,6 +10,8 @@ import {
   getValgtTiltak,
   Soknad,
 } from '../api/soknad';
+import { alertsState } from '../state/alerts';
+import { useRecoilState } from 'recoil';
 
 const tags = [
   Behandling.ForsteGang,
@@ -67,6 +69,22 @@ const ApplicationListPage = () => {
     type: <BehandlingsTag behandling={tags[index]} />,
   }));
 
+  const { 1: setAlerts } = useRecoilState(alertsState);
+  const getProcessedApplications = () => {
+    setAlerts([
+      {
+        key: 'testKey',
+        type: 'error',
+        message: 'Something failed',
+      },
+    ]);
+    return [];
+  };
+  const getUnprocessedApplications = () => {
+    setAlerts([]);
+    return [];
+  };
+
   return (
     <div>
       <div className="flex flex-col items-start p-40">
@@ -79,8 +97,8 @@ const ApplicationListPage = () => {
           <>
             <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
               <Tabs>
-                <Tab>Ikke behandlet</Tab>
-                <Tab>Behandlet</Tab>
+                <Tab onClick={getUnprocessedApplications}>Ikke behandlet</Tab>
+                <Tab onClick={getProcessedApplications}>Behandlet</Tab>
               </Tabs>
             </div>
             <Table columns={columns} data={enrichedSoknader || []} />

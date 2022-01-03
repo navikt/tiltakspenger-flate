@@ -35,7 +35,10 @@ export const Tabs: FC<TabsProps> = ({ children, onTabChange }) => {
       {React.Children.map(children, (child, index) => {
         return React.cloneElement(child as ReactElement, {
           selected: selectedIndex === index,
-          onClick: () => setIndex(index),
+          onClick: () => {
+            (child as any).props?.onClick();
+            setIndex(index);
+          },
         });
       })}
     </div>
