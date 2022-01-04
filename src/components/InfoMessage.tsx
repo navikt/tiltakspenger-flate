@@ -42,10 +42,14 @@ const InfoMessage = () => {
   const [alerts] = useRecoilState(alertsState);
   console.log(alerts);
 
-  return alerts.map(({ key, type, message }) => (
-    <div key={key} className={classname(type)}>
-      {icon(type)} {message}
+  return (
+    <div>
+      {alerts.map(({ key, type, message }) => (
+        <div key={key} className={classname(type)}>
+          {icon(type)} {message}
+        </div>
+      ))}
     </div>
-  ));
+  );
 };
 export default InfoMessage;
