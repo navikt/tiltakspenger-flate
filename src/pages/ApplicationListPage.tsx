@@ -73,7 +73,12 @@ const ApplicationListPage = () => {
   const getProcessedApplications = () => {
     setAlerts([
       {
-        key: 'testKey',
+        key: 'testKey1',
+        type: 'info',
+        message: 'Message to you',
+      },
+      {
+        key: 'testKey2',
         type: 'error',
         message: 'Something failed',
       },
