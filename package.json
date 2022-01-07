@@ -18,6 +18,7 @@
     "dev-mock": "vite --mode mock",
     "build": "tsc && vite build",
     "build-mock": "tsc && vite build --mode mock",
+    "build-mock-gh-pages": "tsc && vite build --mode mock --base /tpts-tiltakspenger-flate",
     "serve": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "getenv": "node ./scripts/getDevEnv.js"
