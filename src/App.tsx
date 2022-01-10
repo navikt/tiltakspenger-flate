@@ -11,6 +11,7 @@ import TestPage from './pages/TestPage';
 import CentreContent from './pages/details/RequirementChecks';
 import PaymentsTable from './pages/details/PaymentsTable';
 import InfoMessage from './components/InfoMessage';
+import AppRoutes from './routes';
 
 function App() {
   return (
@@ -19,14 +20,7 @@ function App() {
         <div className="App">
           <Navbar />
           <InfoMessage />
-          <Routes>
-            <Route path={'/'} element={<ApplicationListPage />} />
-            <Route path={'/soknad/:id/*'} element={<DetailsPage />}>
-              <Route path="payment/:weekNumber" element={<PaymentsTable />} />
-              <Route path={'*'} element={<CentreContent />} />
-            </Route>
-            <Route path={'/test'} element={<TestPage />} />
-          </Routes>
+          <AppRoutes />
         </div>
       </RecoilRoot>
     </Router>

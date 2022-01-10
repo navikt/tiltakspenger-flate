@@ -49,7 +49,6 @@ export const useRequest = <T>(doFetch: () => Promise<T>) => {
 
 const mockHTTP: typeof realHTTP = {
   GET: (url: string) => {
-    console.log(url, mockData);
     const resolvedKey = Object.keys(mockData).find((key) =>
       url.startsWith(key)
     );
@@ -64,7 +63,6 @@ if (import.meta.env.MODE === 'mock') {
   console.log('Using mock');
   usedHTTP = mockHTTP;
 } else {
-  console.log('Using fetch');
   usedHTTP = realHTTP;
 }
 export const HTTP = usedHTTP;

@@ -6,6 +6,7 @@ import { fetchPerson } from '../state/person';
 import { useAddAlert, useRemoveAlert } from '../state/alerts';
 import { isValidFnr } from './fnrValidation';
 import { useNavigate } from 'react-router-dom';
+import { basePath } from '../routes';
 
 const Navbar = () => {
   const addAlert = useAddAlert();
@@ -33,7 +34,7 @@ const Navbar = () => {
   };
 
   const navigate = useNavigate();
-  const goToHome = () => navigate('/');
+  const goToHome = () => navigate(basePath);
 
   return (
     <Header>

@@ -1,3 +1,3 @@
 interface ImportMeta {
-  env: { MODE: string };
+  env: { MODE: string; BASE_URL: string };
 }
