@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import mockData from '../mocks';
 
 export const backendUrl = '';
 
@@ -10,7 +9,7 @@ const getBody = async (res: Response) => {
   return res.text();
 };
 
-const realHTTP = {
+export const HTTP = {
   GET: (url: string, config?: RequestInit) =>
     fetch(url, config).then(async (res) => {
       if (!res.ok)
@@ -46,23 +45,3 @@ export const useRequest = <T>(doFetch: () => Promise<T>) => {
     error,
   };
 };
-
-const mockHTTP: typeof realHTTP = {
-  GET: (url: string) => {
-    const resolvedKey = Object.keys(mockData).find((key) =>
-      url.startsWith(key)
-    );
-    if (resolvedKey === undefined)
-      throw Error(`Mock data not found for key/path: ${url}`);
-    return Promise.resolve(mockData[resolvedKey]);
-  },
-};
-
-let usedHTTP: typeof realHTTP;
-if (import.meta.env.MODE === 'mock') {
-  console.log('Using mock');
-  usedHTTP = mockHTTP;
-} else {
-  usedHTTP = realHTTP;
-}
-export const HTTP = usedHTTP;
