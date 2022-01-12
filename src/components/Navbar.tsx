@@ -66,7 +66,7 @@ const Navbar = () => {
           </Dropdown.Menu.List>
         </Dropdown.Menu>
       </Dropdown>
-      <Header.User name="Kjekk Agurk" />
+      <Header.User name="Sylte Agurk" />
     </Header>
   );
 };
