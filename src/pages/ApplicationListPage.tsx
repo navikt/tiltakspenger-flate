@@ -74,13 +74,23 @@ const ApplicationListPage = () => {
     setAlerts([
       {
         key: 'testKey1',
-        type: 'info',
-        message: 'Message to you',
+        type: 'success',
+        message: 'Dette gikk bra',
       },
       {
         key: 'testKey2',
+        type: 'info',
+        message: 'En melding til deg',
+      },
+      {
+        key: 'testKey3',
+        type: 'warning',
+        message: 'En advarsel til deg',
+      },
+      {
+        key: 'testKey4',
         type: 'error',
-        message: 'Something failed',
+        message: 'Dette gikk galt',
       },
     ]);
     return [];

@@ -35,7 +35,10 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
           value={value}
         />
         <button onClick={search}>
-          <SearchIcon className="m-1  text-gray-200" />
+          <SearchIcon
+            aria-label="Søk fødselsnummer"
+            className="m-1  text-gray-200"
+          />
         </button>
       </div>
     </div>
