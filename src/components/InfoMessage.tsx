@@ -61,7 +61,6 @@ export const icon = (icontype: WarningType) => {
 
 const InfoMessage = () => {
   const [alerts] = useRecoilState(alertsState);
-  console.log(alerts);
 
   return (
     <div>
