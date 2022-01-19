@@ -15,7 +15,7 @@ describe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
     await waitFor(() => screen.getByText('GØYAL TAREMEL'));
-    expect(screen.getByText('SIERRA DAUGHERTY')).toBeInTheDocument();
-    expect(screen.getByText('EVANS HILPERT')).toBeInTheDocument();
+    expect(screen.getAllByText('Klaras kaker')[0]).toBeInTheDocument();
+  
   });
 });
