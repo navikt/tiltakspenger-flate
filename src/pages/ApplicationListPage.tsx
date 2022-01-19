@@ -45,17 +45,6 @@ const ApplicationListPage = () => {
     error,
     result: soknader,
   } = useRequest(getSoknader);
-
-  const [behandlet, setBehandlet] = useState(false);
-  useEffect(() => {
-    runGetSoknader();
-    if (!behandlet) {
-      getUnprocessedApplications();
-    } else {
-      getProcessedApplications();
-    }
-  }, []);
-
   const enrichedSoknader: SoknadWithStatus[] = (
     soknader || ([] as SoknadList[])
   ).map((soknad, index) => ({
@@ -64,29 +53,23 @@ const ApplicationListPage = () => {
     strek: '-',
   }));
 
-  const { 1: setAlerts } = useRecoilState(alertsState);
-  const getProcessedApplications = () => {
-    setAlerts([]);
-    setBehandlet(true);
-    setAlerts([]);
-    return enrichedSoknader.filter(
-      (soknad) => soknad.statusSoknad !== 'Ikke behandlet'
-    );
-  };
-  const getUnprocessedApplications = () => {
-    setBehandlet(false);
-    setAlerts([]);
-    return enrichedSoknader.filter(
-      (soknad) => soknad.statusSoknad === 'Ikke behandlet'
-    );
-  };
+  const processedFilter = (soknad: SoknadWithStatus) =>
+    soknad.statusSoknad !== 'Ikke behandlet';
+  const unProcessedFilter = (soknad: SoknadWithStatus) =>
+    soknad.statusSoknad === 'Behandlet';
 
-  const processedApplications = enrichedSoknader.filter(
-    (soknad) => soknad.statusSoknad !== 'Ikke behandlet'
-  );
-  const unProcessedApplications = enrichedSoknader.filter(
-    (soknad) => soknad.statusSoknad === 'Ikke behandlet'
-  );
+  const [filterIndex, setFilterIndex] = useState<number>(0);
+  const filters: Record<number, (soknad: SoknadWithStatus) => boolean> = {
+    0: processedFilter,
+    1: unProcessedFilter,
+  };
+  const applications = (enrichedSoknader || []).filter(filters[filterIndex]);
+
+  useEffect(() => {
+    runGetSoknader();
+  }, []);
+
+  const { 1: setAlerts } = useRecoilState(alertsState);
 
   return (
     <div>
@@ -104,10 +87,7 @@ const ApplicationListPage = () => {
                 <Tab onClick={getProcessedApplications}>Behandlet</Tab>
               </Tabs>
             </div>
-            <Table
-              columns={columns}
-              data={behandlet ? processedApplications : unProcessedApplications}
-            />
+            <Table columns={columns} data={applications} />
           </>
         )}
       </div>
