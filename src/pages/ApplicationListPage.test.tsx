@@ -14,8 +14,8 @@ afterAll(() => server.close());
 describe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
-    await waitFor(() => screen.getByText('GØYAL'));
-    expect(screen.getByText('TVILSOM')).toBeInTheDocument();
-    expect(screen.getByText('SEDAT')).toBeInTheDocument();
+    await waitFor(() => screen.getByText('GØYAL TAREMEL'));
+    expect(screen.getByText('SIERRA DAUGHERTY')).toBeInTheDocument();
+    expect(screen.getByText('EVANS HILPERT')).toBeInTheDocument();
   });
 });
