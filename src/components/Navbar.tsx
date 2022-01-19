@@ -25,6 +25,7 @@ const Navbar = () => {
         key: key,
         message: `"${personId}" er ikke en gyldig aktør-ID/fødselsnummer.`,
         type: 'error',
+        ephemeral: true,
       });
       return;
     } else {

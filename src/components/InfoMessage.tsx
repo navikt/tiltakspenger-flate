@@ -14,7 +14,7 @@ export const classname = (warningtype: WarningType) => {
     case 'success':
       return classnameAll + ' border-green-400 bg-green-100';
     case 'info':
-      return classnameAll + ' border-blue-400 bg-blue-100';
+      return classnameAll + ' border-blue-400 bg-blue-100 ';
     case 'warning':
       return classnameAll + ' border-amber-400 bg-amber-100';
     case 'error':

@@ -1,15 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import { useRequest } from '../api/common';
-import {
-  getPersonalia,
-  getSoknader,
-  getTiltakFraArena,
-  getValgtTiltak,
-  Soknad,
-} from '../api/soknad';
+
+import { getSoknader, SoknadList } from '../api/soknadList';
 import { alertsState } from '../state/alerts';
 import { useRecoilState } from 'recoil';
 
@@ -23,26 +18,25 @@ const tags = [
   Behandling.QA,
 ];
 
-type SoknadWithStatus = Soknad & {
-  status: string;
+type SoknadWithStatus = SoknadList & {
   type: JSX.Element;
-  fornavn: string;
-  tiltaksarrangorNavn: string;
-  tiltaksType: string;
-  startdato: string | undefined;
+  strek: '-';
 };
 
 const columns: {
   key: keyof SoknadWithStatus;
   name: string;
 }[] = [
-  { key: 'opprettetDato', name: 'Opprettet' },
-  { key: 'type', name: 'Type' },
-  { key: 'tiltaksType', name: 'Behandlingstype' },
-  { key: 'fornavn', name: 'Søker' },
-  { key: 'tiltaksarrangorNavn', name: 'Tiltaksplass' },
-  { key: 'startdato', name: 'Periode' },
-  { key: 'status', name: 'Status' },
+  { key: 'opprettet', name: 'Opprettet' },
+  { key: 'type', name: 'Behandlingstype' },
+  { key: 'fnr', name: 'Fødselsnr' },
+  { key: 'navn', name: 'Søker' },
+  { key: 'typeTiltak', name: 'Tiltakstype' },
+  { key: 'tiltaksNavn', name: 'Tiltaksplass' },
+  { key: 'tiltakFom', name: 'Periode' },
+  { key: 'strek', name: '' },
+  { key: 'tiltakTom', name: '' },
+  { key: 'statusSoknad', name: 'Status' },
 ];
 
 const ApplicationListPage = () => {
@@ -52,53 +46,47 @@ const ApplicationListPage = () => {
     result: soknader,
   } = useRequest(getSoknader);
 
+  const [behandlet, setBehandlet] = useState(false);
   useEffect(() => {
     runGetSoknader();
+    if (!behandlet) {
+      getUnprocessedApplications();
+    } else {
+      getProcessedApplications();
+    }
   }, []);
 
   const enrichedSoknader: SoknadWithStatus[] = (
-    soknader || ([] as Soknad[])
+    soknader || ([] as SoknadList[])
   ).map((soknad, index) => ({
     ...soknad,
-    fornavn: getPersonalia(soknad).fornavn,
-    tiltaksType: '?',
-    tiltaksarrangorNavn:
-      getTiltakFraArena(soknad)?.navn || getValgtTiltak(soknad),
-    startdato: getTiltakFraArena(soknad)?.startdato,
-    status: 'Under behandling',
-    type: <BehandlingsTag behandling={tags[index]} />,
+    type: <BehandlingsTag behandling={Behandling.ForsteGang} />,
+    strek: '-',
   }));
 
   const { 1: setAlerts } = useRecoilState(alertsState);
   const getProcessedApplications = () => {
-    setAlerts([
-      {
-        key: 'testKey1',
-        type: 'success',
-        message: 'Dette gikk bra',
-      },
-      {
-        key: 'testKey2',
-        type: 'info',
-        message: 'En melding til deg',
-      },
-      {
-        key: 'testKey3',
-        type: 'warning',
-        message: 'En advarsel til deg',
-      },
-      {
-        key: 'testKey4',
-        type: 'error',
-        message: 'Dette gikk galt',
-      },
-    ]);
-    return [];
+    setAlerts([]);
+    setBehandlet(true);
+    setAlerts([]);
+    return enrichedSoknader.filter(
+      (soknad) => soknad.statusSoknad !== 'Ikke behandlet'
+    );
   };
   const getUnprocessedApplications = () => {
+    setBehandlet(false);
     setAlerts([]);
-    return [];
+    return enrichedSoknader.filter(
+      (soknad) => soknad.statusSoknad === 'Ikke behandlet'
+    );
   };
+
+  const processedApplications = enrichedSoknader.filter(
+    (soknad) => soknad.statusSoknad !== 'Ikke behandlet'
+  );
+  const unProcessedApplications = enrichedSoknader.filter(
+    (soknad) => soknad.statusSoknad === 'Ikke behandlet'
+  );
 
   return (
     <div>
@@ -116,7 +104,10 @@ const ApplicationListPage = () => {
                 <Tab onClick={getProcessedApplications}>Behandlet</Tab>
               </Tabs>
             </div>
-            <Table columns={columns} data={enrichedSoknader || []} />
+            <Table
+              columns={columns}
+              data={behandlet ? processedApplications : unProcessedApplications}
+            />
           </>
         )}
       </div>
