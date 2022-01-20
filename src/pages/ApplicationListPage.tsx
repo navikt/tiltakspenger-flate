@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Table from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
+import Periode from '../components/Periode';
 import { useRequest } from '../api/common';
 
 import { getSoknader, Soknad, SoknadStatus } from '../api/soknad';
@@ -19,7 +20,7 @@ const tags = [
 
 type SoknadWithStatus = Soknad & {
   type: JSX.Element;
-  strek: '-';
+  periode: JSX.Element;
 };
 
 const columns: {
@@ -32,9 +33,7 @@ const columns: {
   { key: 'navn', name: 'Søker' },
   { key: 'typeTiltak', name: 'Tiltakstype' },
   { key: 'tiltaksNavn', name: 'Tiltaksplass' },
-  { key: 'tiltakFom', name: 'Periode' },
-  { key: 'strek', name: '' },
-  { key: 'tiltakTom', name: '' },
+  { key: 'periode', name: 'Periode' },
   { key: 'statusSoknad', name: 'Status' },
 ];
 
@@ -61,7 +60,7 @@ const ApplicationListPage = () => {
   ).map((soknad) => ({
     ...soknad,
     type: <BehandlingsTag behandling={Behandling.ForsteGang} />,
-    strek: '-',
+    periode: <Periode fom={soknad.tiltakFom} tom={soknad.tiltakTom} />,
   }));
 
   const applications = (enrichedSoknader || []).filter(
