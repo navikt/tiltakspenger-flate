@@ -14,6 +14,8 @@ type CtxWithJson = typeof defaultContext & {
 const resolveWith =
   <T>(data: T): ResponseResolver<MockedRequest, CtxWithJson> =>
   (req, res, ctx) => {
+    console.log(req);
+
     return res(ctx.status(200), ctx.json(data));
   };
 

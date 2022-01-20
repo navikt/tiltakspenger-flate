@@ -4,7 +4,7 @@ import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import { useRequest } from '../api/common';
 
-import { getSoknader, SoknadList } from '../api/soknadList';
+import { getSoknader, Soknad, SoknadStatus } from '../api/soknad';
 
 /*
 const tags = [
@@ -17,7 +17,7 @@ const tags = [
   Behandling.QA,
 ];*/
 
-type SoknadWithStatus = SoknadList & {
+type SoknadWithStatus = Soknad & {
   type: JSX.Element;
   strek: '-';
 };
@@ -38,32 +38,35 @@ const columns: {
   { key: 'statusSoknad', name: 'Status' },
 ];
 
+const processedFilter = (soknad: SoknadWithStatus) =>
+  soknad.statusSoknad !== 'Ikke behandlet';
+const unProcessedFilter = (soknad: SoknadWithStatus) =>
+  soknad.statusSoknad === 'Behandlet';
+const soknadStates = {
+  'Ikke behandlet': unProcessedFilter,
+  Behandlet: processedFilter,
+  Avslag: () => true,
+};
+
 const ApplicationListPage = () => {
+  const [currentTab, setTab] = useState<SoknadStatus>('Ikke behandlet');
+
   const {
     run: runGetSoknader,
     error,
     result: soknader,
-  } = useRequest(getSoknader);
+  } = useRequest(() => getSoknader(currentTab));
   const enrichedSoknader: SoknadWithStatus[] = (
-    soknader || ([] as SoknadList[])
+    soknader || ([] as Soknad[])
   ).map((soknad) => ({
     ...soknad,
     type: <BehandlingsTag behandling={Behandling.ForsteGang} />,
     strek: '-',
   }));
 
-  const processedFilter = (soknad: SoknadWithStatus) =>
-    soknad.statusSoknad !== 'Ikke behandlet';
-  const unProcessedFilter = (soknad: SoknadWithStatus) =>
-    soknad.statusSoknad === 'Behandlet';
-
-  const [filterIndex, setFilterIndex] = useState<number>(0);
-  const filters: Record<number, (soknad: SoknadWithStatus) => boolean> = {
-    0: unProcessedFilter,
-    1: processedFilter,
-  };
-  const applications = (enrichedSoknader || []).filter(filters[filterIndex]);
-
+  const applications = (enrichedSoknader || []).filter(
+    soknadStates[currentTab]
+  );
   useEffect(() => {
     runGetSoknader();
   }, []);
@@ -80,11 +83,11 @@ const ApplicationListPage = () => {
           <>
             <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
               <Tabs
-                defaultIndex={0}
-                onTabChange={(index) => setFilterIndex(index)}
+                defaultValue={'Ikke behandlet' as SoknadStatus}
+                onTabChange={(status: SoknadStatus) => setTab(status)}
               >
-                <Tab>Ikke behandlet</Tab>
-                <Tab>Behandlet</Tab>
+                <Tab value={'Ikke behandlet'}>Ikke behandlet</Tab>
+                <Tab value={'Behandlet'}>Behandlet</Tab>
               </Tabs>
             </div>
             <Table columns={columns} data={applications} />

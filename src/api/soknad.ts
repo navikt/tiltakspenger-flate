@@ -1,75 +1,27 @@
 import { backendUrl, HTTP } from './common';
 
-interface Faktum {
-  key: string;
-  parrentFaktum: null;
-  properties: Record<string, string | boolean | number>;
-  soknadId: number;
-  type: 'BRUKERREGISTRERT' | 'SYSTEMREGISTRERT';
-  value: null | string | number | boolean;
-}
+export type SoknadStatus = 'Behandlet' | 'Ikke behandlet' | 'Avslag';
 
 export interface Soknad {
-  aktoerId: string;
-  behandlingskjedeId: null | string;
-  brukerBehandlingId: string;
-  delstegStatus: string;
-  erEttersending: boolean;
-  fakta: Faktum[];
-  fortsettSoknadUrl: string;
-  journalforendeEnhet: null | string;
-  opprettetDato: string;
-  sistLagret: string;
-  skjemaNummer: string;
   soknadId: number;
-  soknadPrefix: string;
-  soknadUrl: string;
-  status: string;
-  uuid: string;
-  vedlegg: any[];
-  versjon: number | null;
-}
-
-interface Personalia {
-  fornavn: string;
-  etternavn: string;
-}
-export const getPersonalia = (soknad: Soknad): Personalia =>
-  soknad.fakta.find((fakta) => fakta.key === 'personalia')!
-    .properties! as unknown as Personalia;
-
-export const getValgtTiltak = (soknad: Soknad): string =>
-  soknad.fakta.find((fakta) => fakta.key === 'tiltaksliste.valgtTiltak')!
-    .value as string;
-
-interface ArenaTiltak {
-  arenaId: string;
-  arrangoer: string;
-  erIEndreStatus: 'false' | 'true';
-  harSluttdatoFraArena: 'false' | 'true';
+  opprettet: null | string;
+  fnr: string;
   navn: string;
-  opprinneligsluttdato: null | string;
-  opprinneligstartdato: string;
-  sluttdato: string;
-  startdato: string;
+  typeTiltak: null | string;
+  tiltaksNavn: null | string;
+  tiltakFom: null | string;
+  tiltakTom: null | string;
+  statusSoknad: SoknadStatus;
 }
-export const getTiltakFraArena = (soknad: Soknad): ArenaTiltak | undefined =>
-  soknad?.fakta.find((fakta) => fakta.key === 'tiltaksliste.tiltakFraArena')
-    ?.properties as unknown as ArenaTiltak;
 
 export const getSoknad = (soknadId: string): Promise<Soknad> => {
   return HTTP.GET(`${backendUrl}/api/soknad/${soknadId}`);
 };
 
-export const getSoknader = (): Promise<Soknad[]> => {
-  return HTTP.GET(`${backendUrl}/api/soknad`);
-};
-
-export const getSoknaderRaw = (
-  journalPostId: string,
-  dokumentInfoId: string
+export const getSoknader = (
+  status: SoknadStatus | null = null
 ): Promise<Soknad[]> => {
   return HTTP.GET(
-    `${backendUrl}/api/soknad/${journalPostId}?dokumentInfoId=${dokumentInfoId}`
+    `${backendUrl}/api/soknad${status ? '?statusSoknad=' + status : ''}`
   );
 };

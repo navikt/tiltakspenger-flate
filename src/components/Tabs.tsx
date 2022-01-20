@@ -1,12 +1,17 @@
-import React, { FC, ReactElement, useEffect, useState } from 'react';
+import React, { ReactElement, useEffect, useState } from 'react';
 
 const selectedClass = 'border-opacity-100';
-interface TabProps {
+interface TabProps<T> {
   selected?: boolean;
+  value: T;
   onClick?: () => void;
 }
 
-export const Tab: FC<TabProps> = ({ children, selected, onClick }) => {
+export function Tab<T>({
+  children,
+  selected,
+  onClick,
+}: TabProps<T> & { children: ReactElement | string }) {
   return (
     <button
       onClick={onClick}
@@ -18,27 +23,33 @@ export const Tab: FC<TabProps> = ({ children, selected, onClick }) => {
       {children}
     </button>
   );
-};
-
-interface TabsProps {
-  onTabChange?: (tabIndex: number) => void;
-  defaultIndex: number;
 }
-export const Tabs: FC<TabsProps> = ({
+
+interface TabsProps<T> {
+  onTabChange?: (tabIndex: T) => void;
+  defaultValue: T;
+}
+
+export function Tabs<T>({
   children,
   onTabChange,
-  defaultIndex,
-}) => {
+  defaultValue,
+}: TabsProps<T> & { children: React.ReactElement[] }) {
   const [isFirst, setIsFirst] = useState(true);
-  const [selectedIndex, setIndex] = useState<number>(defaultIndex);
+  const [value, setValue] = useState<T>(defaultValue);
+
+  const getValueByIndex = (index: number): T => children[index]?.props?.value;
+  const selectedIndex = children.findIndex(
+    (child: ReactElement) => child?.props?.value === value
+  );
 
   useEffect(() => {
     if (isFirst) {
       setIsFirst(false);
       return;
     }
-    onTabChange?.(selectedIndex);
-  }, [selectedIndex]);
+    onTabChange?.(value);
+  }, [value]);
 
   return (
     <div role="tablist">
@@ -50,10 +61,10 @@ export const Tabs: FC<TabsProps> = ({
             if (anyChild.props?.onClick) {
               anyChild.props.onClick();
             }
-            setIndex(index);
+            setValue(getValueByIndex(index));
           },
         });
       })}
     </div>
   );
-};
+}

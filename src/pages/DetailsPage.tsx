@@ -3,7 +3,7 @@ import { Outlet, useParams } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Timelines from '../components/timeline/Timelines';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
-import { getSoknad, getSoknaderRaw, Soknad } from '../api/soknad';
+import { getSoknad, Soknad } from '../api/soknad';
 
 export const SoknadContext = React.createContext({
   soknad: undefined as undefined | Soknad,
@@ -17,7 +17,6 @@ const DetailsPage = () => {
   useEffect(() => {
     if (!soknadId) return;
     getSoknad('1').then((soknad) => setSoknad(soknad));
-    getSoknaderRaw('510869767', '533784070');
   }, []);
 
   return (
