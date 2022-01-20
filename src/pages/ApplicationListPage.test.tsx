@@ -14,13 +14,13 @@ afterAll(() => server.close());
 describe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
-    await waitFor(() => screen.getByText('GENE ARMSTRONG'));
-    expect(screen.getAllByText('Klaras brød')[0]).toBeInTheDocument();
+    await waitFor(() => screen.getByText('GØYAL TAREMEL'));
+    expect(screen.getAllByText('Klaras kaker')[0]).toBeInTheDocument();
   });
 
   it('Should show processed applications when clicking processed tab', async () => {
     render(<ApplicationListPage />);
-    await waitFor(() => screen.getByText('GENE ARMSTRONG'));
+    await waitFor(() => screen.getByText('GØYAL TAREMEL'));
     fireEvent.click(screen.getAllByText('Behandlet')[0]);
     expect(screen.getByText('DINO GOODWIN')).toBeInTheDocument();
     expect(screen.getAllByText('Klaras kaker')[0]).toBeInTheDocument();
