@@ -4,7 +4,7 @@ import payments from './payments';
 import person from './person';
 
 const mockData: Record<string, object | object[]> = {
-  '/api/soknad/1': soknad,
+  '/api/soknad/:soknadId': soknad,
   '/api/soknad': soknadList,
   '/api/payments': payments,
   '/api/person': person,

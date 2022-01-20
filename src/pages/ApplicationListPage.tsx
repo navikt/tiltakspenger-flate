@@ -5,9 +5,8 @@ import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import { useRequest } from '../api/common';
 
 import { getSoknader, SoknadList } from '../api/soknadList';
-import { alertsState } from '../state/alerts';
-import { useRecoilState } from 'recoil';
 
+/*
 const tags = [
   Behandling.ForsteGang,
   Behandling.Forlengelse,
@@ -16,7 +15,7 @@ const tags = [
   Behandling.Klage,
   Behandling.Stikkprove,
   Behandling.QA,
-];
+];*/
 
 type SoknadWithStatus = SoknadList & {
   type: JSX.Element;
@@ -47,7 +46,7 @@ const ApplicationListPage = () => {
   } = useRequest(getSoknader);
   const enrichedSoknader: SoknadWithStatus[] = (
     soknader || ([] as SoknadList[])
-  ).map((soknad, index) => ({
+  ).map((soknad) => ({
     ...soknad,
     type: <BehandlingsTag behandling={Behandling.ForsteGang} />,
     strek: '-',
@@ -60,16 +59,14 @@ const ApplicationListPage = () => {
 
   const [filterIndex, setFilterIndex] = useState<number>(0);
   const filters: Record<number, (soknad: SoknadWithStatus) => boolean> = {
-    0: processedFilter,
-    1: unProcessedFilter,
+    0: unProcessedFilter,
+    1: processedFilter,
   };
   const applications = (enrichedSoknader || []).filter(filters[filterIndex]);
 
   useEffect(() => {
     runGetSoknader();
   }, []);
-
-  const { 1: setAlerts } = useRecoilState(alertsState);
 
   return (
     <div>
@@ -83,10 +80,8 @@ const ApplicationListPage = () => {
           <>
             <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
               <Tabs
-                onTabChange={(index) => {
-                  console.log(`clicking tab ${index}`);
-                  setFilterIndex(index);
-                }}
+                defaultIndex={0}
+                onTabChange={(index) => setFilterIndex(index)}
               >
                 <Tab>Ikke behandlet</Tab>
                 <Tab>Behandlet</Tab>

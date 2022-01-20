@@ -22,13 +22,23 @@ export const Tab: FC<TabProps> = ({ children, selected, onClick }) => {
 
 interface TabsProps {
   onTabChange?: (tabIndex: number) => void;
+  defaultIndex: number;
 }
-export const Tabs: FC<TabsProps> = ({ children, onTabChange }) => {
-  const [selectedIndex, setIndex] = useState(0);
+export const Tabs: FC<TabsProps> = ({
+  children,
+  onTabChange,
+  defaultIndex,
+}) => {
+  const [isFirst, setIsFirst] = useState(true);
+  const [selectedIndex, setIndex] = useState<number>(defaultIndex);
 
   useEffect(() => {
+    if (isFirst) {
+      setIsFirst(false);
+      return;
+    }
     onTabChange?.(selectedIndex);
-  }, [onTabChange, selectedIndex]);
+  }, [selectedIndex]);
 
   return (
     <div role="tablist">
@@ -36,7 +46,10 @@ export const Tabs: FC<TabsProps> = ({ children, onTabChange }) => {
         return React.cloneElement(child as ReactElement, {
           selected: selectedIndex === index,
           onClick: () => {
-            (child as any).props?.onClick();
+            const anyChild = child as any;
+            if (anyChild.props?.onClick) {
+              anyChild.props.onClick();
+            }
             setIndex(index);
           },
         });
