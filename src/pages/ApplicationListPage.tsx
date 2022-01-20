@@ -55,7 +55,7 @@ const ApplicationListPage = () => {
   const processedFilter = (soknad: SoknadWithStatus) =>
     soknad.statusSoknad !== 'Ikke behandlet';
   const unProcessedFilter = (soknad: SoknadWithStatus) =>
-    soknad.statusSoknad === 'Behandlet';
+    soknad.statusSoknad === 'Ikke behandlet';
 
   const [filterIndex, setFilterIndex] = useState<number>(0);
   const filters: Record<number, (soknad: SoknadWithStatus) => boolean> = {
