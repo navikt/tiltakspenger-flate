@@ -82,9 +82,14 @@ const ApplicationListPage = () => {
         {!!soknader?.length && (
           <>
             <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
-              <Tabs>
-                <Tab onClick={getUnprocessedApplications}>Ikke behandlet</Tab>
-                <Tab onClick={getProcessedApplications}>Behandlet</Tab>
+              <Tabs
+                onTabChange={(index) => {
+                  console.log(`clicking tab ${index}`);
+                  setFilterIndex(index);
+                }}
+              >
+                <Tab>Ikke behandlet</Tab>
+                <Tab>Behandlet</Tab>
               </Tabs>
             </div>
             <Table columns={columns} data={applications} />
