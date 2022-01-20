@@ -11,7 +11,7 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('ApplicationListPage', () => {
+escribe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
     await waitFor(() => screen.getByText('GØYAL TAREMEL'));
