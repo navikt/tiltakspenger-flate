@@ -41,7 +41,7 @@ const columns: {
 const processedFilter = (soknad: SoknadWithStatus) =>
   soknad.statusSoknad !== 'Ikke behandlet';
 const unProcessedFilter = (soknad: SoknadWithStatus) =>
-  soknad.statusSoknad === 'Behandlet';
+  soknad.statusSoknad === 'Ikke behandlet';
 const soknadStates = {
   'Ikke behandlet': unProcessedFilter,
   Behandlet: processedFilter,
