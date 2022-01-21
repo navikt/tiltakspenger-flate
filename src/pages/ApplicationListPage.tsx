@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import Table from '../components/Table';
+import { Table } from 'antd';
+import MyTable from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import Periode from '../components/Periode';
@@ -26,15 +27,47 @@ type SoknadWithStatus = Soknad & {
 const columns: {
   key: keyof SoknadWithStatus;
   name: string;
+  title: string;
+  dataIndex: string;
+  sorter?: (a: SoknadWithStatus, b: SoknadWithStatus) => number;
+  sortDirections?: ('descend' | 'ascend')[];
 }[] = [
-  { key: 'opprettet', name: 'Opprettet' },
-  { key: 'type', name: 'Behandlingstype' },
-  { key: 'fnr', name: 'Fødselsnr' },
-  { key: 'navn', name: 'Søker' },
-  { key: 'typeTiltak', name: 'Tiltakstype' },
-  { key: 'tiltaksNavn', name: 'Tiltaksplass' },
-  { key: 'periode', name: 'Periode' },
-  { key: 'statusSoknad', name: 'Status' },
+  {
+    key: 'opprettet',
+    dataIndex: 'opprettet',
+    name: 'Opprettet',
+    title: 'Opprettet',
+    sorter: (a, b): number =>
+      new Date(a.opprettet!!).getTime() - new Date(b.opprettet!!).getTime(),
+    sortDirections: ['descend', 'ascend'],
+  },
+  {
+    key: 'type',
+    dataIndex: 'type',
+    name: 'Behandlingstype',
+    title: 'Behandlingstype',
+  },
+  { key: 'fnr', dataIndex: 'fnr', name: 'Fødselsnr', title: 'Fødselsnr' },
+  { key: 'navn', dataIndex: 'navn', name: 'Søker', title: 'Søker' },
+  {
+    key: 'typeTiltak',
+    dataIndex: 'typeTiltak',
+    name: 'Tiltakstype',
+    title: 'Tiltakstype',
+  },
+  {
+    key: 'tiltaksNavn',
+    dataIndex: 'tiltaksNavn',
+    name: 'Tiltaksplass',
+    title: 'Tiltaksplass',
+  },
+  { key: 'periode', dataIndex: 'periode', name: 'Periode', title: 'Periode' },
+  {
+    key: 'statusSoknad',
+    dataIndex: 'statusSoknad',
+    name: 'Status',
+    title: 'Status',
+  },
 ];
 
 const processedFilter = (soknad: SoknadWithStatus) =>
@@ -89,7 +122,15 @@ const ApplicationListPage = () => {
                 <Tab value={'Behandlet'}>Behandlet</Tab>
               </Tabs>
             </div>
-            <Table columns={columns} data={applications} />
+            {/*<MyTable columns={columns} data={applications} />*/}
+            <Table
+              className="mt-8"
+              columns={columns}
+              dataSource={applications.map((data, index) => ({
+                ...data,
+                key: index,
+              }))}
+            />
           </>
         )}
       </div>
