@@ -38,7 +38,8 @@ const columns: {
     name: 'Opprettet',
     title: 'Opprettet',
     sorter: (a, b): number =>
-      new Date(a.opprettet!!).getTime() - new Date(b.opprettet!!).getTime(),
+      new Date(a?.opprettet || '').getTime() -
+      new Date(b?.opprettet || '').getTime(),
     sortDirections: ['descend', 'ascend'],
   },
   {
