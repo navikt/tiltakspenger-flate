@@ -10,13 +10,13 @@ export const SoknadContext = React.createContext({
 });
 
 const DetailsPage = () => {
-  const { id: soknadId } = useParams();
+  const { id: soknadId } = useParams<{ id: string }>();
 
   const [soknad, setSoknad] = useState<Soknad | undefined>(undefined);
 
   useEffect(() => {
     if (!soknadId) return;
-    getSoknad('1').then((soknad) => setSoknad(soknad));
+    getSoknad(soknadId?.toString()).then((soknad) => setSoknad(soknad));
   }, []);
 
   return (
