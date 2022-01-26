@@ -48,19 +48,45 @@ const columns: {
     name: 'Behandlingstype',
     title: 'Behandlingstype',
   },
-  { key: 'fnr', dataIndex: 'fnr', name: 'Fødselsnr', title: 'Fødselsnr' },
-  { key: 'navn', dataIndex: 'navn', name: 'Søker', title: 'Søker' },
+  {
+    key: 'fnr',
+    dataIndex: 'fnr',
+    name: 'Fødselsnr',
+    title: 'Fødselsnr',
+    sorter: (a, b): number =>
+      a.fnr.toLocaleLowerCase().localeCompare(b.fnr.toLocaleLowerCase()),
+    sortDirections: ['descend', 'ascend'],
+  },
+  {
+    key: 'navn',
+    dataIndex: 'navn',
+    name: 'Søker',
+    title: 'Søker',
+    sorter: (a, b): number =>
+      a.navn.toLocaleLowerCase().localeCompare(b.navn.toLocaleLowerCase()),
+    sortDirections: ['descend', 'ascend'],
+  },
   {
     key: 'typeTiltak',
     dataIndex: 'typeTiltak',
     name: 'Tiltakstype',
     title: 'Tiltakstype',
+    sorter: (a, b): number =>
+      a.typeTiltak
+        ?.toLocaleLowerCase()
+        .localeCompare(b.typeTiltak?.toLocaleLowerCase() || '') || 1,
+    sortDirections: ['descend', 'ascend'],
   },
   {
     key: 'tiltaksNavn',
     dataIndex: 'tiltaksNavn',
     name: 'Tiltaksplass',
     title: 'Tiltaksplass',
+    sorter: (a, b): number =>
+      b.tiltaksNavn
+        ?.toLocaleLowerCase()
+        .localeCompare(a.tiltaksNavn?.toLocaleLowerCase() || '') || 1,
+    sortDirections: ['descend', 'ascend'],
   },
   { key: 'periode', dataIndex: 'periode', name: 'Periode', title: 'Periode' },
   {
@@ -68,6 +94,11 @@ const columns: {
     dataIndex: 'statusSoknad',
     name: 'Status',
     title: 'Status',
+    sorter: (a, b): number =>
+      a.statusSoknad
+        .toLocaleLowerCase()
+        .localeCompare(b.statusSoknad.toLocaleLowerCase()),
+    sortDirections: ['descend', 'ascend'],
   },
 ];
 
@@ -102,6 +133,7 @@ const ApplicationListPage = () => {
   );
   useEffect(() => {
     runGetSoknader();
+    console.log(error);
   }, []);
 
   return (
@@ -125,12 +157,13 @@ const ApplicationListPage = () => {
             </div>
             {/*<MyTable columns={columns} data={applications} />*/}
             <Table
-              className="mt-8"
+              className="mt-6"
               columns={columns}
               dataSource={applications.map((data, index) => ({
                 ...data,
                 key: index,
               }))}
+              pagination={{ pageSize: 10 }}
             />
           </>
         )}
