@@ -45,3 +45,10 @@ export const useRequest = <T>(doFetch: () => Promise<T>) => {
     error,
   };
 };
+
+export type Paginated<T> = {
+  data: T[];
+  offset: number;
+  pageSize: number;
+  total: number;
+};

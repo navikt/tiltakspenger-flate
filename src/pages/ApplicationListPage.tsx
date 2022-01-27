@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactElement } from 'react';
 import { Table } from 'antd';
-import MyTable from '../components/Table';
 import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import Periode from '../components/Periode';
@@ -29,12 +28,17 @@ const columns: {
   name: string;
   title: string;
   dataIndex: string;
+  render?: (
+    value: unknown,
+    soknad: SoknadWithStatus,
+    index: number
+  ) => ReactElement | string;
   sorter?: (a: SoknadWithStatus, b: SoknadWithStatus) => number;
   sortDirections?: ('descend' | 'ascend')[];
 }[] = [
   {
     key: 'opprettet',
-    dataIndex: 'opprettet',
+    dataIndex: 'opprettetDato',
     name: 'Opprettet',
     title: 'Opprettet',
     sorter: (a, b): number =>
@@ -53,17 +57,25 @@ const columns: {
     dataIndex: 'fnr',
     name: 'Fødselsnr',
     title: 'Fødselsnr',
+    render: (_, data) => {
+      return `${data.identer.join(',')}`;
+    },
     sorter: (a, b): number =>
       a.fnr.toLocaleLowerCase().localeCompare(b.fnr.toLocaleLowerCase()),
     sortDirections: ['descend', 'ascend'],
   },
   {
-    key: 'navn',
+    key: 'fornavn',
     dataIndex: 'navn',
     name: 'Søker',
     title: 'Søker',
+    render: (_, data, index) => {
+      return `${data.fornavn} ${data.etternavn}`;
+    },
     sorter: (a, b): number =>
-      a.navn.toLocaleLowerCase().localeCompare(b.navn.toLocaleLowerCase()),
+      a.etternavn
+        .toLocaleLowerCase()
+        .localeCompare(b.etternavn.toLocaleLowerCase()),
     sortDirections: ['descend', 'ascend'],
   },
   {
@@ -88,7 +100,15 @@ const columns: {
         .localeCompare(a.tiltaksNavn?.toLocaleLowerCase() || '') || 1,
     sortDirections: ['descend', 'ascend'],
   },
-  { key: 'periode', dataIndex: 'periode', name: 'Periode', title: 'Periode' },
+  {
+    key: 'periode',
+    dataIndex: 'periode',
+    name: 'Periode',
+    title: 'Periode',
+    render: (_, data) => {
+      return `${data.brukerStartDato || '- '}-${data.brukerSluttDato || ' -'}`;
+    },
+  },
   {
     key: 'statusSoknad',
     dataIndex: 'statusSoknad',
@@ -121,7 +141,7 @@ const ApplicationListPage = () => {
     result: soknader,
   } = useRequest(() => getSoknader(currentTab));
   const enrichedSoknader: SoknadWithStatus[] = (
-    soknader || ([] as Soknad[])
+    soknader?.data || ([] as Soknad[])
   ).map((soknad) => ({
     ...soknad,
     type: <BehandlingsTag behandling={Behandling.ForsteGang} />,
@@ -144,7 +164,7 @@ const ApplicationListPage = () => {
             {(error as string).toString()}
           </div>
         )}
-        {!!soknader?.length && (
+        {!!soknader?.data?.length && (
           <>
             <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
               <Tabs
@@ -155,7 +175,6 @@ const ApplicationListPage = () => {
                 <Tab value={'Behandlet'}>Behandlet</Tab>
               </Tabs>
             </div>
-            {/*<MyTable columns={columns} data={applications} />*/}
             <Table
               className="mt-6"
               columns={columns}
