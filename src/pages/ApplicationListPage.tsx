@@ -4,7 +4,10 @@ import { Tab, Tabs } from '../components/Tabs';
 import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
 import Periode from '../components/Periode';
 import { useRequest } from '../api/common';
-
+import { useNavigate } from 'react-router-dom';
+import { soknadPath } from '../routes';
+import { alertsState } from '../state/alerts';
+import { useRecoilState } from 'recoil';
 import { getSoknader, Soknad, SoknadStatus } from '../api/soknad';
 
 /*
@@ -38,7 +41,7 @@ const columns: {
 }[] = [
   {
     key: 'opprettet',
-    dataIndex: 'opprettetDato',
+    dataIndex: 'opprettet',
     name: 'Opprettet',
     title: 'Opprettet',
     sorter: (a, b): number =>
@@ -57,9 +60,7 @@ const columns: {
     dataIndex: 'fnr',
     name: 'Fødselsnr',
     title: 'Fødselsnr',
-    render: (_, data) => {
-      return `${data.identer.join(',')}`;
-    },
+
     sorter: (a, b): number =>
       a.fnr.toLocaleLowerCase().localeCompare(b.fnr.toLocaleLowerCase()),
     sortDirections: ['descend', 'ascend'],
@@ -151,19 +152,22 @@ const ApplicationListPage = () => {
   const applications = (enrichedSoknader || []).filter(
     soknadStates[currentTab]
   );
+  const alert = useRecoilState(alertsState);
   useEffect(() => {
     runGetSoknader();
-    console.log(error);
   }, []);
+  console.log(error);
+  console.log(alert);
+
+  const navigate = useNavigate();
+  const handleClick = (soknadId: string) => {
+    console.log(soknadId);
+    navigate(soknadPath(soknadId));
+  };
 
   return (
     <div>
       <div className="flex flex-col items-start p-40">
-        {error && (
-          <div className="border border-red-400 p-4 rounded-md bg-red-200">
-            {(error as string).toString()}
-          </div>
-        )}
         {!!soknader?.data?.length && (
           <>
             <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
@@ -183,6 +187,13 @@ const ApplicationListPage = () => {
                 key: index,
               }))}
               pagination={{ pageSize: 10 }}
+              onRow={(soknad) => {
+                return {
+                  onClick: () => {
+                    handleClick(soknad.soknadId.toString());
+                  },
+                };
+              }}
             />
           </>
         )}

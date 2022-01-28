@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useAddAlert } from '../state/alerts';
 
 export const backendUrl = '';
 
@@ -26,13 +27,19 @@ export const useRequest = <T>(doFetch: () => Promise<T>) => {
   const [isLoading, setIsLoading] = useState<boolean>();
   const [result, setResult] = useState<T | undefined>();
   const [error, setError] = useState<unknown>();
+  const addAlert = useAddAlert();
 
   const run = async () => {
     try {
       const result = await doFetch();
       setResult(result);
-    } catch (e) {
-      setError(e);
+    } catch (e: any) {
+      setError(e?.body);
+      addAlert({
+        key: e?.body.error,
+        message: e?.body.message,
+        type: 'error',
+      });
     } finally {
       setIsLoading(false);
     }
