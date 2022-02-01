@@ -9,6 +9,7 @@ app.use(
   '/api/*',
   createProxyMiddleware({
     target: 'https://tpts-tiltakspenger-mottak.dev.intern.nav.no/',
+    changeOrigin: true,
   })
 );
 // Redirect to local
