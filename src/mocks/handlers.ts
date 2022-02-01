@@ -23,7 +23,6 @@ const resolveWith =
         })
       );
     }
-
     return res(ctx.status(200), ctx.json(data));
   };
 

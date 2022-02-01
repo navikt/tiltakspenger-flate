@@ -36,3 +36,7 @@
     transform: rotate(360deg);
   }
 }
+html,
+.ant-table-row {
+  cursor: pointer;
+}

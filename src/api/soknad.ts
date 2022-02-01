@@ -1,4 +1,4 @@
-import { backendUrl, HTTP } from './common';
+import { backendUrl, HTTP, Paginated } from './common';
 
 export type SoknadStatus = 'Behandlet' | 'Ikke behandlet' | 'Avslag';
 
@@ -6,12 +6,16 @@ export interface Soknad {
   soknadId: number;
   opprettet: null | string;
   fnr: string;
-  navn: string;
+  fornavn: string;
+  etternavn: string;
   typeTiltak: null | string;
+  brukerStartDato: string | null;
+  brukerSluttDato: string | null;
   tiltaksNavn: null | string;
   tiltakFom: null | string;
   tiltakTom: null | string;
   statusSoknad: SoknadStatus;
+  identer: string[];
 }
 
 export const getSoknad = (soknadId: string): Promise<Soknad> => {
@@ -20,7 +24,7 @@ export const getSoknad = (soknadId: string): Promise<Soknad> => {
 
 export const getSoknader = (
   status: SoknadStatus | null = null
-): Promise<Soknad[]> => {
+): Promise<Paginated<Soknad>> => {
   return HTTP.GET(
     `${backendUrl}/api/soknad${status ? '?statusSoknad=' + status : ''}`
   );

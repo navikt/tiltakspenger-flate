@@ -1,6 +1,7 @@
 import React from 'react';
 import '@navikt/ds-css';
 import '@navikt/ds-css-internal';
+import 'antd/dist/antd.css';
 import './App.css';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { RecoilRoot } from 'recoil';
