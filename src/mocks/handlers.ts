@@ -14,7 +14,6 @@ type CtxWithJson = typeof defaultContext & {
 const resolveWith =
   <T>(data: T): ResponseResolver<MockedRequest, CtxWithJson> =>
   (req, res, ctx) => {
-    console.log(req);
     if ((req as any)?.params?.soknadId == '11710') {
       return res(
         ctx.status(404),
