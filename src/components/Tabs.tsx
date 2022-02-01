@@ -28,10 +28,12 @@ export function Tab<T>({
 interface TabsProps<T> {
   onTabChange?: (tabIndex: T) => void;
   defaultValue: T;
+  className?: string;
 }
 
 export function Tabs<T>({
   children,
+  className,
   onTabChange,
   defaultValue,
 }: TabsProps<T> & { children: React.ReactElement[] }) {
@@ -52,7 +54,7 @@ export function Tabs<T>({
   }, [value]);
 
   return (
-    <div role="tablist">
+    <div role="tablist" className={className || ''}>
       {React.Children.map(children, (child, index) => {
         return React.cloneElement(child as ReactElement, {
           selected: selectedIndex === index,

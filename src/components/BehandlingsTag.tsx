@@ -53,7 +53,7 @@ const BehandlingsTag: FC<{ behandling: Behandling }> = ({ behandling }) => {
   return (
     <div className="flex place-content-evenly">
       <Tag
-        className={`w-20 flex justify-center ${shortNames[behandling].className}`}
+        className={`w-20 flex justify-center mr-2 ${shortNames[behandling].className}`}
       >
         {shortNames[behandling].value}
       </Tag>

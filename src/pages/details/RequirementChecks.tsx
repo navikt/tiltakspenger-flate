@@ -1,4 +1,4 @@
-import React, { FC, useContext } from 'react';
+import React, { FC, useContext, useState } from 'react';
 import { Soknad } from '../../api/soknad';
 import {
   Collapse,
@@ -8,6 +8,7 @@ import {
   WarningFilled,
 } from '@navikt/ds-icons';
 import { SoknadContext } from '../DetailsPage';
+import { Tabs, Tab } from '../../components/Tabs';
 
 interface Props {
   soknad: Soknad;
@@ -131,16 +132,4 @@ const RequirementChecks: FC<Props> = ({ soknad }) => {
   );
 };
 
-const WrappedRequirementChecks = () => {
-  const { soknad } = useContext(SoknadContext);
-
-  return (
-    <div className="flex flex-col items-start p-8">
-      <div className="self-stretch flex mb-16">
-        {soknad ? <RequirementChecks soknad={soknad} /> : null}
-      </div>
-    </div>
-  );
-};
-
-export default WrappedRequirementChecks;
+export default RequirementChecks;
