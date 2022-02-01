@@ -1,7 +1,7 @@
 export default {
   data: [
     {
-      soknadId: 11701,
+      id: 11701,
       opprettet: '03.01.22 18:31:22',
       fnr: '20058126692',
       fornavn: 'GØYAL',
@@ -13,7 +13,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11702,
+      id: 11702,
       opprettet: '03.01.22 14:45:29',
       fnr: '16108514462',
       fornavn: 'SIERRA',
@@ -25,7 +25,7 @@ export default {
       statusSoknad: 'Avslag',
     },
     {
-      soknadId: 11703,
+      id: 11703,
       opprettet: '04.01.22 10:21:56',
       fnr: '02079538755',
       fornavn: 'EVANS',
@@ -37,7 +37,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11704,
+      id: 11704,
       opprettet: '04.01.22 19:34:02',
       fnr: '28077735498',
       fornavn: 'IZABELLA',
@@ -49,7 +49,7 @@ export default {
       statusSoknad: 'Avslag',
     },
     {
-      soknadId: 11705,
+      id: 11705,
       opprettet: '05.01.22 13:19:40',
       fnr: '14098738364',
       fornavn: 'MICHEL',
@@ -61,7 +61,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11706,
+      id: 11706,
       opprettet: '04.01.22 14:43:12',
       fnr: '31109613927',
       fornavn: 'CHAD',
@@ -73,7 +73,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11707,
+      id: 11707,
       opprettet: '04.01.22 22:06:51',
       fnr: '14068549370',
       fornavn: 'GENE',
@@ -85,7 +85,7 @@ export default {
       statusSoknad: 'Behandlet',
     },
     {
-      soknadId: 11708,
+      id: 11708,
       opprettet: '03.01.22 23:17:39',
       fnr: '05117218211',
       fornavn: 'DESTINEE',
@@ -97,7 +97,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11709,
+      id: 11709,
       opprettet: '05.01.22 16:52:16',
       fnr: '30058200707',
       fornavn: 'DINO',
@@ -109,7 +109,7 @@ export default {
       statusSoknad: 'Under behandling',
     },
     {
-      soknadId: 11710,
+      id: 11710,
       opprettet: '06.01.22 11:44:27',
       fnr: '16060289917',
       fornavn: 'ELLIS',
@@ -121,7 +121,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11711,
+      id: 11711,
       opprettet: '22.01.22 18:31:22',
       fnr: '25058126678',
       fornavn: 'SERENA',
@@ -133,7 +133,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11712,
+      id: 11712,
       opprettet: '03.01.22 14:45:29',
       fnr: '21108514458',
       fornavn: 'RETA',
@@ -145,7 +145,7 @@ export default {
       statusSoknad: 'Avslag',
     },
     {
-      soknadId: 11713,
+      id: 11713,
       opprettet: '04.01.22 10:21:56',
       fnr: '07079538730',
       fornavn: 'CODY',
@@ -157,7 +157,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11714,
+      id: 11714,
       opprettet: '04.01.22 19:34:02',
       fnr: '02087735411',
       fornavn: 'SOFIA',
@@ -169,7 +169,7 @@ export default {
       statusSoknad: 'Avslag',
     },
     {
-      soknadId: 11715,
+      id: 11715,
       opprettet: '05.01.22 13:19:40',
       fnr: '27060470745',
       fornavn: 'BRENT',
@@ -181,7 +181,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11716,
+      id: 11716,
       opprettet: '04.01.22 14:43:12',
       fnr: '27117539518',
       fornavn: 'DARIO',
@@ -193,7 +193,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11717,
+      id: 11717,
       opprettet: '04.01.22 22:06:51',
       fnr: '04019348038',
       fornavn: 'ROWENA',
@@ -205,7 +205,7 @@ export default {
       statusSoknad: 'Behandlet',
     },
     {
-      soknadId: 11718,
+      id: 11718,
       opprettet: '03.01.22 23:17:39',
       fnr: '11117218246',
       fornavn: 'MARYJANE',
@@ -217,7 +217,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11719,
+      id: 11719,
       opprettet: '05.01.22 16:52:16',
       fnr: '15030479634',
       fornavn: 'LAURIANNE',
@@ -229,7 +229,7 @@ export default {
       statusSoknad: 'Under behandling',
     },
     {
-      soknadId: 11720,
+      id: 11720,
       opprettet: '06.01.22 11:44:27',
       fnr: '06098914941',
       fornavn: 'RAFAEL',
@@ -241,7 +241,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11721,
+      id: 11721,
       opprettet: '03.01.22 18:31:22',
       fnr: '18048432375',
       fornavn: 'DALE',
@@ -253,7 +253,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11722,
+      id: 11722,
       opprettet: '03.01.22 14:45:29',
       fnr: '19017741295',
       fornavn: 'NINA',
@@ -265,7 +265,7 @@ export default {
       statusSoknad: 'Avslag',
     },
     {
-      soknadId: 11723,
+      id: 11723,
       opprettet: '04.01.22 10:21:56',
       fnr: '19037411305',
       fornavn: 'EZEQUIEL',
@@ -277,7 +277,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11724,
+      id: 11724,
       opprettet: '04.01.22 19:34:02',
       fnr: '05108149010',
       fornavn: 'EILEEN',
@@ -289,7 +289,7 @@ export default {
       statusSoknad: 'Avslag',
     },
     {
-      soknadId: 11725,
+      id: 11725,
       opprettet: '05.01.22 13:19:40',
       fnr: '17079726699',
       fornavn: 'MYRTLE',
@@ -301,7 +301,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11726,
+      id: 11726,
       opprettet: '04.01.22 14:43:12',
       fnr: '10050299975',
       fornavn: 'FIDEL',
@@ -313,7 +313,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11727,
+      id: 11727,
       opprettet: '04.01.22 22:06:51',
       fnr: '04068200720',
       fornavn: 'ANDERSON',
@@ -325,7 +325,7 @@ export default {
       statusSoknad: 'Behandlet',
     },
     {
-      soknadId: 11728,
+      id: 11728,
       opprettet: '03.01.22 23:17:39',
       fnr: '16128505001',
       fornavn: 'ELEONORE',
@@ -337,7 +337,7 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
-      soknadId: 11729,
+      id: 11729,
       opprettet: '05.01.22 16:52:16',
       fnr: '21060289902',
       fornavn: 'MCKENZIE',
@@ -349,7 +349,7 @@ export default {
       statusSoknad: 'Under behandling',
     },
     {
-      soknadId: 11730,
+      id: 11730,
       opprettet: '06.01.22 11:44:27',
       fnr: '15029602279',
       navn: 'CHRISTA GUTKOWSKI',

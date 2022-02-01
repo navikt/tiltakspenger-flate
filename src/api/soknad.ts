@@ -3,7 +3,7 @@ import { backendUrl, HTTP, Paginated } from './common';
 export type SoknadStatus = 'Behandlet' | 'Ikke behandlet' | 'Avslag';
 
 export interface Soknad {
-  soknadId: number;
+  id: number;
   opprettet: null | string;
   fnr: string;
   fornavn: string;

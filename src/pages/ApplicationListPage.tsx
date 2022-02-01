@@ -6,8 +6,6 @@ import Periode from '../components/Periode';
 import { useRequest } from '../api/common';
 import { useNavigate } from 'react-router-dom';
 import { soknadPath } from '../routes';
-import { alertsState } from '../state/alerts';
-import { useRecoilState } from 'recoil';
 import { getSoknader, Soknad, SoknadStatus } from '../api/soknad';
 
 /*
@@ -136,11 +134,9 @@ const soknadStates = {
 const ApplicationListPage = () => {
   const [currentTab, setTab] = useState<SoknadStatus>('Ikke behandlet');
 
-  const {
-    run: runGetSoknader,
-    error,
-    result: soknader,
-  } = useRequest(() => getSoknader(currentTab));
+  const { run: runGetSoknader, result: soknader } = useRequest(() =>
+    getSoknader(currentTab)
+  );
   const enrichedSoknader: SoknadWithStatus[] = (
     soknader?.data || ([] as Soknad[])
   ).map((soknad) => ({
@@ -152,7 +148,7 @@ const ApplicationListPage = () => {
   const applications = (enrichedSoknader || []).filter(
     soknadStates[currentTab]
   );
-  const alert = useRecoilState(alertsState);
+
   useEffect(() => {
     runGetSoknader();
   }, []);
@@ -188,7 +184,7 @@ const ApplicationListPage = () => {
               onRow={(soknad) => {
                 return {
                   onClick: () => {
-                    handleClick(soknad.soknadId.toString());
+                    handleClick(soknad.id.toString());
                   },
                 };
               }}
