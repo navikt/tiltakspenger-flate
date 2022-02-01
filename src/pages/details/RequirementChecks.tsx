@@ -1,4 +1,4 @@
-import React, { FC, useContext, useState } from 'react';
+import React, { FC } from 'react';
 import { Soknad } from '../../api/soknad';
 import {
   Collapse,
@@ -7,9 +7,6 @@ import {
   SuccessStroke,
   WarningFilled,
 } from '@navikt/ds-icons';
-import { SoknadContext } from '../DetailsPage';
-import { Tabs, Tab } from '../../components/Tabs';
-
 interface Props {
   soknad: Soknad;
 }

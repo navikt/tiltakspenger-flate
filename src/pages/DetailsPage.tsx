@@ -1,9 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Outlet, useParams } from 'react-router-dom';
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Timelines from '../components/timeline/Timelines';
-import BehandlingsTag, { Behandling } from '../components/BehandlingsTag';
-import { getSoknad, Soknad } from '../api/soknad';
+import { Soknad } from '../api/soknad';
 import LeftSidebar from './details/LeftSidebar';
 
 export const SoknadContext = React.createContext({
@@ -11,15 +10,6 @@ export const SoknadContext = React.createContext({
 });
 
 const DetailsPage = () => {
-  const { id: soknadId } = useParams<{ id: string }>();
-
-  const [soknad, setSoknad] = useState<Soknad | undefined>(undefined);
-
-  useEffect(() => {
-    if (!soknadId) return;
-    getSoknad(soknadId?.toString()).then((soknad) => setSoknad(soknad));
-  }, []);
-
   return (
     <div className="flex flex-col">
       <Breadcrumbs />
@@ -29,9 +19,7 @@ const DetailsPage = () => {
           <LeftSidebar />
         </div>
         <div className="col-span-8 col-start-3">
-          <SoknadContext.Provider value={{ soknad }}>
-            <Outlet />
-          </SoknadContext.Provider>
+          <Outlet />
         </div>
         <div className="col-span-2 border-l border-gray-200 flex flex-col p-8">
           <span className="border-b border-gray-200">Historikk?</span>

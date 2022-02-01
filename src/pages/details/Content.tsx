@@ -1,11 +1,9 @@
-import React, { useContext, useState } from 'react';
-import { SoknadContext } from '../DetailsPage';
+import React, { useState } from 'react';
 import { Tab, Tabs } from '../../components/Tabs';
 import RequirementChecks from './RequirementChecks';
 import BarneTillegg from './BarneTillegg';
 
 const Content = () => {
-  const { soknad } = useContext(SoknadContext);
   const [tab, setTab] = useState('vilkår');
 
   return (
@@ -17,9 +15,7 @@ const Content = () => {
         </Tabs>
       </div>
       <div className="self-stretch flex mb-16 px-8 pt-4">
-        {soknad && tab == 'vilkår' ? (
-          <RequirementChecks soknad={soknad} />
-        ) : null}
+        {tab == 'vilkår' ? <RequirementChecks soknad={{} as any} /> : null}
         {tab == 'barnetillegg' && <BarneTillegg />}
       </div>
     </div>
