@@ -12,6 +12,11 @@ app.use(
     changeOrigin: true,
   })
 );
+
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../build/index.html'));
+});
+
 // Redirect to local
 app.listen(port);
 
