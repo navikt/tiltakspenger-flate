@@ -156,8 +156,6 @@ const ApplicationListPage = () => {
   useEffect(() => {
     runGetSoknader();
   }, []);
-  console.log(error);
-  console.log(alert);
 
   const navigate = useNavigate();
   const handleClick = (soknadId: string) => {
