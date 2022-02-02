@@ -22,7 +22,9 @@ const PaymentBox = ({
     <Link
       to={`payment/${id}`}
       className={`flex justify-center border ${
-        ok ? 'border-green-400 bg-green-100' : 'border-yellow-400 bg-yellow-200'
+        ok
+          ? 'border-green-400 bg-green-100 '
+          : 'border-yellow-400 bg-yellow-200 '
       } ${selected ? 'border-2' : 'border'} rounded-sm w-28 p-1`}
     >
       {ok ? <SuccessStroke className={''} /> : <WarningFilled />}

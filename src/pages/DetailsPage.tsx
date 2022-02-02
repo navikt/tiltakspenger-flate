@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 import Breadcrumbs from '../components/Breadcrumbs';
 import Timelines from '../components/timeline/Timelines';
 import { Soknad } from '../api/soknad';
-import LeftSidebar from './details/LeftSidebar';
+import LeftSidebar from './person/LeftSidebar';
 
 export const SoknadContext = React.createContext({
   soknad: undefined as undefined | Soknad,

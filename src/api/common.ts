@@ -24,13 +24,14 @@ export const HTTP = {
 };
 
 export const useRequest = <T>(doFetch: () => Promise<T>) => {
-  const [isLoading, setIsLoading] = useState<boolean>();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [result, setResult] = useState<T | undefined>();
   const [error, setError] = useState<unknown>();
   const addAlert = useAddAlert();
 
   const run = async () => {
     try {
+      setIsLoading(true);
       const result = await doFetch();
       setResult(result);
     } catch (e: any) {

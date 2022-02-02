@@ -13,6 +13,18 @@ export default {
       statusSoknad: 'Ikke behandlet',
     },
     {
+      id: 11700,
+      opprettet: '01.01.22 17:17:03',
+      fnr: '20058126692',
+      fornavn: 'GØYAL',
+      etternavn: 'TAREMEL',
+      typeTiltak: 'Gruppe-AMO',
+      tiltaksNavn: 'Klaras kaker',
+      brukerStartDato: '03.01.22',
+      brukerSluttDato: '31.05.22',
+      statusSoknad: 'Ikke behandlet',
+    },
+    {
       id: 11702,
       opprettet: '03.01.22 14:45:29',
       fnr: '16108514462',

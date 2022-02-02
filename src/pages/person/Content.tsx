@@ -15,7 +15,7 @@ const Content = () => {
         </Tabs>
       </div>
       <div className="self-stretch flex mb-16 px-8 pt-4">
-        {tab == 'vilkår' ? <RequirementChecks soknad={{} as any} /> : null}
+        {tab == 'vilkår' && <RequirementChecks soknad={{} as any} />}
         {tab == 'barnetillegg' && <BarneTillegg />}
       </div>
     </div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import BoxTimeline from './BoxTimeline';
 import TimelineLabel from './TimelineLabel';
 import { months } from './months';
@@ -47,13 +47,15 @@ const Timelines = ({
     onClickTimeline?.(selected);
   }, [selected]);
 
+  const { paymentId } = useParams<{ paymentId: string }>();
+
   return (
     <div className="flex  p-4 border-b border-t border-sky-400">
       <div className="flex flex-col flex-1">
         <TimeLabels />
         <BoxTimeline
           items={payments}
-          selected={selected}
+          selected={paymentId}
           label={'Utbetalinger'}
         />
         <Timeline
