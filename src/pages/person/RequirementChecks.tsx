@@ -63,10 +63,10 @@ const Section = ({
   requirements: Requirement[];
 }) => {
   return (
-    <details className="flex flex-col group mb-4">
+    <details className="flex flex-col group mb-10">
       <summary className="flex items-center justify-between">
         <h1 className="text-base font-bold text-left flex items-center">
-          <SuccessStroke className="mr-2" />
+          <SuccessStroke className="mr-2 text-green-400" />
           {title}
         </h1>
         <div className="flex ml-2 items-center">
@@ -98,7 +98,9 @@ const RequirementChecks: FC<Props> = ({ soknad }) => {
         <SuccessFilled className="text-green-400 mr-2" />
         Vilkår for tiltakspenger
       </h1>
-      <span>12.01.2021 - 02.06.2021</span>
+      <span className={'mb-10 text-left text-xl ml-6'}>
+        12.01.2021 - 02.06.2021
+      </span>
       <div className={'flex-1'}>
         <Section
           title={'Søknad dagpenger'}
