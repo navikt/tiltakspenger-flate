@@ -31,13 +31,13 @@ export const columns: {
     title: 'Behandlingstype',
   },
   {
-    key: 'fnr',
-    dataIndex: 'fnr',
+    key: 'ident',
+    dataIndex: 'ident',
     name: 'Fødselsnr',
     title: 'Fødselsnr',
 
     sorter: (a, b): number =>
-      a.fnr.toLocaleLowerCase().localeCompare(b.fnr.toLocaleLowerCase()),
+      a.ident.toLocaleLowerCase().localeCompare(b.ident.toLocaleLowerCase()),
     sortDirections: ['descend', 'ascend'],
   },
   {
@@ -46,7 +46,7 @@ export const columns: {
     name: 'Søker',
     title: 'Søker',
     render: (_, data, index) => {
-      return `${data.fornavn} ${data.etternavn}`;
+      return `${data.etternavn} ${data.fornavn}`;
     },
     sorter: (a, b): number =>
       a.etternavn

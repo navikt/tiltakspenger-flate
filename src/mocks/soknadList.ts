@@ -3,7 +3,7 @@ export default {
     {
       id: 11701,
       opprettet: '03.01.22 18:31:22',
-      fnr: '20058126692',
+      ident: '20058126692',
       fornavn: 'GØYAL',
       etternavn: 'TAREMEL',
       typeTiltak: 'Gruppe-AMO',
@@ -15,7 +15,7 @@ export default {
     {
       id: 11700,
       opprettet: '01.01.22 17:17:03',
-      fnr: '20058126692',
+      ident: '20058126692',
       fornavn: 'GØYAL',
       etternavn: 'TAREMEL',
       typeTiltak: 'Gruppe-AMO',
@@ -27,7 +27,7 @@ export default {
     {
       id: 11702,
       opprettet: '03.01.22 14:45:29',
-      fnr: '16108514462',
+      ident: '16108514462',
       fornavn: 'SIERRA',
       etternavn: 'DAUGHERTY',
       typeTiltak: 'Arbeidstrening',
@@ -39,7 +39,7 @@ export default {
     {
       id: 11703,
       opprettet: '04.01.22 10:21:56',
-      fnr: '02079538755',
+      ident: '02079538755',
       fornavn: 'EVANS',
       etternavn: 'HILPERT',
       typeTiltak: 'Utvidet oppfølging i opplæring',
@@ -51,7 +51,7 @@ export default {
     {
       id: 11704,
       opprettet: '04.01.22 19:34:02',
-      fnr: '28077735498',
+      ident: '28077735498',
       fornavn: 'IZABELLA',
       etternavn: 'WATERS',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -63,7 +63,7 @@ export default {
     {
       id: 11705,
       opprettet: '05.01.22 13:19:40',
-      fnr: '14098738364',
+      ident: '14098738364',
       fornavn: 'MICHEL',
       etternavn: 'GERHOLD',
       typeTiltak: 'Gruppe-AMO',
@@ -75,7 +75,7 @@ export default {
     {
       id: 11706,
       opprettet: '04.01.22 14:43:12',
-      fnr: '31109613927',
+      ident: '31109613927',
       fornavn: 'CHAD',
       etternavn: 'HAGENES',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -87,7 +87,7 @@ export default {
     {
       id: 11707,
       opprettet: '04.01.22 22:06:51',
-      fnr: '14068549370',
+      ident: '14068549370',
       fornavn: 'GENE',
       etternavn: 'ARMSTRONG',
       typeTiltak: 'Arbeidstrening',
@@ -99,7 +99,7 @@ export default {
     {
       id: 11708,
       opprettet: '03.01.22 23:17:39',
-      fnr: '05117218211',
+      ident: '05117218211',
       fornavn: 'DESTINEE',
       etternavn: 'QUIGLEY',
       typeTiltak: 'Utvidet oppfølging i opplæring',
@@ -111,7 +111,7 @@ export default {
     {
       id: 11709,
       opprettet: '05.01.22 16:52:16',
-      fnr: '30058200707',
+      ident: '30058200707',
       fornavn: 'DINO',
       etternavn: 'GOODWIN',
       typeTiltak: 'Gruppe-AMO',
@@ -123,7 +123,7 @@ export default {
     {
       id: 11710,
       opprettet: '06.01.22 11:44:27',
-      fnr: '16060289917',
+      ident: '16060289917',
       fornavn: 'ELLIS',
       etternavn: 'SIMONIS',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -135,7 +135,7 @@ export default {
     {
       id: 11711,
       opprettet: '22.01.22 18:31:22',
-      fnr: '25058126678',
+      ident: '25058126678',
       fornavn: 'SERENA',
       etternavn: 'BEATTY',
       typeTiltak: 'Gruppe-AMO',
@@ -147,7 +147,7 @@ export default {
     {
       id: 11712,
       opprettet: '03.01.22 14:45:29',
-      fnr: '21108514458',
+      ident: '21108514458',
       fornavn: 'RETA',
       etternavn: 'WINTHEISER',
       typeTiltak: 'Arbeidstrening',
@@ -159,7 +159,7 @@ export default {
     {
       id: 11713,
       opprettet: '04.01.22 10:21:56',
-      fnr: '07079538730',
+      ident: '07079538730',
       fornavn: 'CODY',
       etternavn: 'TURCOTTE',
       typeTiltak: 'Utvidet oppfølging i opplæring',
@@ -171,7 +171,7 @@ export default {
     {
       id: 11714,
       opprettet: '04.01.22 19:34:02',
-      fnr: '02087735411',
+      ident: '02087735411',
       fornavn: 'SOFIA',
       etternavn: 'BRAUN',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -183,7 +183,7 @@ export default {
     {
       id: 11715,
       opprettet: '05.01.22 13:19:40',
-      fnr: '27060470745',
+      ident: '27060470745',
       fornavn: 'BRENT',
       etternavn: 'HEGMANN',
       typeTiltak: 'Gruppe-AMO',
@@ -195,7 +195,7 @@ export default {
     {
       id: 11716,
       opprettet: '04.01.22 14:43:12',
-      fnr: '27117539518',
+      ident: '27117539518',
       fornavn: 'DARIO',
       etternavn: 'HERMISTON',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -207,7 +207,7 @@ export default {
     {
       id: 11717,
       opprettet: '04.01.22 22:06:51',
-      fnr: '04019348038',
+      ident: '04019348038',
       fornavn: 'ROWENA',
       etternavn: 'ABBOTT',
       typeTiltak: 'Arbeidstrening',
@@ -219,7 +219,7 @@ export default {
     {
       id: 11718,
       opprettet: '03.01.22 23:17:39',
-      fnr: '11117218246',
+      ident: '11117218246',
       fornavn: 'MARYJANE',
       etternavn: 'MILLER',
       typeTiltak: 'Utvidet oppfølging i opplæring',
@@ -231,7 +231,7 @@ export default {
     {
       id: 11719,
       opprettet: '05.01.22 16:52:16',
-      fnr: '15030479634',
+      ident: '15030479634',
       fornavn: 'LAURIANNE',
       etternavn: 'MITCHELL',
       typeTiltak: 'Gruppe-AMO',
@@ -243,7 +243,7 @@ export default {
     {
       id: 11720,
       opprettet: '06.01.22 11:44:27',
-      fnr: '06098914941',
+      ident: '06098914941',
       fornavn: 'RAFAEL',
       etternavn: 'MURAZIK',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -255,7 +255,7 @@ export default {
     {
       id: 11721,
       opprettet: '03.01.22 18:31:22',
-      fnr: '18048432375',
+      ident: '18048432375',
       fornavn: 'DALE',
       etternavn: 'WOLFF',
       typeTiltak: 'Gruppe-AMO',
@@ -267,7 +267,7 @@ export default {
     {
       id: 11722,
       opprettet: '03.01.22 14:45:29',
-      fnr: '19017741295',
+      ident: '19017741295',
       fornavn: 'NINA',
       etternavn: 'OBERBRUNNER',
       typeTiltak: 'Arbeidstrening',
@@ -279,7 +279,7 @@ export default {
     {
       id: 11723,
       opprettet: '04.01.22 10:21:56',
-      fnr: '19037411305',
+      ident: '19037411305',
       fornavn: 'EZEQUIEL',
       etternavn: 'CHAMPLIN',
       typeTiltak: 'Utvidet oppfølging i opplæring',
@@ -291,7 +291,7 @@ export default {
     {
       id: 11724,
       opprettet: '04.01.22 19:34:02',
-      fnr: '05108149010',
+      ident: '05108149010',
       fornavn: 'EILEEN',
       etternavn: 'LANGOSH',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -303,7 +303,7 @@ export default {
     {
       id: 11725,
       opprettet: '05.01.22 13:19:40',
-      fnr: '17079726699',
+      ident: '17079726699',
       fornavn: 'MYRTLE',
       etternavn: 'ABBOTT',
       typeTiltak: 'Gruppe-AMO',
@@ -315,7 +315,7 @@ export default {
     {
       id: 11726,
       opprettet: '04.01.22 14:43:12',
-      fnr: '10050299975',
+      ident: '10050299975',
       fornavn: 'FIDEL',
       etternavn: 'PARKER',
       typeTiltak: 'Arbeidsforberedende trening',
@@ -327,7 +327,7 @@ export default {
     {
       id: 11727,
       opprettet: '04.01.22 22:06:51',
-      fnr: '04068200720',
+      ident: '04068200720',
       fornavn: 'ANDERSON',
       etternavn: 'MURPHY',
       typeTiltak: 'Arbeidstrening',
@@ -339,7 +339,7 @@ export default {
     {
       id: 11728,
       opprettet: '03.01.22 23:17:39',
-      fnr: '16128505001',
+      ident: '16128505001',
       fornavn: 'ELEONORE',
       etternavn: 'OBERBRUNNER',
       typeTiltak: 'Utvidet oppfølging i opplæring',
@@ -351,7 +351,7 @@ export default {
     {
       id: 11729,
       opprettet: '05.01.22 16:52:16',
-      fnr: '21060289902',
+      ident: '21060289902',
       fornavn: 'MCKENZIE',
       etternavn: 'GRAHAM',
       typeTiltak: 'AMO',
@@ -363,7 +363,7 @@ export default {
     {
       id: 11730,
       opprettet: '06.01.22 11:44:27',
-      fnr: '15029602279',
+      ident: '15029602279',
       navn: 'CHRISTA GUTKOWSKI',
       typeTiltak: 'Arbeidsforberedende trening',
       tiltaksNavn: 'Klaras IT-hjelp',

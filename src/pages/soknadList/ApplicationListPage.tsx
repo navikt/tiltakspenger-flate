@@ -94,7 +94,7 @@ const ApplicationListPage = () => {
                 return {
                   onClick: () => {
                     handleClick({
-                      fnr: soknad.fnr.toString(),
+                      fnr: soknad.ident.toString(),
                       soknadId: soknad.id.toString(),
                     });
                   },

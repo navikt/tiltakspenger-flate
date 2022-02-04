@@ -14,8 +14,13 @@ afterAll(() => server.close());
 describe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
-    await waitFor(() => screen.getByText('EVANS HILPERT'));
-    expect(screen.getAllByText('Klaras kaker')[0]).toBeInTheDocument();
+    await waitFor(() => {
+      screen.getByText('HILPERT EVANS');
+    });
+
+    expect(screen.getByText('02079538755')).toBeInTheDocument();
+    expect(screen.getAllByText('01.02.22-31.07.22').length).toBeGreaterThan(0);
+    expect(screen.getAllByText('Klaras kaker').length).toBeGreaterThan(0);
   });
 
   it('Should show processed applications when clicking processed tab', async () => {
@@ -24,5 +29,6 @@ describe('ApplicationListPage', () => {
     fireEvent.click(screen.getAllByText('Behandlet')[0]);
     expect(screen.getByText('DINO GOODWIN')).toBeInTheDocument();
     expect(screen.getAllByText('Klaras kaker')[0]).toBeInTheDocument();
+    expect(screen.queryByText('EVANS HILPERT')).not.toBeInTheDocument();
   });
 });

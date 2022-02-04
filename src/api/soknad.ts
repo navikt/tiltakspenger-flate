@@ -5,7 +5,7 @@ export type SoknadStatus = 'Behandlet' | 'Ikke behandlet' | 'Avslag';
 export interface Soknad {
   id: number;
   opprettet: null | string;
-  fnr: string;
+  ident: string;
   fornavn: string;
   etternavn: string;
   typeTiltak: null | string;
@@ -15,7 +15,6 @@ export interface Soknad {
   tiltakFom: null | string;
   tiltakTom: null | string;
   statusSoknad: SoknadStatus;
-  identer: string[];
 }
 
 export const getSoknad = (soknadId: string): Promise<Soknad> => {
