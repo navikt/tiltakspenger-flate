@@ -7,14 +7,13 @@ import Spinner from '../../components/Spinner';
 
 const SoknadListe = () => {
   const { run, result, isLoading } = useRequest(() => getSoknader());
-
   const { fnr, soknadId } = useParams<{ fnr: string; soknadId: string }>();
 
   useEffect(() => {
     run();
   }, []);
 
-  const soknader = result?.data?.filter((soknad) => soknad.fnr === fnr) || [];
+  const soknader = result?.data?.filter((soknad) => soknad.ident === fnr) || [];
 
   return (
     <div className="flex flex-col items-start mb-8 pl-4 pt-5">
@@ -36,7 +35,7 @@ const SoknadListe = () => {
                     : '')
                 }
                 to={personPath({
-                  fnr: soknad.fnr,
+                  fnr: soknad.ident,
                   soknadId: soknad.id.toString(),
                 })}
               >{`${soknad.brukerStartDato} - ${soknad.brukerSluttDato}`}</Link>

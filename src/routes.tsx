@@ -17,16 +17,25 @@ export const personPath = ({
   soknadId: string;
 }) => `${basePath}person/${fnr}/soknad/${soknadId}`;
 
+export const paths = {
+  ApplicationPage: `${basePath}`,
+  DetailsPage: `${basePath}person/:fnr/*`,
+  PaymentsTable: 'payment/:paymentId',
+  Content: 'soknad/:soknadId',
+  DetailsFallback: '*',
+  Test: '/test',
+};
+
 export const AppRoutes = () => {
   return (
     <Routes>
-      <Route path={`${basePath}`} element={<ApplicationListPage />} />
-      <Route path={`${basePath}person/:fnr/*`} element={<DetailsPage />}>
-        <Route path={`payment/:paymentId`} element={<PaymentsTable />} />
-        <Route path={`soknad/:soknadId`} element={<Content />} />
-        <Route path={`*`} element={<Content />} />
+      <Route path={paths.ApplicationPage} element={<ApplicationListPage />} />
+      <Route path={paths.DetailsPage} element={<DetailsPage />}>
+        <Route path={paths.PaymentsTable} element={<PaymentsTable />} />
+        <Route path={paths.Content} element={<Content />} />
+        <Route path={paths.DetailsFallback} element={<Content />} />
       </Route>
-      <Route path={'/test'} element={<TestPage />} />
+      <Route path={paths.Test} element={<TestPage />} />
     </Routes>
   );
 };

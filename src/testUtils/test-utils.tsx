@@ -1,14 +1,9 @@
 import React, { FC, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
-import { MemoryRouter } from 'react-router-dom';
 
-const AllTheProviders: FC = ({ children }) => {
-  return (
-    <RecoilRoot>
-      <MemoryRouter>{children}</MemoryRouter>
-    </RecoilRoot>
-  );
+const AllTheProviders: FC = ({ children, ...rest }) => {
+  return <RecoilRoot>{children}</RecoilRoot>;
 };
 
 const customRender = (

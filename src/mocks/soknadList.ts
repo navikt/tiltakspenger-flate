@@ -20,7 +20,7 @@ export default {
       etternavn: 'TAREMEL',
       typeTiltak: 'Gruppe-AMO',
       tiltaksNavn: 'Klaras kaker',
-      brukerStartDato: '03.01.22',
+      brukerStartDato: '02.01.22',
       brukerSluttDato: '31.05.22',
       statusSoknad: 'Ikke behandlet',
     },

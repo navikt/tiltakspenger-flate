@@ -11,6 +11,10 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
+jest.mock('react-router-dom', () => ({
+  useNavigate: jest.fn(),
+}));
+
 describe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
@@ -25,9 +29,9 @@ describe('ApplicationListPage', () => {
 
   it('Should show processed applications when clicking processed tab', async () => {
     render(<ApplicationListPage />);
-    await waitFor(() => screen.getByText('EVANS HILPERT'));
+    await waitFor(() => screen.getByText('HILPERT EVANS'));
     fireEvent.click(screen.getAllByText('Behandlet')[0]);
-    expect(screen.getByText('DINO GOODWIN')).toBeInTheDocument();
+    expect(screen.getByText('GOODWIN DINO')).toBeInTheDocument();
     expect(screen.getAllByText('Klaras kaker')[0]).toBeInTheDocument();
     expect(screen.queryByText('EVANS HILPERT')).not.toBeInTheDocument();
   });
