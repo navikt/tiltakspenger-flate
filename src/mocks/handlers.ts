@@ -7,14 +7,25 @@ import {
 import mockData from './index';
 import { MockedRequest } from 'msw/lib/types/handlers/RequestHandler';
 
-type CtxWithJson = typeof defaultContext & {
-  json: (data: Record<any, any>) => ResponseTransformer;
+type CtxWithJson<T> = typeof defaultContext & {
+  json: (data: T) => ResponseTransformer;
 };
 
+type MockedRequestWithParams = MockedRequest & {
+  params: Record<string, string>;
+};
+
+interface ErrorMessage {
+  error: string;
+  message: string;
+}
+
 const resolveWith =
-  <T>(data: T): ResponseResolver<MockedRequest, CtxWithJson> =>
+  <T>(
+    data: T
+  ): ResponseResolver<MockedRequest, CtxWithJson<T | ErrorMessage>> =>
   (req, res, ctx) => {
-    if ((req as any)?.params?.soknadId == '11710') {
+    if ((req as MockedRequestWithParams)?.params?.soknadId == '11710') {
       return res(
         ctx.status(404),
         ctx.json({

@@ -2,7 +2,7 @@ import React, { FC, ReactElement } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { RecoilRoot } from 'recoil';
 
-const AllTheProviders: FC = ({ children, ...rest }) => {
+const AllTheProviders: FC = ({ children }) => {
   return <RecoilRoot>{children}</RecoilRoot>;
 };
 

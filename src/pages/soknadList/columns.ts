@@ -45,7 +45,7 @@ export const columns: {
     dataIndex: 'navn',
     name: 'Søker',
     title: 'Søker',
-    render: (_, data, index) => {
+    render: (_, data) => {
       return `${data.etternavn} ${data.fornavn}`;
     },
     sorter: (a, b): number =>

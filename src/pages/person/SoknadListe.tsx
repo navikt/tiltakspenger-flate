@@ -1,4 +1,4 @@
-import React, { FC, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useRequest } from '../../api/common';
 import { getSoknader } from '../../api/soknad';
 import { Link, useParams } from 'react-router-dom';
