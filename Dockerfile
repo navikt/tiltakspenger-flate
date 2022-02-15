@@ -8,6 +8,6 @@ COPY server server
 
 WORKDIR server
 
-EXPOSE 3000
+EXPOSE 8080
 
-ENTRYPOINT ["npm", "run", "serve"]
+ENTRYPOINT ["npm", "run", "start"]
