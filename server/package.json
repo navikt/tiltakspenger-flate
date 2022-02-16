@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node build/server.js",
-    "serve": "node --loader ts-node/esm server.ts",
+    "serve": "node --loader ts-node/esm src/server.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "tsc"
   },

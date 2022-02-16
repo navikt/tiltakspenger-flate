@@ -1,4 +1,6 @@
-import fetch from 'node-fetch';
+import fetch, { Response as FetchResponse } from 'node-fetch';
+import { logger } from './logger.js';
+import { getBody } from './httpUtils';
 
 const url = (tenant: string) =>
   `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`;
@@ -27,14 +29,25 @@ const onBehalfOfGrant = async (token: string) => {
   Object.entries(rawBody).map(([key, entry]) => {
     body.append(key, entry || '');
   });
+
   const res = await fetch(url(tenant), {
     method: 'POST',
     body,
     headers: {
       ['Content-Type']: 'application/x-www-form-urlencoded',
     },
-  }).then((res) => res.json() as Promise<TokenResponse>);
-  return res.accessToken;
+  });
+
+  const resBody = await getBody(res);
+
+  if (!res.ok)
+    return Promise.reject({
+      status: res.status,
+      content: res.headers.get('content-type'),
+      body: resBody,
+    });
+
+  return (resBody as TokenResponse).accessToken;
 };
 
 let cachedOboToken: string | undefined = undefined;
@@ -43,12 +56,4 @@ export const getToken = async (token: string) => {
   const oboToken = await onBehalfOfGrant(token);
   cachedOboToken = oboToken;
   return oboToken;
-};
-
-const Authorization = 'Authorization';
-export const cachedOboExchange = async (req: any, res: any) => {
-  const token = req.getHeader(Authorization)?.toString().split('Bearer ')[1];
-  if (!token) return req;
-  req.setHeader(Authorization, `Bearer ${await getToken(token)}`);
-  return req;
 };

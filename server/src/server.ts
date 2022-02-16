@@ -14,9 +14,14 @@ import { logger } from './logger.js';
 const app = express();
 const port = 8080;
 
-app.use(express.static(path.join(__dirname, '../build')));
+app.use(express.static(path.join(__dirname, '../../build')));
 
-app.use('/api/*', async (req: any, res: any, next: () => void) => {
+app.use('*', async (req, res, next) => {
+  logger.debug(`${req.method} ${req.baseUrl + req.path}`);
+  next();
+});
+
+app.use('/api/*', async (req, res, next) => {
   try {
     const token =
       (req.headers['authorization'] || '').split('Bearer ')[1] || undefined;
@@ -39,10 +44,9 @@ app.use(
 
 app.get('*', (req, res) => {
   req.url = '/index.html';
+  logger.info('Redirecting to /index.html');
   (app as any).handle(req, res);
-  // return res.sendFile(path.join(__dirname, '../build/index.html'));
 });
 
-// Redirect to local
 app.listen(port);
 logger.info(`Listening to port ${port}...`);
