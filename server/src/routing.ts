@@ -6,8 +6,8 @@ import { getToken } from './azureObo.js';
 import { createProxyMiddleware } from 'http-proxy-middleware';
 
 import { fileURLToPath } from 'url';
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
+const currentDir = fileURLToPath(import.meta.url);
+const __dirname = dirname(currentDir);
 
 export const setupRouting = (app: Express) => {
   app.use(express.static(path.join(__dirname, '../../build')));
@@ -25,6 +25,7 @@ export const setupRouting = (app: Express) => {
       req.headers['authorization'] = await getToken(token);
     } catch (error: any) {
       logger.error(error);
+      console.log(error);
     } finally {
       next();
     }

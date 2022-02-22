@@ -1,6 +1,5 @@
-import fetch, { Response as FetchResponse } from 'node-fetch';
-import { logger } from './logger.js';
-import { getBody } from './httpUtils';
+import fetch from 'node-fetch';
+import { getBody } from './httpUtils.js';
 
 const url = (tenant: string) =>
   `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`;
@@ -20,7 +19,7 @@ const toBody = (token: string) => ({
 });
 
 interface TokenResponse {
-  accessToken: string;
+  access_token: string;
 }
 
 const onBehalfOfGrant = async (token: string) => {
@@ -47,7 +46,7 @@ const onBehalfOfGrant = async (token: string) => {
       body: resBody,
     });
 
-  return (resBody as TokenResponse).accessToken;
+  return (resBody as TokenResponse).access_token;
 };
 
 let cachedOboToken: string | undefined = undefined;

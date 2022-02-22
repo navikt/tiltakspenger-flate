@@ -1,6 +1,6 @@
 import 'dotenv/config';
 import express from 'express';
-import { logger } from './logger.ts';
+import { logger } from './logger.js';
 import { setupRouting } from './routing.js';
 
 const app = express();
