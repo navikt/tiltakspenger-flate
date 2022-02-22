@@ -8,7 +8,10 @@ In the project directory, you can run:
 
 ### `npm run dev`
 
-Runs the app in the development mode.\
+Runs the app in the development mode.
+
+If you want to run with mock-data, use `npm run dev-mock` instead
+
 Open [http://localhost:8081](http://localhost:8081) to view it in the browser.
 
 The page will reload if you make edits.
