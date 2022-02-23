@@ -30,8 +30,11 @@ jobs:
         run: npm run test
       - name: Build
         run: npm run build
-      - name: Install express
+      - name: Install express server deps
         run: npm ci
+        working-directory: server
+      - name: Build express server
+        run: npm run build
         working-directory: server
       - name: Build and publish Docker image
         env:
