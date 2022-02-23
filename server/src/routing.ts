@@ -22,7 +22,7 @@ export const setupRouting = (app: Express) => {
       const token =
         (req.headers['authorization'] || '').split('Bearer ')[1] || undefined;
       if (!token) throw Error('No auth header');
-      req.headers['authorization'] = await getToken(token);
+      req.headers['authorization'] = `Bearer ${await getToken(token)}`;
     } catch (error: any) {
       logger.error(error);
       console.log(error);
@@ -34,7 +34,7 @@ export const setupRouting = (app: Express) => {
   app.use(
     '/api/*',
     createProxyMiddleware({
-      target: 'https://tpts-tiltakspenger-mottak.dev.intern.nav.no/',
+      target: 'http://host.docker.internal:8081', //'https://tpts-tiltakspenger-mottak.dev.intern.nav.no/',
       changeOrigin: true,
     })
   );
