@@ -50,7 +50,7 @@ describe('ob-behalf-of flow', () => {
       .set(ContentType, 'application/json')
       .expect(200);
 
-    expect(authHeader).toBe('newToken');
+    expect(authHeader).toBe('Bearer newToken');
   });
 
   it('should not use obo-middleware on /index.html', async () => {
