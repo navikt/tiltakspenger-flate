@@ -16,6 +16,14 @@ Open [http://localhost:8081](http://localhost:8081) to view it in the browser.
 
 The page will reload if you make edits.
 
+#### Technologies used in the frontend
+- React
+- Typescript
+- React-router v6
+- Recoil for state management
+- Tailwind CSS
+- ViteJS
+
 ### Proxy server
 
 The proxy server does these things
