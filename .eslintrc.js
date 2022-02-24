@@ -19,6 +19,6 @@ module.exports = {
   },
   plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
   rules: {
-    '@typescript/no-explicit-any': [false],
+    '@typescript/no-explicit-any': 'off',
   },
 };
