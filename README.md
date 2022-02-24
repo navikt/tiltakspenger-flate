@@ -16,7 +16,17 @@ Open [http://localhost:8081](http://localhost:8081) to view it in the browser.
 
 The page will reload if you make edits.
 
+### Proxy server
+
+The proxy server does these things
+- Proxy all request to `/api/*` and send them to the backend, but with an new token using On-behalf-of token exchange
+- serve the build directory on `/`
+
+The server can be run locally using `ts-node` by running `npm run serve`. This currently uses native ESM. The tests can be run with `npm run test` , these currently transpile to commonjs because [jest mocking currently does not work with native ESM](https://github.com/facebook/jest/issues/10025). Tests are using Supertest to wrap the express server.
+
 ### To run using Azure AD login locally do:
+
+First build go to the `server` dir and run `npm run build` to transpile your current version
 
 Do `docker compose up` in addition to running dev-server then go to 127.0.0.1:3000 instead of localhost:8081.
 
