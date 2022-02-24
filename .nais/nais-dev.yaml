@@ -33,6 +33,8 @@ spec:
       replyURLs:
         - "https://tpts-tiltakspenger-flate.dev.intern.nav.no/oauth2/callback"
         - "http://127.0.0.1:3000/oauth2/callback"
+  envFrom:
+    - configmap: tpts-tiltakspenger-flate-dev
   env:
     - name: CORS_DOMAIN
       value: "*"

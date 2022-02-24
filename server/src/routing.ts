@@ -8,6 +8,7 @@ import { createProxyMiddleware } from 'http-proxy-middleware';
 import { fileURLToPath } from 'url';
 const currentDir = fileURLToPath(import.meta.url);
 const __dirname = dirname(currentDir);
+const backendUrl = process.env['BACKEND_URL'];
 
 export const setupRouting = (app: Express) => {
   app.use(express.static(path.join(__dirname, '../../build')));
@@ -34,7 +35,7 @@ export const setupRouting = (app: Express) => {
   app.use(
     '/api/*',
     createProxyMiddleware({
-      target: 'http://host.docker.internal:8081', //'https://tpts-tiltakspenger-mottak.dev.intern.nav.no/',
+      target: backendUrl,
       changeOrigin: true,
     })
   );
