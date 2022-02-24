@@ -25,7 +25,7 @@ export const HTTP = {
 export const useRequest = <T>(doFetch: () => Promise<T>) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [result, setResult] = useState<T | undefined>();
-  const [error, setError] = useState<unknown>();
+  const [error, setError] = useState<any>();
 
   const run = async () => {
     try {

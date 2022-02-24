@@ -20,11 +20,20 @@ interface ErrorMessage {
   message: string;
 }
 
+const wait = (ms: number): Promise<void> => {
+  return new Promise<void>((resolve) => {
+    setTimeout(() => {
+      resolve(undefined);
+    }, ms);
+  });
+};
+
 const resolveWith =
   <T>(
     data: T
   ): ResponseResolver<MockedRequest, CtxWithJson<T | ErrorMessage>> =>
-  (req, res, ctx) => {
+  async (req, res, ctx) => {
+    await wait(500);
     if ((req as MockedRequestWithParams)?.params?.soknadId == '11710') {
       return res(
         ctx.status(404),

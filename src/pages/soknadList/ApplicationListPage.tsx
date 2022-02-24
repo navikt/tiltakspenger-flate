@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Table } from 'antd';
+import { Spin, Table } from 'antd';
 import { Tab, Tabs } from '../../components/Tabs';
 import BehandlingsTag, { Behandling } from '../../components/BehandlingsTag';
 import Periode from '../../components/Periode';
@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { personPath } from '../../routes';
 import { getSoknader, Soknad, SoknadStatus } from '../../api/soknad';
 import { columns } from './columns';
+import ErrorPage from '../ErrorPage';
 
 /*
 const tags = [
@@ -38,9 +39,12 @@ const soknadStates = {
 const ApplicationListPage = () => {
   const [currentTab, setTab] = useState<SoknadStatus>('Ikke behandlet');
 
-  const { run: runGetSoknader, result: soknader } = useRequest(() =>
-    getSoknader(currentTab)
-  );
+  const {
+    run: runGetSoknader,
+    result: soknader,
+    isLoading,
+    error,
+  } = useRequest(() => getSoknader(currentTab));
   const enrichedSoknader: SoknadWithStatus[] = (
     soknader?.data || ([] as Soknad[])
   ).map((soknad) => ({
@@ -70,40 +74,45 @@ const ApplicationListPage = () => {
 
   return (
     <div>
-      <div className="flex flex-col items-start p-40">
-        {!!soknader?.data?.length && (
-          <>
-            <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
-              <Tabs
-                defaultValue={'Ikke behandlet' as SoknadStatus}
-                onTabChange={(status: SoknadStatus) => setTab(status)}
-              >
-                <Tab value={'Ikke behandlet'}>Ikke behandlet</Tab>
-                <Tab value={'Behandlet'}>Behandlet</Tab>
-              </Tabs>
-            </div>
-            <Table
-              className="mt-6"
-              columns={columns}
-              dataSource={applications.map((data, index) => ({
-                ...data,
-                key: index,
-              }))}
-              pagination={{ pageSize: 10 }}
-              onRow={(soknad) => {
-                return {
-                  onClick: () => {
-                    handleClick({
-                      fnr: soknad.ident.toString(),
-                      soknadId: soknad.id.toString(),
-                    });
-                  },
-                };
-              }}
-            />
-          </>
-        )}
-      </div>
+      {error ? (
+        <ErrorPage errorCode={error?.status} message={error?.message} />
+      ) : undefined}
+      <Spin spinning={isLoading}>
+        <div className="flex flex-col items-start p-40">
+          {!!soknader?.data?.length && (
+            <>
+              <div className="self-stretch flex border-b-2 border-gray-200 mb-16">
+                <Tabs
+                  defaultValue={'Ikke behandlet' as SoknadStatus}
+                  onTabChange={(status: SoknadStatus) => setTab(status)}
+                >
+                  <Tab value={'Ikke behandlet'}>Ikke behandlet</Tab>
+                  <Tab value={'Behandlet'}>Behandlet</Tab>
+                </Tabs>
+              </div>
+              <Table
+                className="mt-6"
+                columns={columns}
+                dataSource={applications.map((data, index) => ({
+                  ...data,
+                  key: index,
+                }))}
+                pagination={{ pageSize: 10 }}
+                onRow={(soknad) => {
+                  return {
+                    onClick: () => {
+                      handleClick({
+                        fnr: soknad.ident.toString(),
+                        soknadId: soknad.id.toString(),
+                      });
+                    },
+                  };
+                }}
+              />
+            </>
+          )}
+        </div>
+      </Spin>
     </div>
   );
 };
