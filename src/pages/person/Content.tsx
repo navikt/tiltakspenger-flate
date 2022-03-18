@@ -1,21 +1,33 @@
-import React, { useState } from 'react';
-import { Tab, Tabs } from '../../components/Tabs';
-import RequirementChecks from './RequirementChecks';
+import React, { useEffect, useState } from 'react';
 import BarneTillegg from './BarneTillegg';
+import Spinner from '../../components/Spinner';
+import SoknadContent from './SoknadContent';
+import SoknadListe from './SoknadListe';
 
 const Content = () => {
   const [tab, setTab] = useState('vilkår');
 
+  const [isLoading, setIsLoading] = useState(true);
+  useEffect(() => {
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+  }, []);
+
   return (
     <div className="flex flex-col items-strech ">
-      <div className="border-b border-gray-200 flex flex-1">
-        <Tabs onTabChange={setTab} className="mx-4" defaultValue={'vilkår'}>
-          <Tab value={'vilkår'}>Inngangsvilkår</Tab>
-          <Tab value={'barnetillegg'}>Barnetillegg</Tab>
-        </Tabs>
-      </div>
-      <div className="self-stretch flex mb-16 px-8 pt-4">
-        {tab == 'vilkår' && <RequirementChecks soknad={{} as any} />}
+      <div className="self-stretch flex mb-16">
+        <div className="w-60">
+          <h2>Ytelser</h2>
+        </div>
+        {tab == 'vilkår' && (
+          <div className="border-l border-gray-200 flex flex-col">
+            <Spinner isLoading={isLoading}>
+              <SoknadListe />
+              <SoknadContent />
+            </Spinner>
+          </div>
+        )}
         {tab == 'barnetillegg' && <BarneTillegg />}
       </div>
     </div>

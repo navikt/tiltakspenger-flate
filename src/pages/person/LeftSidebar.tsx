@@ -5,7 +5,6 @@ import SoknadListe from './SoknadListe';
 const LeftSidebar = () => {
   return (
     <>
-      <SoknadListe />
       <div className="border-b border-gray-200 flex justify-between py-4 m-4">
         <span className=" flex">
           <BehandlingsTag behandling={Behandling.Forlengelse} />
