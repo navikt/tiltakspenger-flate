@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate, useParams } from 'react-router-dom';
-import BoxTimeline from './BoxTimeline';
+import { useLocation, useNavigate } from 'react-router-dom';
 import TimelineLabel from './TimelineLabel';
 import { months } from './months';
-import Timeline from './Timeline';
-
-const payments = [
-  { id: '1', ok: true },
-  { id: '2', ok: true },
-  { id: '3', ok: true },
-  { id: '4', ok: false },
-];
+import Timeline, { TimeLineType } from './Timeline';
 
 const TimeLabels = () => {
   return (
@@ -47,24 +39,19 @@ const Timelines = ({
     onClickTimeline?.(selected);
   }, [selected]);
 
-  const { paymentId } = useParams<{ paymentId: string }>();
-
   return (
     <div className="flex  p-4 border-b border-t border-sky-400">
       <div className="flex flex-col flex-1">
         <TimeLabels />
-        <BoxTimeline
-          items={payments}
-          selected={paymentId}
-          label={'Utbetalinger'}
-        />
         <Timeline
+          type={TimeLineType.SOKNAD}
           onClick={() => setSelected('AAP')}
           selected={selected === 'AAP'}
           label={'AAP'}
           style={{ width: 300 }}
         />
         <Timeline
+          type={TimeLineType.VEDTAK}
           onClick={() => setSelected('Dag')}
           selected={selected === 'Dag'}
           label={'Dag'}

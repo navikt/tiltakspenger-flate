@@ -9,6 +9,7 @@ import { personPath } from '../../routes';
 import { getSoknader, Soknad, SoknadStatus } from '../../api/soknad';
 import { columns } from './columns';
 import ErrorPage from '../ErrorPage';
+import Spinner from '../../components/Spinner';
 
 /*
 const tags = [
@@ -80,7 +81,7 @@ const ApplicationListPage = () => {
       {error ? (
         <ErrorPage errorCode={error?.status} message={error?.message} />
       ) : undefined}
-      <Spin spinning={isLoading}>
+      <Spinner isLoading={isLoading}>
         <div className="flex flex-col items-start p-40">
           {!!soknader?.data?.length && (
             <>
@@ -115,7 +116,7 @@ const ApplicationListPage = () => {
             </>
           )}
         </div>
-      </Spin>
+      </Spinner>
     </div>
   );
 };
