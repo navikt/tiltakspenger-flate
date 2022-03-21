@@ -54,15 +54,16 @@ export const columns: {
         .localeCompare(b.etternavn.toLocaleLowerCase()),
     sortDirections: ['descend', 'ascend'],
   },
+  /*
   {
     key: 'typeTiltak',
     dataIndex: 'typeTiltak',
     name: 'Tiltakstype',
     title: 'Tiltakstype',
     sorter: (a, b): number =>
-      a.typeTiltak
+      a.tiltaksType
         ?.toLocaleLowerCase()
-        .localeCompare(b.typeTiltak?.toLocaleLowerCase() || '') || 1,
+        .localeCompare(b.tiltaksType?.toLocaleLowerCase() || '') || 1,
     sortDirections: ['descend', 'ascend'],
   },
   {
@@ -75,16 +76,19 @@ export const columns: {
         ?.toLocaleLowerCase()
         .localeCompare(a.tiltaksNavn?.toLocaleLowerCase() || '') || 1,
     sortDirections: ['descend', 'ascend'],
-  },
+  },*/
   {
     key: 'periode',
     dataIndex: 'periode',
     name: 'Periode',
     title: 'Periode',
     render: (_, data) => {
-      return `${data.brukerStartDato || '- '}-${data.brukerSluttDato || ' -'}`;
+      return `${data.brukerRegistrertStartDato || '- '}-${
+        data.brukerRegistrertSluttDato || ' -'
+      }`;
     },
   },
+  /*
   {
     key: 'statusSoknad',
     dataIndex: 'statusSoknad',
@@ -95,5 +99,5 @@ export const columns: {
         .toLocaleLowerCase()
         .localeCompare(b.statusSoknad.toLocaleLowerCase()),
     sortDirections: ['descend', 'ascend'],
-  },
+  },*/
 ];

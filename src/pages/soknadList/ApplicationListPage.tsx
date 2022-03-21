@@ -26,10 +26,8 @@ export type SoknadWithStatus = Soknad & {
   periode: JSX.Element;
 };
 
-const processedFilter = (soknad: SoknadWithStatus) =>
-  soknad.statusSoknad !== 'Ikke behandlet';
-const unProcessedFilter = (soknad: SoknadWithStatus) =>
-  soknad.statusSoknad === 'Ikke behandlet';
+const processedFilter = (soknad: SoknadWithStatus) => false; //soknad.statusSoknad !== 'Ikke behandlet';
+const unProcessedFilter = (soknad: SoknadWithStatus) => true; // soknad.statusSoknad === 'Ikke behandlet';
 const soknadStates = {
   'Ikke behandlet': unProcessedFilter,
   Behandlet: processedFilter,
@@ -50,7 +48,12 @@ const ApplicationListPage = () => {
   ).map((soknad) => ({
     ...soknad,
     type: <BehandlingsTag behandling={Behandling.ForsteGang} />,
-    periode: <Periode fom={soknad.tiltakFom} tom={soknad.tiltakTom} />,
+    periode: (
+      <Periode
+        fom={soknad.brukerRegistrertStartDato}
+        tom={soknad.brukerRegistrertSluttDato}
+      />
+    ),
   }));
 
   const applications = (enrichedSoknader || []).filter(

@@ -39,10 +39,10 @@ const SoknadContent = () => {
   const { soknadId } = useParams<{ soknadId: string }>();
   const soknad = soknader?.find((s) => s.id === soknadId);
 
-  console.log(soknad);
-
-  const start = soknad?.brukerStartDato || soknad?.systemStartDato;
-  const slutt = soknad?.brukerSluttDato || soknad?.systemSluttDato;
+  const start =
+    soknad?.brukerRegistrertStartDato || soknad?.systemRegistrertStartDato;
+  const slutt =
+    soknad?.brukerRegistrertSluttDato || soknad?.systemRegistrertSluttDato;
 
   return (
     <div className="">
