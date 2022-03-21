@@ -27,7 +27,7 @@ describe('ApplicationListPage', () => {
     expect(screen.getAllByText('Klaras kaker').length).toBeGreaterThan(0);
   });
 
-  it('Should show processed applications when clicking processed tab', async () => {
+  it.skip('Should show processed applications when clicking processed tab', async () => {
     render(<ApplicationListPage />);
     await waitFor(() => screen.getByText('HILPERT EVANS'));
     fireEvent.click(screen.getAllByText('Behandlet')[0]);
