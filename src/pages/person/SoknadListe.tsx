@@ -29,16 +29,16 @@ const SoknadListe = () => {
     soknad.id?.toString() === soknadId?.toString();
 
   return (
-    <ul className="flex">
+    <ul className="flex border-b border-gray-200">
       {(soknader || []).map((soknad, i) => (
         <li
           key={i}
-          className={`flex w-52 border-b-4 text-center ${
+          className={`flex px-4 mx-4 border-b-4 text-center hover:border-blue-200 ${
             isSelected(soknad) ? ' border-blue-400 ' : ' border-gray-100 '
           }`}
         >
           <Link
-            className={'flex-1 p-2 text-center text-base text-black'}
+            className={'flex-1 p-2 text-center text-base font-bold text-black'}
             to={personPath({
               fnr: soknad.ident,
               soknadId: soknad.id.toString(),

@@ -40,3 +40,7 @@
 .ant-table-row {
   cursor: pointer;
 }
+
+body {
+  font-family: "Source Sans Pro", sans-serif;
+}

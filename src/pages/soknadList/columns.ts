@@ -1,5 +1,6 @@
 import { ReactElement } from 'react';
 import { SoknadWithStatus } from './ApplicationListPage';
+import { format } from '../../util/dateFormatting';
 
 export const columns: {
   key: keyof SoknadWithStatus;
@@ -83,9 +84,10 @@ export const columns: {
     name: 'Periode',
     title: 'Periode',
     render: (_, data) => {
-      return `${data.brukerRegistrertStartDato || '- '}-${
-        data.brukerRegistrertSluttDato || ' -'
-      }`;
+      return `${format(data.brukerRegistrertStartDato, 'dd.MM.yy')}-${format(
+        data.brukerRegistrertSluttDato,
+        'dd.MM.yy'
+      )}`;
     },
   },
   /*

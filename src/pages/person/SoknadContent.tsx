@@ -3,15 +3,12 @@ import { FileContent, Calender } from '@navikt/ds-icons';
 import { useRecoilState } from 'recoil';
 import { soknadState } from '../../state/soknad';
 import { useParams } from 'react-router-dom';
+import { format } from '../../util/dateFormatting';
 
 const posts = [
   {
     title: 'Tiltak',
-    text:
-      'Gruppe AMO\n' +
-      '100 % - 5 dager\n' +
-      'Kunnskapsfabrukken AS\n' +
-      '10.08.21-02.06.22',
+    text: 'Gruppe AMO\n' + 'Kunnskapsfabrukken AS\n',
   },
   {
     title: 'Kvalifiseringsprogrammet',
@@ -49,11 +46,14 @@ const SoknadContent = () => {
       <div className="flex space-x-12 text-base mb-8 p-4">
         <div className="flex items-center space-x-2">
           <FileContent />
-          <div>{`Soknadsdato ${soknad?.opprettet}`}</div>
+          <div>{`Soknadsdato ${format(soknad?.opprettet, 'dd.mm.y')}`}</div>
         </div>
         <div className="flex items-center space-x-2">
           <Calender />
-          <div>{`${start}-${slutt}`}</div>
+          <div>{`Søknadsperiode ${format(start, 'dd.MM.y')}-${format(
+            slutt,
+            'dd.MM.y'
+          )}`}</div>
         </div>
       </div>
       <ul className="flex flex-wrap m-0">
@@ -82,6 +82,11 @@ const SoknadContent = () => {
             <div>123456 78901</div>
           </li>
         </ul>
+      </ContentSection>
+      <ContentSection title={'Tilleggsopplysninger'}>
+        <div className="text-base text-left font-bold">
+          Jeg har søkt om penger til et annet tiltak også.
+        </div>
       </ContentSection>
     </div>
   );

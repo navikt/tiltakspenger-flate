@@ -4,7 +4,7 @@ import '@testing-library/jest-dom';
 import SoknadListe from './SoknadListe';
 import { screen, waitFor } from '@testing-library/react';
 import { paths } from '../../routes';
-import { renderWithRouteMatch } from '../../testUtils/renderWithRouteMatch';
+import { renderWithRouteMatchAndRecoilRoot } from '../../testUtils/renderWithRouteMatch';
 
 const server = setupTestMockServer();
 
@@ -16,15 +16,13 @@ describe('<SoknadList />', () => {
   it('Should work', async () => {
     const route = '/person/20058126692/soknad/11701';
 
-    renderWithRouteMatch(<SoknadListe />, {
+    renderWithRouteMatchAndRecoilRoot(<SoknadListe />, {
       path: paths.DetailsPage,
       route,
     });
 
-    expect(screen.getByText('Soknader')).toBeInTheDocument();
     await waitFor(() => {
-      expect(screen.getByText('03.01.22 - 31.05.22')).toBeInTheDocument();
+      expect(screen.getByText('EVANS HILPERT')).toBeInTheDocument();
     });
-    expect(screen.getByText('02.01.22 - 31.05.22')).toBeInTheDocument();
   });
 });

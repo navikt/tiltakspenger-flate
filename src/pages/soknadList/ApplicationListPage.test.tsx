@@ -24,7 +24,6 @@ describe('ApplicationListPage', () => {
 
     expect(screen.getByText('02079538755')).toBeInTheDocument();
     expect(screen.getAllByText('01.02.22-31.07.22').length).toBeGreaterThan(0);
-    expect(screen.getAllByText('Klaras kaker').length).toBeGreaterThan(0);
   });
 
   it.skip('Should show processed applications when clicking processed tab', async () => {

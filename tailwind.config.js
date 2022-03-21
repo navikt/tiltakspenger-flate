@@ -13,6 +13,7 @@ module.exports = {
       'blue-400': '#368DA8', //navLysBlaDarken40
       'gray-100': '#F8F8F8',
       'gray-200': '#C6C2BF',
+      'gray-300': '#707070',
       'gray-800': '#3E3832',
       'green-100': '#CCF1D6', //grønn bakgrunn varselboks
       'green-200': '#72ba74',
@@ -31,9 +32,12 @@ module.exports = {
     fontSize: {
       xs: '14px',
       sm: '16px',
-      base: '18px',
+      base: '16px',
       lg: '20px',
       xl: '20px',
+    },
+    fontFamily: {
+      sans: ['Source Sans Pro'],
     },
     extend: {
       spacing: {

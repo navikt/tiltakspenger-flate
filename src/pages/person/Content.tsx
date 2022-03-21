@@ -3,6 +3,8 @@ import BarneTillegg from './BarneTillegg';
 import Spinner from '../../components/Spinner';
 import SoknadContent from './SoknadContent';
 import SoknadListe from './SoknadListe';
+import { Alert } from 'antd';
+import YtelserSection from './YtelserSection';
 
 const Content = () => {
   const [tab, setTab] = useState('vilkår');
@@ -17,11 +19,9 @@ const Content = () => {
   return (
     <div className="flex flex-col items-strech ">
       <div className="self-stretch flex mb-16">
-        <div className="w-60">
-          <h2>Ytelser</h2>
-        </div>
+        <YtelserSection />
         {tab == 'vilkår' && (
-          <div className="border-l border-gray-200 flex flex-col">
+          <div className="border-l border-gray-200 flex flex-col flex-1">
             <Spinner isLoading={isLoading}>
               <SoknadListe />
               <SoknadContent />
