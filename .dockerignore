@@ -1,5 +1,12 @@
 node_modules/*
 .nais/
+.github/
+.idea/
+conf/
+ngnix/
+scripts/
+server/build/*
+server/node_modules/*
 CODEOWNERS
 LICENSE.md
 README.md

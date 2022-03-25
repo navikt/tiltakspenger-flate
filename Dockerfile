@@ -1,12 +1,18 @@
 FROM navikt/node-express:16
-
-ARG NODE_ENV=production
+USER root
+WORKDIR app
+# Setting NODE_ENV=production does not install dev-dependencies, typescript is currently a dev dep
+# ARG NODE_ENV=production
 ENV TZ="Europe/Oslo"
 
-COPY build build
-COPY server server
+COPY . .
+
+RUN npm ci
+RUN npm run build
 
 WORKDIR server
+RUN npm ci
+RUN npm run build
 
 EXPOSE 8080
 
