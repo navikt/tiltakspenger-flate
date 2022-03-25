@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Search as SearchIcon } from '@navikt/ds-icons';
 
 interface SearchBarProps {
-  onSearch: (value: string) => Promise<any>;
+  onSearch: (value: string) => Promise<void>;
 }
 
 export const SearchBar = ({ onSearch }: SearchBarProps) => {

@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { ResultStatusType } from 'antd/es/result';
 
 export const backendUrl = '';
 
@@ -22,18 +23,25 @@ export const HTTP = {
     }),
 };
 
+interface RequestError {
+  status: ResultStatusType;
+  message: string;
+}
+
 export const useRequest = <T>(doFetch: () => Promise<T>) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [result, setResult] = useState<T | undefined>();
-  const [error, setError] = useState<any>();
+  const [error, setError] = useState<RequestError | undefined>();
 
   const run = async () => {
     try {
       setIsLoading(true);
       const result = await doFetch();
       setResult(result);
-    } catch (e: any) {
-      setError(e?.body);
+    } catch (e) {
+      setError(
+        (e as { body: RequestError | null })?.body || (e as RequestError)
+      );
     } finally {
       setIsLoading(false);
     }

@@ -26,12 +26,6 @@ export const columns: {
     sortDirections: ['descend', 'ascend'],
   },
   {
-    key: 'type',
-    dataIndex: 'type',
-    name: 'Behandlingstype',
-    title: 'Behandlingstype',
-  },
-  {
     key: 'ident',
     dataIndex: 'ident',
     name: 'Fødselsnr',

@@ -1,9 +1,11 @@
 import { Response as FetchResponse } from 'node-fetch';
 
-export const getBody = (res: FetchResponse): Promise<Record<string, any>> => {
+export const getBody = (
+  res: FetchResponse
+): Promise<Record<string, unknown>> => {
   const contentType = res.headers.get('content-type');
   if (contentType?.startsWith('application/json')) {
-    return res.json() as Promise<Record<string, any>>;
+    return res.json() as Promise<Record<string, unknown>>;
   }
   throw Error('Unknown content-type');
 };

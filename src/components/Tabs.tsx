@@ -55,18 +55,20 @@ export function Tabs<T>({
 
   return (
     <div role="tablist" className={className || ''}>
-      {React.Children.map(children, (child, index) => {
-        return React.cloneElement(child as ReactElement, {
-          selected: selectedIndex === index,
-          onClick: () => {
-            const anyChild = child as any;
-            if (anyChild.props?.onClick) {
-              anyChild.props.onClick();
-            }
-            setValue(getValueByIndex(index));
-          },
-        });
-      })}
+      {React.Children.map(
+        children,
+        (child: ReactElement<{ onClick: () => void }>, index) => {
+          return React.cloneElement(child as ReactElement, {
+            selected: selectedIndex === index,
+            onClick: () => {
+              if (child.props?.onClick) {
+                child.props.onClick();
+              }
+              setValue(getValueByIndex(index));
+            },
+          });
+        }
+      )}
     </div>
   );
 }

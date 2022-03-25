@@ -2,7 +2,7 @@ import React from 'react';
 import { Result } from 'antd';
 import { ResultStatusType } from 'antd/es/result';
 
-const isValidErrorCode = (code: any): code is ResultStatusType => {
+const isValidErrorCode = (code: ResultStatusType): code is ResultStatusType => {
   return (
     code === 'success' ||
     code === 'error' ||

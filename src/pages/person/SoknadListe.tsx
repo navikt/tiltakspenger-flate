@@ -8,11 +8,9 @@ import { soknadState } from '../../state/soknad';
 
 const SoknadListe = () => {
   const { fnr, soknadId } = useParams<{ fnr: string; soknadId: string }>();
-  const {
-    run: runGetSoknader,
-    result,
-    isLoading,
-  } = useRequest(() => getSoknaderByIdent(fnr || ''));
+  const { run: runGetSoknader, result } = useRequest(() =>
+    getSoknaderByIdent(fnr || '')
+  );
 
   useEffect(() => {
     runGetSoknader();

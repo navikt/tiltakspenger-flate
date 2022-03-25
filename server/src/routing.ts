@@ -1,4 +1,4 @@
-import express, { Express } from 'express';
+import express, { Express, Response, Request } from 'express';
 import path from 'path';
 import { dirname } from 'path';
 import { logger } from './logger.js';
@@ -23,10 +23,10 @@ export const setupRouting = (app: Express) => {
       const token =
         (req.headers['authorization'] || '').split('Bearer ')[1] || undefined;
       if (!token) throw Error('No auth header');
-      req.headers['authorization'] = `Bearer ${await getToken(token)}`;
-    } catch (error: any) {
+      const oboToken = await getToken(token);
+      req.headers['authorization'] = `Bearer ${oboToken}`;
+    } catch (error) {
       logger.error(error);
-      console.log(error);
     } finally {
       next();
     }
@@ -43,6 +43,8 @@ export const setupRouting = (app: Express) => {
   app.get('*', (req, res) => {
     req.url = '/index.html';
     logger.info('Redirecting to /index.html');
-    (app as any).handle(req, res);
+    (
+      app as unknown as { handle: (req: Request, res: Response) => void }
+    ).handle(req, res);
   });
 };

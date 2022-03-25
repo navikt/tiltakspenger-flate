@@ -1,6 +1,5 @@
 import React from 'react';
 import BehandlingsTag, { Behandling } from '../../components/BehandlingsTag';
-import SoknadListe from './SoknadListe';
 
 const LeftSidebar = () => {
   return (
