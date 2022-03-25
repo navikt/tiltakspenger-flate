@@ -43,7 +43,7 @@ const ApplicationListPage = () => {
     result: soknader,
     isLoading,
     error,
-  } = useRequest(() => getSoknader(currentTab));
+  } = useRequest(() => getSoknader('03837197367'));
   const enrichedSoknader: SoknadWithStatus[] = (
     soknader?.data || ([] as Soknad[])
   ).map((soknad) => ({

@@ -2,7 +2,6 @@ import { Dropdown, Header } from '@navikt/ds-react-internal';
 import { ExternalLink, System } from '@navikt/ds-icons';
 import React from 'react';
 import { SearchBar } from './SearchBar';
-import { fetchPerson } from '../state/person';
 import { useAddAlert, useRemoveAlert } from '../state/alerts';
 import { isValidFnr } from './fnrValidation';
 import { useNavigate } from 'react-router-dom';
@@ -11,12 +10,10 @@ import { basePath } from '../routes';
 const Navbar = () => {
   const addAlert = useAddAlert();
   const removeAlert = useRemoveAlert();
+  const navigate = useNavigate();
+  const goToHome = () => navigate(basePath);
 
   const onSearch = async (personId: string): Promise<void> => {
-    if (personId.toLowerCase() === 'agurk') {
-      console.log('Agurk');
-      return;
-    }
     const key = 'ugyldig-søk';
     removeAlert(key);
 
@@ -29,13 +26,10 @@ const Navbar = () => {
       });
       return;
     } else {
-      fetchPerson(personId);
+      navigate(`/person/${personId}`);
       return;
     }
   };
-
-  const navigate = useNavigate();
-  const goToHome = () => navigate(basePath);
 
   return (
     <Header>
