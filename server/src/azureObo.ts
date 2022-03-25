@@ -46,7 +46,7 @@ const onBehalfOfGrant = async (token: string) => {
       body: resBody,
     });
 
-  return (resBody as TokenResponse).access_token;
+  return (resBody as unknown as TokenResponse).access_token;
 };
 
 let cachedOboToken: string | undefined = undefined;
