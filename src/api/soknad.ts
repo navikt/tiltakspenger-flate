@@ -14,6 +14,11 @@ export interface Soknad {
   systemRegistrertSluttDato: string | null;
 }
 
-export const getSoknader = (ident: string): Promise<Paginated<Soknad>> => {
+export const getSoknaderByIdent = (
+  ident: string
+): Promise<Paginated<Soknad>> => {
   return HTTP.GET(`${backendUrl}/api/soknad?ident=${ident}`);
+};
+export const getSoknader = (): Promise<Paginated<Soknad>> => {
+  return HTTP.GET(`${backendUrl}/api/soknad`);
 };

@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useRequest } from '../../api/common';
-import { getSoknader, Soknad } from '../../api/soknad';
+import { getSoknaderByIdent, Soknad } from '../../api/soknad';
 import { Link, useParams } from 'react-router-dom';
 import { personPath } from '../../routes';
 import { useRecoilState } from 'recoil';
@@ -12,7 +12,7 @@ const SoknadListe = () => {
     run: runGetSoknader,
     result,
     isLoading,
-  } = useRequest(() => getSoknader(fnr || ''));
+  } = useRequest(() => getSoknaderByIdent(fnr || ''));
 
   useEffect(() => {
     runGetSoknader();

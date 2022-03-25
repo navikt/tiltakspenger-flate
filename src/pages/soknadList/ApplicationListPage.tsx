@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Spin, Table } from 'antd';
+import { Table } from 'antd';
 import { Tab, Tabs } from '../../components/Tabs';
 import BehandlingsTag, { Behandling } from '../../components/BehandlingsTag';
 import Periode from '../../components/Periode';
@@ -43,7 +43,7 @@ const ApplicationListPage = () => {
     result: soknader,
     isLoading,
     error,
-  } = useRequest(() => getSoknader('03837197367'));
+  } = useRequest(() => getSoknader());
   const enrichedSoknader: SoknadWithStatus[] = (
     soknader?.data || ([] as Soknad[])
   ).map((soknad) => ({
