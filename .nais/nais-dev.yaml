@@ -11,9 +11,7 @@ spec:
   image: {{image}}
   port: 3000
   ingresses:
-    {{#each ingresses}}
-       - {{this}}
-      {{/each}}
+    - https://tpts-tiltakspenger-flate.dev.intern.nav.no
   replicas:
     min: 1
     max: 1
