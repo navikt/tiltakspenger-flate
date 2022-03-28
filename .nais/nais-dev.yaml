@@ -9,7 +9,7 @@ metadata:
     nais.io/read-only-file-system: "false"
 spec:
   image: {{image}}
-  port: 3000
+  port: 8080
   ingresses:
     - https://tpts-tiltakspenger-flate.dev.intern.nav.no
   replicas:
