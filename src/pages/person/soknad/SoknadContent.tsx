@@ -1,9 +1,9 @@
 import React, { FC } from 'react';
 import { FileContent, Calender } from '@navikt/ds-icons';
 import { useRecoilState } from 'recoil';
-import { soknadState } from '../../state/soknad';
+import { soknadState } from '../../../state/soknad';
 import { useParams } from 'react-router-dom';
-import { format } from '../../util/dateFormatting';
+import { format } from '../../../util/dateFormatting';
 
 const posts = [
   {
@@ -41,8 +41,12 @@ const SoknadContent = () => {
   const slutt =
     soknad?.brukerRegistrertSluttDato || soknad?.systemRegistrertSluttDato;
 
+  if (!soknad) {
+    return null;
+  }
+
   return (
-    <div className="">
+    <div>
       <div className="flex space-x-12 text-base mb-8 p-4">
         <div className="flex items-center space-x-2">
           <FileContent />

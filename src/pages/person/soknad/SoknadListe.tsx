@@ -1,30 +1,19 @@
-import React, { useEffect } from 'react';
-import { useRequest } from '../../api/common';
-import { getSoknaderByIdent, Soknad } from '../../api/soknad';
+import React from 'react';
+import { Soknad } from '../../../api/soknad';
 import { Link, useParams } from 'react-router-dom';
-import { personPath } from '../../routes';
+import { personPath } from '../../../routes';
 import { useRecoilState } from 'recoil';
-import { soknadState } from '../../state/soknad';
+import { soknadState } from '../../../state/soknad';
 
 const SoknadListe = () => {
-  const { fnr, soknadId } = useParams<{ fnr: string; soknadId: string }>();
-  const { run: runGetSoknader, result } = useRequest(() =>
-    getSoknaderByIdent(fnr || '')
-  );
-
-  useEffect(() => {
-    runGetSoknader();
-  }, []);
-
-  const [soknader, setSoknader] = useRecoilState(soknadState);
-
-  useEffect(() => {
-    if (!result) return;
-    setSoknader(result?.data || []);
-  }, [result]);
-
+  const { soknadId } = useParams<{ fnr: string; soknadId: string }>();
+  const [soknader] = useRecoilState(soknadState);
   const isSelected = (soknad: Soknad): boolean =>
     soknad.id?.toString() === soknadId?.toString();
+
+  if (soknader?.length === 0) {
+    return <h1 className="text-base font-bold mt-4">Ingen søknader funnet</h1>;
+  }
 
   return (
     <ul className="flex border-b border-gray-200">
