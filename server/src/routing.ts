@@ -11,12 +11,12 @@ const __dirname = dirname(currentDir);
 const backendUrl = process.env['BACKEND_URL'];
 
 export const setupRouting = (app: Express) => {
-  app.use(express.static(path.join(__dirname, '../../build')));
-
   app.use('*', async (req, res, next) => {
     logger.debug(`${req.method} ${req.baseUrl + req.path}`);
     next();
   });
+
+  app.use(express.static(path.join(__dirname, '../../build')));
 
   app.use('/api/*', async (req, res, next) => {
     try {
