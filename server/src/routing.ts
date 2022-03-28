@@ -15,6 +15,10 @@ export const setupRouting = (app: Express) => {
     logger.debug(`${req.method} ${req.baseUrl + req.path}`);
     next();
   });
+  app.use((error: Error, req: unknown, res: Response, next: () => void) => {
+    logger.error(error);
+    res.status(500).send('Internal server error');
+  });
 
   app.use(express.static(path.join(__dirname, '../../build')));
 
