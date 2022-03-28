@@ -11,7 +11,7 @@ spec:
   image: {{image}}
   port: 3000
   ingresses:
-    {{#each ingresses}}
+    {{each ingresses}}
        - {{this}}
       {{/each}}
   replicas:
