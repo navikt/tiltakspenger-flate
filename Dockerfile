@@ -4,7 +4,6 @@ ARG NODE_ENV=production
 ENV TZ="Europe/Oslo"
 
 COPY build build
-COPY public public
 COPY server server
 
 WORKDIR server
