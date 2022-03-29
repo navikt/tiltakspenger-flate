@@ -18,11 +18,8 @@ const DetailsPage = () => {
         <div className="col-span-2 border-r border-sky-400">
           <LeftSidebar />
         </div>
-        <div className="col-span-8 col-start-3">
+        <div className="col-span-10 col-start-3">
           <Outlet />
-        </div>
-        <div className="col-span-2 border-l border-gray-200 flex flex-col p-8">
-          <span className="border-b border-gray-200">Historikk?</span>
         </div>
       </div>
     </div>
