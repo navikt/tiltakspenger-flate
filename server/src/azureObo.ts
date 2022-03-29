@@ -49,10 +49,7 @@ const onBehalfOfGrant = async (token: string) => {
   return (resBody as unknown as TokenResponse).access_token;
 };
 
-let cachedOboToken: string | undefined = undefined;
 export const getToken = async (token: string) => {
-  if (cachedOboToken !== undefined) return Promise.resolve(cachedOboToken);
   const oboToken = await onBehalfOfGrant(token);
-  cachedOboToken = oboToken;
   return oboToken;
 };
