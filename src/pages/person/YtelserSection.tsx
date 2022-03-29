@@ -13,7 +13,7 @@ const YtelserSection = () => {
   return (
     <div className="w-96">
       <Spinner isLoading={isLoading}>
-        <Alert variant="info">
+        <Alert variant="info" className="!border-0 !text-left !rounded-none">
           Vi viser foreløpig kun informasjon om ytelser fra Arena innenfor
           søknadsperioden
         </Alert>
