@@ -20,7 +20,7 @@ const Navbar = () => {
     if (!isValidFnr(personId)) {
       addAlert({
         key: key,
-        message: `"${personId}" er ikke en gyldig aktør-ID/fødselsnummer.`,
+        message: `"${personId}" er ikke et gyldig fødselsnummer`,
         type: 'error',
         ephemeral: true,
       });

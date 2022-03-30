@@ -7,7 +7,7 @@ import { useRecoilState } from 'recoil';
 import { alertsState } from '../state/alerts';
 
 type WarningType = 'info' | 'success' | 'warning' | 'error';
-const classnameAll = 'flex  pl-6 py-1 border';
+const classnameAll = 'flex items-center pl-6 py-2 border';
 
 export const classname = (warningtype: WarningType) => {
   switch (warningtype) {

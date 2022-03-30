@@ -50,7 +50,7 @@ const SoknadContent = () => {
       <div className="flex space-x-12 text-base mb-8 p-4">
         <div className="flex items-center space-x-2">
           <FileContent />
-          <div>{`Soknadsdato ${format(soknad?.opprettet, 'dd.mm.y')}`}</div>
+          <div>{`Soknadsdato ${format(soknad?.opprettet, 'dd.MM.y')}`}</div>
         </div>
         <div className="flex items-center space-x-2">
           <Calender />
