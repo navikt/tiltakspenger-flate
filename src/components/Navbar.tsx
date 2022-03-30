@@ -24,7 +24,7 @@ const Navbar = () => {
         type: 'error',
         ephemeral: true,
       });
-      return;
+      return Promise.reject('Invalid ident');
     } else {
       navigate(`/person/${personId}`);
       return;

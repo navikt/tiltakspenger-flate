@@ -11,7 +11,9 @@ export const SearchBar = ({ onSearch }: SearchBarProps) => {
 
   const search = () => {
     if (value.length > 0) {
-      onSearch(value.replace(/\s/g, '')).then(() => setValue(''));
+      onSearch(value.replace(/\s/g, ''))
+        .then(() => setValue(''))
+        .catch((e) => e);
     }
   };
 
