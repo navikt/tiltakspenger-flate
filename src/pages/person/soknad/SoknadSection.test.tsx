@@ -17,7 +17,7 @@ describe('<SoknadSection />', () => {
     const route = '/person/20058126692/soknad/11701';
 
     renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
-      path: paths.DetailsPage,
+      path: paths.PersonPage,
       route,
     });
 

@@ -20,7 +20,7 @@ const SoknadSection = () => {
 
   useEffect(() => {
     runGetSoknader();
-  }, []);
+  }, [fnr]);
 
   useEffect(() => {
     if (!result) return;
