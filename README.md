@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# TPTS-tiltakspenger-flate
+
+Frontend til saksbehandlingssystem for tiltakspenger
 
 This project was bootstrapped with [Vite](https://vitejs.dev/guide/).
 
