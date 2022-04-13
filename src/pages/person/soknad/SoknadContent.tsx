@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import React, { FC, ReactNode } from 'react';
 import { FileContent, Calender } from '@navikt/ds-icons';
 import { useRecoilState } from 'recoil';
 import { soknadState } from '../../../state/soknad';
@@ -20,7 +20,10 @@ const posts = [
   },
 ];
 
-const ContentSection: FC<{ title: string }> = ({ title, children }) => {
+const ContentSection: FC<{ title: string; children: ReactNode }> = ({
+  title,
+  children,
+}) => {
   return (
     <div className="p-4">
       <h1 className="text-base text-left text-gray-300 border-b border-gray-200">

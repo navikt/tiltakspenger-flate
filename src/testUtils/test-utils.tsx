@@ -1,9 +1,13 @@
-import React, { FC, ReactElement } from 'react';
+import React, { FC, ReactElement, ReactNode } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import { RecoilRoot } from 'recoil';
+import { RecoilRoot, RecoilRootProps } from 'recoil';
 
-const AllTheProviders: FC = ({ children }) => {
-  return <RecoilRoot>{children}</RecoilRoot>;
+const FixedTypeRecoilRoot = RecoilRoot as unknown as FC<
+  RecoilRootProps & { children: ReactNode }
+>;
+
+const AllTheProviders: FC<{ children: ReactNode }> = ({ children }) => {
+  return <FixedTypeRecoilRoot>{children}</FixedTypeRecoilRoot>;
 };
 
 const customRender = (

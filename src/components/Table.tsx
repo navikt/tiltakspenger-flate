@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { soknadPath } from '../routes';
 
@@ -40,7 +40,7 @@ const Table = <T extends { soknadId: string | number }>({
           >
             {columns.map((column, index) => (
               <td key={index} className="first:pl-16 pr-40">
-                {row[column.key]}
+                {row[column.key] as unknown as ReactNode}
               </td>
             ))}
           </tr>
