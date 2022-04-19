@@ -19,6 +19,14 @@ export const getSoknaderByIdent = (
 ): Promise<Paginated<Soknad>> => {
   return HTTP.GET(`${backendUrl}/api/soknad?ident=${ident}`);
 };
-export const getSoknader = (): Promise<Paginated<Soknad>> => {
-  return HTTP.GET(`${backendUrl}/api/soknad`);
+export const getSoknader = ({
+  offset,
+  pageSize,
+}: {
+  offset?: number;
+  pageSize?: number;
+} = {}): Promise<Paginated<Soknad>> => {
+  return HTTP.GET(
+    `${backendUrl}/api/soknad?offset=${offset || 0}&pageSize=${pageSize || 20}`
+  );
 };

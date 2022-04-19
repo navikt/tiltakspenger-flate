@@ -20,6 +20,8 @@ const ApplicationListPage = () => {
     isLoading,
     error,
   } = useRequest(() => getSoknader());
+
+  const total = soknader?.total;
   const soknaderWithPeriode: SoknadWithStatus[] =
     (soknader?.data || ([] as Soknad[])).map((soknad) => ({
       ...soknad,
@@ -46,6 +48,10 @@ const ApplicationListPage = () => {
     navigate(personPath({ soknadId, fnr }));
   };
 
+  const handlePageChange = (page: number, pageSize: number) => {
+    getSoknader({ offset: pageSize * (page - 1), pageSize });
+  };
+
   return (
     <div>
       {error ? (
@@ -57,13 +63,18 @@ const ApplicationListPage = () => {
             <>
               <div className="self-stretch flex border-b-2 border-gray-200 mb-16" />
               <Table
+                loading={isLoading}
                 className="mt-6"
                 columns={columns}
                 dataSource={soknaderWithPeriode.map((data, index) => ({
                   ...data,
                   key: index,
                 }))}
-                pagination={{ pageSize: 10 }}
+                pagination={{
+                  defaultPageSize: 20,
+                  onChange: handlePageChange,
+                  total,
+                }}
                 onRow={(soknad) => {
                   return {
                     onClick: () => {
