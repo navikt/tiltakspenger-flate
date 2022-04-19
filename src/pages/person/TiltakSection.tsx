@@ -1,7 +1,7 @@
 import React from 'react';
 import BehandlingsTag, { Behandling } from '../../components/BehandlingsTag';
 
-const LeftSidebar = () => {
+const TiltakSection = () => {
   return (
     <>
       <div className="border-b border-gray-200 flex justify-between py-4 m-4">
@@ -34,4 +34,4 @@ const LeftSidebar = () => {
   );
 };
 
-export default LeftSidebar;
+export default TiltakSection;

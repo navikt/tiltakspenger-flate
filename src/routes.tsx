@@ -1,6 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import ApplicationListPage from './pages/soknadList/ApplicationListPage';
-import PersonPage from './pages/PersonPage';
+import PersonPage from './pages/person/PersonPage';
 import PaymentsTable from './pages/person/PaymentsTable';
 import TestPage from './pages/TestPage';
 import React from 'react';
@@ -38,7 +38,7 @@ export const AppRoutes = () => {
         <Route path={paths.PersonFallback} element={<PersonInfo />} />
       </Route>
       <Route path={paths.Empty} element={<EmptyPage />} />
-      <Route path={paths.Test} element={<TestPage />} />l
+      <Route path={paths.Test} element={<TestPage />} />
     </Routes>
   );
 };
