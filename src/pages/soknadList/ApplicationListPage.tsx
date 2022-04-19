@@ -49,7 +49,7 @@ const ApplicationListPage = () => {
   };
 
   const handlePageChange = (page: number, pageSize: number) => {
-    getSoknader({ offset: pageSize * (page - 1), pageSize });
+    runGetSoknader({ offset: pageSize * (page - 1), pageSize });
   };
 
   return (
@@ -57,7 +57,7 @@ const ApplicationListPage = () => {
       {error ? (
         <ErrorPage errorCode={error?.status} message={error?.message} />
       ) : undefined}
-      <Spinner isLoading={isLoading}>
+      <Spinner isLoading={!soknader && isLoading}>
         <div className="flex flex-col items-start p-40">
           {!!soknader?.data?.length && (
             <>
@@ -71,7 +71,7 @@ const ApplicationListPage = () => {
                   key: index,
                 }))}
                 pagination={{
-                  defaultPageSize: 20,
+                  defaultPageSize: 1,
                   onChange: handlePageChange,
                   total,
                 }}

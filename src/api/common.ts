@@ -28,15 +28,17 @@ interface RequestError {
   message: string;
 }
 
-export const useRequest = <T>(doFetch: () => Promise<T>) => {
+export const useRequest = <T, FetchArg>(
+  doFetch: (arg?: FetchArg) => Promise<T>
+) => {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [result, setResult] = useState<T | undefined>();
   const [error, setError] = useState<RequestError | undefined>();
 
-  const run = async () => {
+  const run = async (arg?: FetchArg) => {
     try {
       setIsLoading(true);
-      const result = await doFetch();
+      const result = await doFetch(arg);
       setResult(result);
     } catch (e) {
       setError(
