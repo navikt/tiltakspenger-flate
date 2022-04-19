@@ -71,7 +71,7 @@ const ApplicationListPage = () => {
                   key: index,
                 }))}
                 pagination={{
-                  defaultPageSize: 1,
+                  defaultPageSize: 20,
                   onChange: handlePageChange,
                   total,
                 }}
