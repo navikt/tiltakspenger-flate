@@ -4,8 +4,9 @@ import { useRecoilState } from 'recoil';
 import { soknadState } from '../../../state/soknad';
 import { useParams } from 'react-router-dom';
 import { format } from '../../../util/dateFormatting';
+import { Soknad } from '../../../api/soknad';
 
-const posts = [
+const posts: { title: string; text: string; key?: keyof Soknad }[] = [
   {
     title: 'Tiltak',
     text: 'Gruppe AMO\n' + 'Kunnskapsfabrukken AS\n',
@@ -13,10 +14,12 @@ const posts = [
   {
     title: 'Kvalifiseringsprogrammet',
     text: 'Nei',
+    key: 'deltarKvp',
   },
   {
     title: 'Opphold på instutisjon',
-    text: 'Barnevernsinstitusjon',
+    text: 'Nei',
+    key: 'typeInstitusjon',
   },
 ];
 
@@ -64,11 +67,11 @@ const SoknadContent = () => {
         </div>
       </div>
       <ul className="flex flex-wrap m-0">
-        {posts.map(({ text, title }, i) => (
+        {posts.map(({ text, title, key }, i) => (
           <div key={i} className="m-4">
             <h1 className="text-base text-left text-gray-300">{title}</h1>
             <pre className="font-sans text-base font-bold text-left">
-              {text}
+              {key !== undefined ? soknad[key] : text}
             </pre>
           </div>
         ))}

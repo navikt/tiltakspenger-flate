@@ -2,7 +2,7 @@ import React from 'react';
 import YtelserSection from './YtelserSection';
 import SoknadSection from './soknad/SoknadSection';
 
-const Content = () => {
+const PersonInfo = () => {
   return (
     <div className="flex flex-col items-strech ">
       <div className="self-stretch flex mb-16">
@@ -15,4 +15,4 @@ const Content = () => {
   );
 };
 
-export default Content;
+export default PersonInfo;

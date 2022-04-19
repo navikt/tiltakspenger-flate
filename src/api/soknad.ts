@@ -12,6 +12,10 @@ export interface Soknad {
   brukerRegistrertSluttDato: string | null;
   systemRegistrertStartDato: string | null;
   systemRegistrertSluttDato: string | null;
+  deltarIntroduksjonsprogrammet: boolean;
+  deltarKvp: boolean;
+  oppholdInstitusjon: boolean;
+  typeInstitusjon: string | null;
 }
 
 export interface PaginationInfo {
