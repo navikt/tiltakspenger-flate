@@ -3,7 +3,7 @@ import { setupTestMockServer } from '../../mocks/setupTestMock';
 import '@testing-library/jest-dom';
 import ApplicationListPage from './ApplicationListPage';
 import { render } from 'test-utils';
-import { fireEvent, screen, waitFor } from '@testing-library/react';
+import { screen, waitFor } from '@testing-library/react';
 
 const server = setupTestMockServer();
 
