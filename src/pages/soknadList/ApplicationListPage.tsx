@@ -4,7 +4,7 @@ import Periode from '../../components/Periode';
 import { useRequest } from '../../api/common';
 import { useNavigate } from 'react-router-dom';
 import { personPath } from '../../routes';
-import { getSoknader, Soknad } from '../../api/soknad';
+import { getSoknader, PaginationInfo, Soknad } from '../../api/soknad';
 import { columns } from './columns';
 import ErrorPage from '../ErrorPage';
 import Spinner from '../../components/Spinner';
@@ -19,7 +19,7 @@ const ApplicationListPage = () => {
     result: soknader,
     isLoading,
     error,
-  } = useRequest(() => getSoknader());
+  } = useRequest((arg: PaginationInfo | undefined) => getSoknader(arg));
 
   const total = soknader?.total;
   const soknaderWithPeriode: SoknadWithStatus[] =
@@ -71,7 +71,7 @@ const ApplicationListPage = () => {
                   key: index,
                 }))}
                 pagination={{
-                  defaultPageSize: 20,
+                  pageSize: 20,
                   onChange: handlePageChange,
                   total,
                 }}
