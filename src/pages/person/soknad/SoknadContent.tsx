@@ -6,7 +6,11 @@ import { useParams } from 'react-router-dom';
 import { format } from '../../../util/dateFormatting';
 import { Soknad } from '../../../api/soknad';
 
-const posts: { title: string; text: string; key?: keyof Soknad }[] = [
+const posts: {
+  title: string;
+  text: string;
+  getValue?: (soknad: Soknad) => string;
+}[] = [
   {
     title: 'Tiltak',
     text: 'Gruppe AMO\n' + 'Kunnskapsfabrukken AS\n',
@@ -14,12 +18,12 @@ const posts: { title: string; text: string; key?: keyof Soknad }[] = [
   {
     title: 'Kvalifiseringsprogrammet',
     text: 'Nei',
-    key: 'deltarKvp',
+    getValue: (soknad) => (soknad?.deltarKvp ? 'Ja' : 'Nei'),
   },
   {
     title: 'Opphold på instutisjon',
     text: 'Nei',
-    key: 'typeInstitusjon',
+    getValue: (soknad) => soknad?.typeInstitusjon || 'Nei',
   },
 ];
 
@@ -67,11 +71,11 @@ const SoknadContent = () => {
         </div>
       </div>
       <ul className="flex flex-wrap m-0">
-        {posts.map(({ text, title, key }, i) => (
+        {posts.map(({ text, title, getValue }, i) => (
           <div key={i} className="m-4">
             <h1 className="text-base text-left text-gray-300">{title}</h1>
             <pre className="font-sans text-base font-bold text-left">
-              {key !== undefined ? soknad[key] : text}
+              {getValue !== undefined ? getValue(soknad) : text}
             </pre>
           </div>
         ))}
