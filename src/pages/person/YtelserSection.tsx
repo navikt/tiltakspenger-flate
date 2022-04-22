@@ -11,7 +11,7 @@ const YtelserSection = () => {
   });
 
   return (
-    <div className="w-96">
+    <div className="w-96 border-l border-gray-200">
       <Spinner isLoading={isLoading}>
         <Alert variant="info" className="!border-0 !text-left !rounded-none">
           Vi viser foreløpig kun informasjon om ytelser fra Arena innenfor
