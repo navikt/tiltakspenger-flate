@@ -22,7 +22,7 @@ describe('ApplicationListPage', () => {
       screen.getByText('HILPERT EVANS');
     });
 
-    expect(screen.getByText('14038205537')).toBeInTheDocument();
+    expect(screen.getAllByText('14038205537').length).toBeGreaterThan(0);
     expect(screen.getAllByText('01.02.22-31.07.22').length).toBeGreaterThan(0);
   });
 });
