@@ -54,4 +54,41 @@ describe('<SoknadSection />', () => {
       expect(within(instContainer).getByText('Barnevern')).toBeInTheDocument();
     });
   });
+
+  it('Should show tiltaks-arragoer and tiltaks-type (Klaras kaker)', async () => {
+    const route = '/person/20058126692/soknad/136950210';
+
+    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
+      path: `${paths.PersonPage.replace('*', '')}${paths.Content}`,
+      route,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Søknad: AMO')).toBeInTheDocument();
+
+      const kvpContainer = screen.getByText('Tiltak').parentNode as HTMLElement;
+      expect(
+        within(kvpContainer).getByText('Klaras kaker AS')
+      ).toBeInTheDocument();
+      expect(within(kvpContainer).getByText('JOBBK')).toBeInTheDocument();
+    });
+  });
+  it('Should show tiltaks-arragoer and tiltaks-type (Jobbsporet)', async () => {
+    const route = '/person/20058126692/soknad/136950219';
+
+    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
+      path: `${paths.PersonPage.replace('*', '')}${paths.Content}`,
+      route,
+    });
+
+    await waitFor(() => {
+      expect(screen.getByText('Søknad: AMO')).toBeInTheDocument();
+
+      const kvpContainer = screen.getByText('Tiltak').parentNode as HTMLElement;
+      expect(
+        within(kvpContainer).getByText('Jobbsporet AS')
+      ).toBeInTheDocument();
+      expect(within(kvpContainer).getByText('AMO')).toBeInTheDocument();
+    });
+  });
 });
