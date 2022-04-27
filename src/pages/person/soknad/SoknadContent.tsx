@@ -13,7 +13,7 @@ const posts: {
 }[] = [
   {
     title: 'Tiltak',
-    text: 'Gruppe AMO\n' + 'Kunnskapsfabrukken AS\n',
+    text: '-',
     getValue: (soknad) => (
       <div>
         <p className="mb-0">{soknad?.tiltaksArrangoer}</p>
