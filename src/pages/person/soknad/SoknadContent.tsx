@@ -9,11 +9,17 @@ import { Soknad } from '../../../api/soknad';
 const posts: {
   title: string;
   text: string;
-  getValue?: (soknad: Soknad) => string;
+  getValue?: (soknad: Soknad) => ReactNode;
 }[] = [
   {
     title: 'Tiltak',
     text: 'Gruppe AMO\n' + 'Kunnskapsfabrukken AS\n',
+    getValue: (soknad) => (
+      <div>
+        <p className="mb-0">{soknad?.tiltaksArrangoer}</p>
+        <p>{soknad?.tiltaksType}</p>
+      </div>
+    ),
   },
   {
     title: 'Kvalifiseringsprogrammet',

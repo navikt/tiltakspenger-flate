@@ -30,7 +30,7 @@ const SoknadListe = () => {
               fnr: soknad.ident,
               soknadId: soknad.id.toString(),
             })}
-          >{`${soknad.fornavn} ${soknad.etternavn}`}</Link>
+          >{`Søknad: ${soknad.tiltaksType}`}</Link>
         </li>
       ))}
     </ul>

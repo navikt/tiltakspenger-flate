@@ -16,6 +16,8 @@ export interface Soknad {
   deltarKvp: boolean;
   oppholdInstitusjon: boolean;
   typeInstitusjon: string | null;
+  tiltaksArrangoer: string | null;
+  tiltaksType: string | null;
 }
 
 export interface PaginationInfo {
