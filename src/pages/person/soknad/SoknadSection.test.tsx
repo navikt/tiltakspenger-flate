@@ -22,7 +22,7 @@ describe('<SoknadSection />', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('EVANS HILPERT')).toBeInTheDocument();
+      expect(screen.getByText('Søknad: JOBBK')).toBeInTheDocument();
 
       const kvpContainer = screen.getByText('Kvalifiseringsprogrammet')
         .parentNode as HTMLElement;
@@ -43,7 +43,7 @@ describe('<SoknadSection />', () => {
     });
 
     await waitFor(() => {
-      expect(screen.getByText('Liten Salat')).toBeInTheDocument();
+      expect(screen.getByText('Søknad: AMO')).toBeInTheDocument();
 
       const kvpContainer = screen.getByText('Kvalifiseringsprogrammet')
         .parentNode as HTMLElement;
