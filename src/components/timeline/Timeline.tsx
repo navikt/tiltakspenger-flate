@@ -27,16 +27,18 @@ const Timeline = ({
   return (
     <div className="flex items-center bg-gray-100">
       <TimelineLabel label={label} />
-      <button
-        tabIndex={0}
-        onClick={onClick}
-        className={`rounded-full ${colors[type]} p-0 text-left ${
-          selected ? 'font-bold' : ''
-        }`}
-        style={style}
-      >
-        <div className="pl-3">60% - 3 dager</div>
-      </button>
+      <div className={'flex flex-1'}>
+        <button
+          tabIndex={0}
+          onClick={onClick}
+          className={`rounded-full ${colors[type]} p-0 text-left ${
+            selected ? 'font-bold' : ''
+          }`}
+          style={style}
+        >
+          <div className="pl-3">60% - 3 dager</div>
+        </button>
+      </div>
     </div>
   );
 };
