@@ -109,7 +109,7 @@ export default {
   // resetModules: false,
 
   // A path to a custom resolver
-  // resolver: undefined,
+  resolver: `${__dirname}/jestResolvers/uuidFixResolver.js`,
 
   // Automatically restore mock state and implementation before every test
   // restoreMocks: false,
