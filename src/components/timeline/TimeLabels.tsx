@@ -3,7 +3,13 @@ import { months } from './months';
 import React from 'react';
 import { Periode } from './Timelines';
 import { monthDivide } from './gridSnapping';
-import { addMonths, getMonth, intervalToDuration, isSameDay } from 'date-fns';
+import {
+  addMonths,
+  differenceInDays,
+  getMonth,
+  intervalToDuration,
+  isSameDay,
+} from 'date-fns';
 
 interface Props {
   start: Date;
@@ -39,20 +45,29 @@ const getPeriods = (start: Date, end: Date, gridSize: Duration): Periode[] => {
     });
 };
 
+const getDays = (period: Periode): number => {
+  return differenceInDays(period.from, period.to);
+};
+
 export const TimeLabels = ({ start, end, gridSize }: Props) => {
   const periods = getPeriods(start, end, gridSize);
-  const width = 100 / periods.length;
+  const periodDays = periods.map((it) => ({
+    ...it,
+    days: getDays(it),
+  }));
+  const totalDays = differenceInDays(start, end);
+  const percentWidth = (days: number): number => (days / totalDays) * 100;
 
   return (
     <div className="flex flex-row">
       <TimelineLabel label={'Måned'} />
       <div className="flex flex-1 divide-x divide-solid">
-        {periods.map((periode, index) => (
+        {periodDays.map((periode, index) => (
           <div
             key={index}
             className=""
             style={{
-              width: width + '%',
+              width: percentWidth(periode.days) + '%',
             }}
           >
             {periode.name}
