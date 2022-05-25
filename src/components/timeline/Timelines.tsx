@@ -1,30 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import TimelineLabel from './TimelineLabel';
-import { months } from './months';
+import { useNavigate, useParams } from 'react-router-dom';
 import Timeline, { TimeLineType } from './Timeline';
-import { differenceInDays, isValid, max, min } from 'date-fns';
-
-const TimeLabels = () => {
-  return (
-    <div className="flex flex-row">
-      <TimelineLabel label={'Måned'} />
-      <div className="flex flex-1 divide-x divide-solid">
-        {months.map((month, index) => (
-          <div key={index} className="flex-1">
-            {month}
-          </div>
-        ))}
-      </div>
-    </div>
-  );
-};
+import {
+  addMonths,
+  differenceInDays,
+  isValid,
+  max,
+  min,
+  startOfMonth,
+} from 'date-fns';
+import { getGridSize } from './gridSnapping';
+import { TimeLabels } from './TimeLabels';
+import { personPath } from '../../routes';
 
 export interface Periode {
-  from: string;
-  to: string;
+  from: Date;
+  to: Date;
   dotted: boolean;
   name: string;
+  soknadId?: string;
 }
 
 const Timelines = ({
@@ -37,17 +31,21 @@ const Timelines = ({
   const [selected, setSelected] = useState<string | undefined>(undefined);
 
   const navigate = useNavigate();
-  const location = useLocation();
+  const params = useParams<{ soknadId: string; fnr: string }>();
+  const { soknadId, fnr } = params as { soknadId: string; fnr: string };
 
-  const start = getTimelineStart(perioder);
-  const end = getTimelineEnd(perioder);
+  const start = startOfMonth(getTimelineStart(perioder));
+  const end = startOfMonth(addMonths(getTimelineEnd(perioder), 1));
   const totalDays = differenceInDays(end, start);
+
+  const gridSize = getGridSize(start, end);
 
   useEffect(() => {
     if (!selected) return;
 
     if (Number.isInteger(parseInt(selected))) {
-      navigate(`${location.pathname}/payment/${selected}`);
+      const url = personPath({ fnr, soknadId: selected });
+      navigate(url, { replace: false });
     }
 
     onClickTimeline?.(selected);
@@ -56,17 +54,19 @@ const Timelines = ({
   return (
     <div className="flex  p-4 border-b border-t border-sky-400">
       <div className="flex flex-col flex-1">
-        <TimeLabels />
+        {isValid(start) && isValid(end) && (
+          <TimeLabels start={start} end={end} gridSize={gridSize} />
+        )}
         {perioder.map((periode, index) => {
           return (
             <Timeline
               key={index}
               type={TimeLineType.SOKNAD}
-              onClick={() => setSelected(periode.name)}
-              selected={selected === 'AAP'}
-              label={'AAP'}
+              onClick={() => setSelected(periode.soknadId)}
+              selected={soknadId === periode.soknadId}
+              label={periode.name}
               style={{
-                width: getWidthPercent(periode, totalDays) + '%',
+                width: Math.max(2, getWidthPercent(periode, totalDays)) + '%',
                 marginLeft: getOffsetPercent(periode, start, totalDays) + '%',
               }}
             />
@@ -91,12 +91,12 @@ const getTimelineEnd = (periods: Periode[]): Date => {
   return max(ends);
 };
 
-const getWidthPercent = (period: Periode, totalDays: number): number => {
+export const getWidthPercent = (period: Periode, totalDays: number): number => {
   const days = differenceInDays(new Date(period.to), new Date(period.from));
   return (days / totalDays) * 100;
 };
 
-const getOffsetPercent = (
+export const getOffsetPercent = (
   period: Periode,
   firstDay: Date,
   totalDays: number

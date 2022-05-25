@@ -16,6 +16,7 @@ const PersonPage = () => {
       to: soknad.systemRegistrertSluttDato,
       name: 'Søknad: ' + soknad.tiltaksArrangoer,
       dotted: true,
+      soknadId: soknad.id,
     };
   });
   const tiltaksPerioder = (soknader || []).map((soknad) => {
@@ -23,6 +24,7 @@ const PersonPage = () => {
       from: soknad.brukerRegistrertStartDato,
       to: soknad.brukerRegistrertSluttDato,
       name: soknad.tiltaksArrangoer,
+      soknadId: soknad.id,
       dotted: false,
     };
   });

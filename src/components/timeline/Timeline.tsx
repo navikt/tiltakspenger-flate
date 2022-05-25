@@ -32,11 +32,13 @@ const Timeline = ({
           tabIndex={0}
           onClick={onClick}
           className={`rounded-full ${colors[type]} p-0 text-left ${
-            selected ? 'font-bold' : ''
+            selected ? 'font-bold bg-red-200 border-2 ' : ''
           }`}
           style={style}
         >
-          <div className="pl-3">60% - 3 dager</div>
+          <div className="pl-3 truncate hover:text-clip hover:overflow-visible">
+            60% - 3 dager
+          </div>
         </button>
       </div>
     </div>
