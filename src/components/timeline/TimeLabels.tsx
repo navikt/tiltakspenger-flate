@@ -17,8 +17,8 @@ const getPeriods = (start: Date, end: Date, gridSize: Duration): Periode[] => {
   if (isSameDay(start, end))
     return [
       {
-        from: start.toString(),
-        to: addMonths(end, 1).toString(),
+        from: start,
+        to: addMonths(end, 1),
         ...defaultPeriode,
       },
     ];
@@ -33,8 +33,8 @@ const getPeriods = (start: Date, end: Date, gridSize: Duration): Periode[] => {
       return {
         ...defaultPeriode,
         name: months[getMonth(periodStart)],
-        from: periodStart.toString(),
-        to: addMonths(periodStart, 1).toString(),
+        from: periodStart,
+        to: addMonths(periodStart, 1),
       };
     });
 };

@@ -12,8 +12,8 @@ const PersonPage = () => {
 
   const soknadPerioder = (soknader || []).map((soknad) => {
     return {
-      from: soknad.systemRegistrertStartDato,
-      to: soknad.systemRegistrertSluttDato,
+      from: new Date(soknad.systemRegistrertStartDato || 'NaN'),
+      to: new Date(soknad.systemRegistrertSluttDato || 'NaN'),
       name: 'Søknad: ' + soknad.tiltaksArrangoer,
       dotted: true,
       soknadId: soknad.id,
@@ -21,8 +21,8 @@ const PersonPage = () => {
   });
   const tiltaksPerioder = (soknader || []).map((soknad) => {
     return {
-      from: soknad.brukerRegistrertStartDato,
-      to: soknad.brukerRegistrertSluttDato,
+      from: new Date(soknad.brukerRegistrertStartDato || 'NaN'),
+      to: new Date(soknad.brukerRegistrertSluttDato || 'NaN'),
       name: soknad.tiltaksArrangoer,
       soknadId: soknad.id,
       dotted: false,
@@ -30,10 +30,7 @@ const PersonPage = () => {
   });
   const perioder = [...soknadPerioder, ...tiltaksPerioder].filter(
     (period) =>
-      period.from &&
-      period.to &&
-      isValid(new Date(period.from)) &&
-      isValid(new Date(period.to))
+      period.from && period.to && isValid(period.from) && isValid(period.to)
   ) as Periode[];
 
   return (
