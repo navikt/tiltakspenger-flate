@@ -32,15 +32,18 @@ const getPeriods = (start: Date, end: Date, gridSize: Duration): Periode[] => {
     intervalToDuration({ start, end }),
     gridSize
   );
+
+  const timeDelta = gridSize.months || 1;
+
   return Array(numberOfPeriods)
     .fill(0)
     .map((_, index) => {
-      const periodStart = addMonths(start, index);
+      const periodStart = addMonths(start, index * timeDelta);
       return {
         ...defaultPeriode,
         name: months[getMonth(periodStart)],
         from: periodStart,
-        to: addMonths(periodStart, 1),
+        to: addMonths(periodStart, timeDelta),
       };
     });
 };
@@ -50,6 +53,7 @@ const getDays = (period: Periode): number => {
 };
 
 export const TimeLabels = ({ start, end, gridSize }: Props) => {
+  console.log(gridSize);
   const periods = getPeriods(start, end, gridSize);
   const periodDays = periods.map((it) => ({
     ...it,

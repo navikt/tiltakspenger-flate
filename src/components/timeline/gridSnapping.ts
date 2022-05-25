@@ -14,6 +14,7 @@ const toMonths = (duration: Duration): Duration => ({
 });
 
 const isBetter = (points: number, otherPoints: number): boolean => {
+  if (points == 0 && otherPoints != 0) return true;
   return (
     Math.abs(optimalNumberOfGrids - otherPoints) <
     Math.abs(optimalNumberOfGrids - points)
@@ -26,6 +27,7 @@ export const monthDivide = (
   const monthDuration = toMonths(duration);
   return Math.ceil((monthDuration.months || 0) / (gridDuration?.months || 1));
 };
+
 const bestGrid = (duration: Duration): Duration => {
   const best = gridSnappingPoints.reduce(
     (currentBest, nextSnapCandidate) => {
