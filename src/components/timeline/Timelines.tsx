@@ -45,7 +45,7 @@ const Timelines = ({
 
     if (Number.isInteger(parseInt(selected))) {
       const url = personPath({ fnr, soknadId: selected });
-      navigate(url, { replace: false });
+      navigate(url, { replace: true });
     }
 
     onClickTimeline?.(selected);
