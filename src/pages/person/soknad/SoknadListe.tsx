@@ -1,12 +1,15 @@
 import React from 'react';
 import { Soknad } from '../../../api/soknad';
-import { Link, useParams } from 'react-router-dom';
 import { personPath } from '../../../routes';
 import { useRecoilState } from 'recoil';
 import { soknadState } from '../../../state/soknad';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 const SoknadListe = () => {
-  const { soknadId } = useParams<{ fnr: string; soknadId: string }>();
+  const router = useRouter();
+  const slug = router.query.slug;
+  const soknadId = slug ? slug[2] : undefined;
   const [soknader] = useRecoilState(soknadState);
   const isSelected = (soknad: Soknad): boolean =>
     soknad.id?.toString() === soknadId?.toString();
@@ -25,12 +28,15 @@ const SoknadListe = () => {
           }`}
         >
           <Link
-            className={'flex-1 p-2 text-center text-base font-bold text-black'}
-            to={personPath({
+            href={personPath({
               fnr: soknad.ident,
               soknadId: soknad.id.toString(),
             })}
-          >{`Søknad: ${soknad.tiltaksType}`}</Link>
+          >
+            <a
+              className={'p-2 text-center text-base font-bold text-black'}
+            >{`Søknad: ${soknad.tiltaksType}`}</a>
+          </Link>
         </li>
       ))}
     </ul>

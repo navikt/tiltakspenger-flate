@@ -8,6 +8,7 @@ import { getSoknader, PaginationInfo, Soknad } from '../../api/soknad';
 import { columns } from './columns';
 import ErrorPage from '../ErrorPage';
 import Spinner from '../../components/Spinner';
+import { useRouter } from 'next/router';
 
 export type SoknadWithStatus = Soknad & {
   periode: JSX.Element;
@@ -37,7 +38,8 @@ const ApplicationListPage = () => {
     runGetSoknader();
   }, []);
 
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
+  const router = useRouter();
   const handleClick = ({
     soknadId,
     fnr,
@@ -45,7 +47,7 @@ const ApplicationListPage = () => {
     soknadId: string;
     fnr: string;
   }) => {
-    navigate(personPath({ soknadId, fnr }));
+    router.push(personPath({ soknadId, fnr }));
   };
 
   const handlePageChange = (page: number, pageSize: number) => {

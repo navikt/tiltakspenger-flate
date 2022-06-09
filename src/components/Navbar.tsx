@@ -6,12 +6,14 @@ import { useAddAlert, useRemoveAlert } from '../state/alerts';
 import { isValidFnr } from './fnrValidation';
 import { useNavigate } from 'react-router-dom';
 import { basePath } from '../routes';
+import { useRouter } from 'next/router';
 
 const Navbar = () => {
   const addAlert = useAddAlert();
   const removeAlert = useRemoveAlert();
-  const navigate = useNavigate();
-  const goToHome = () => navigate(basePath);
+  const router = useRouter();
+  // const navigate = useNavigate();
+  const goToHome = () => router.push(basePath);
 
   const onSearch = async (personId: string): Promise<void> => {
     const key = 'ugyldig-søk';
@@ -26,7 +28,7 @@ const Navbar = () => {
       });
       return Promise.reject('Invalid ident');
     } else {
-      navigate(`/person/${personId}`);
+      router.push(`/person/${personId}`);
       return;
     }
   };

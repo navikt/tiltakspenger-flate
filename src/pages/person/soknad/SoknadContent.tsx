@@ -5,6 +5,7 @@ import { soknadState } from '../../../state/soknad';
 import { useParams } from 'react-router-dom';
 import { format } from '../../../util/dateFormatting';
 import { Soknad } from '../../../api/soknad';
+import { useRouter } from 'next/router';
 
 const posts: {
   title: string;
@@ -49,7 +50,9 @@ const ContentSection: FC<{ title: string; children: ReactNode }> = ({
 
 const SoknadContent = () => {
   const [soknader] = useRecoilState(soknadState);
-  const { soknadId } = useParams<{ soknadId: string }>();
+  const router = useRouter();
+  const slug = router.query.slug;
+  const soknadId = slug ? slug[2] : undefined; //useParams<{ fnr: string; soknadId: string }>();
   const soknad = soknader?.find((s) => s.id === soknadId);
 
   const start =

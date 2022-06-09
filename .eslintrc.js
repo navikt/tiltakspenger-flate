@@ -20,5 +20,6 @@ module.exports = {
   plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
   rules: {
     '@typescript/no-explicit-any': 'off',
+    'jsx-a11y/anchor-is-valid': 'off',
   },
 };
