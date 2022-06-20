@@ -27,7 +27,7 @@
     "serve": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "getenv": "node ./scripts/getDevEnv.js",
-    "compose": "npm run build && docker build . -t tpts-flate && docker compose up",
+    "compose": "npm run build && docker build . -t tiltakspenger-flate && docker compose up",
     "test": "jest"
   },
   "browserslist": {
