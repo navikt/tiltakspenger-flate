@@ -10,7 +10,6 @@ import { soknadState } from '../../../state/soknad';
 import { useRouter } from 'next/router';
 
 const SoknadSection = () => {
-  // const { fnr } = useParams<{ fnr: string }>();
   const router = useRouter();
   const { slug } = router.query;
   const fnr: string | undefined = slug ? slug[1] : '';

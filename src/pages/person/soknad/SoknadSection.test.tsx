@@ -8,7 +8,15 @@ import SoknadSection from './SoknadSection';
 
 const server = setupTestMockServer();
 
-beforeAll(() => server.listen());
+jest.mock('next/router', () => ({
+  useRouter: () => ({
+    query: { slug: ['person', '20058126692', 'soknad', '136950219'] },
+  }),
+}));
+
+beforeAll(() => {
+  server.listen();
+});
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
