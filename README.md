@@ -1,4 +1,4 @@
-# TPTS-tiltakspenger-flate
+# Tiltakspenger-flate
 
 Frontend til saksbehandlingssystem for tiltakspenger
 

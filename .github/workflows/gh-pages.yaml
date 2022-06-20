@@ -6,7 +6,7 @@ on:
 env:
   CI: true
   TZ: Europe/Amsterdam
-  PUBLIC_URL: /tpts-tiltakspenger-flate
+  PUBLIC_URL: /tiltakspenger-flate
 
 jobs:
   update-gh-pages:

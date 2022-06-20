@@ -1,5 +1,5 @@
 {
-  "name": "tpts-tiltakspenger-flate",
+  "name": "tiltakspenger-flate",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -23,7 +23,7 @@
     "dev-mock": "vite --mode mock",
     "build": "tsc && vite build",
     "build-mock": "tsc && vite build --mode mock",
-    "build-mock-gh-pages": "tsc && vite build --mode mock --base /tpts-tiltakspenger-flate",
+    "build-mock-gh-pages": "tsc && vite build --mode mock --base /tiltakspenger-flate",
     "serve": "vite preview",
     "lint": "eslint . --ext .ts,.tsx",
     "getenv": "node ./scripts/getDevEnv.js",

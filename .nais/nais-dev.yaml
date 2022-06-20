@@ -1,7 +1,7 @@
 apiVersion: "nais.io/v1alpha1"
 kind: "Application"
 metadata:
-  name: tpts-tiltakspenger-flate
+  name: tiltakspenger-flate
   namespace: tpts
   labels:
     team: tpts
@@ -11,7 +11,7 @@ spec:
   image: {{image}}
   port: 8080
   ingresses:
-    - https://tpts-tiltakspenger-flate.dev.intern.nav.no
+    - https://tiltakspenger-flate.dev.intern.nav.no
   replicas:
     min: 1
     max: 1
@@ -29,10 +29,10 @@ spec:
         # groups:
         #  - id: "de1a64fd-70d7-4cb2-84e9-6c9fdf948f1b" # TPTS i Azure AD
       replyURLs:
-        - "https://tpts-tiltakspenger-flate.dev.intern.nav.no/oauth2/callback"
+        - "https://tiltakspenger-flate.dev.intern.nav.no/oauth2/callback"
         - "http://127.0.0.1:3000/oauth2/callback"
   envFrom:
-    - configmap: tpts-tiltakspenger-flate-dev
+    - configmap: tiltakspenger-flate-dev
   env:
     - name: CORS_DOMAIN
       value: "*"
