@@ -5,9 +5,7 @@ const url = (tenant: string) =>
   `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`;
 const tenant = '966ac572-f5b7-4bbe-aa88-c76419c0f851';
 
-const clientId = process.env.AZURE_APP_CLIENT_ID;
-const clientSecret = process.env.AZURE_APP_CLIENT_SECRET;
-const scope = process.env.OBO_SCOPE;
+const { clientId, clientSecret, oboScope: scope } = getConfig();
 
 const toBody = (token: string) => ({
   grant_type: 'urn:ietf:params:oauth:grant-type:jwt-bearer',
