@@ -3,9 +3,9 @@ import {
   ResponseResolver,
   ResponseTransformer,
   rest,
+  MockedRequest,
 } from 'msw';
 import mockData from './index';
-import { MockedRequest } from 'msw/lib/types/handlers/RequestHandler';
 
 type CtxWithJson<T> = typeof defaultContext & {
   json: (data: T) => ResponseTransformer;
