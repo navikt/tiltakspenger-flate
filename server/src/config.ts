@@ -19,7 +19,7 @@ const prodConfig: Config = {
   clientSecret: process.env.AZURE_APP_CLIENT_SECRET!,
 };
 
-const getConfig = (): Config => {
+export const getConfig = (): Config => {
   const env = process.env.NAIS_CLUSTER_NAME;
   return env === 'prod-gcp' ? prodConfig : devConfig;
 };
