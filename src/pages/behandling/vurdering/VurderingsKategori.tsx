@@ -1,11 +1,12 @@
 import { Accordion, Table, Tag } from '@navikt/ds-react';
-import {
-  Error,
-  Success,
-  SuccessStroke,
-  WarningColored,
-} from '@navikt/ds-icons';
+import { Error, SuccessStroke, WarningColored } from '@navikt/ds-icons';
 import React from 'react';
+import {
+  PeriodeDTO,
+  VilkarsvurderingDTO,
+  VilkarsvurderingDTOUtfallEnum,
+} from '../../../../generated';
+import { format } from '../../../util/dateFormatting';
 
 const columnNames = ['Vurdering', 'Vilkår', 'Periode', 'Kilde'];
 
@@ -22,10 +23,11 @@ export interface Vurdering {
 }
 
 export interface Props {
-  vurderinger: Vurdering[];
+  title: string;
+  vurderinger: VilkarsvurderingDTO[];
 }
 
-const VurderingsKategori = ({ title }: { title: string }) => {
+const VurderingsKategori = ({ title, vurderinger }: Props) => {
   return (
     <Accordion>
       <Accordion.Item>
@@ -45,60 +47,54 @@ const VurderingsKategori = ({ title }: { title: string }) => {
               </Table.Row>
             </Table.Header>
             <Table.Body>
-              <Table.Row>
-                <Table.DataCell>
-                  <div className="flex items-center">
-                    <SuccessStroke className="text-green-400" />
-                    <span className="ml-2">Oppfylt</span>
-                  </div>
-                </Table.DataCell>
-                <Table.DataCell>Dagpenger</Table.DataCell>
-                <Table.DataCell>-</Table.DataCell>
-                <Table.DataCell>
-                  <Tag variant="info" size="small">
-                    A
-                  </Tag>
-                  <span className="ml-2">Arena</span>
-                </Table.DataCell>
-              </Table.Row>
-              <Table.Row>
-                <Table.DataCell>
-                  <div className="flex items-center">
-                    <SuccessStroke className="text-green-400" />
-                    <span className="ml-2">Oppfylt</span>
-                  </div>
-                </Table.DataCell>{' '}
-                <Table.DataCell>Dagpenger</Table.DataCell>
-                <Table.DataCell>-</Table.DataCell>
-                <Table.DataCell>
-                  <Tag variant="info" size="small">
-                    A
-                  </Tag>
-                  <span className="ml-2">Arena</span>
-                </Table.DataCell>
-              </Table.Row>
-              <Table.Row>
-                <Table.DataCell>
-                  <div className="flex items-center">
-                    <Error className="text-red-400" />
-                    <span className="ml-2">Oppfylt</span>
-                  </div>
-                </Table.DataCell>{' '}
-                <Table.DataCell>Dagpenger</Table.DataCell>
-                <Table.DataCell>-</Table.DataCell>
-                <Table.DataCell>
-                  <Tag variant="info" size="small">
-                    A
-                  </Tag>
-                  <span className="ml-2">Arena</span>
-                </Table.DataCell>
-              </Table.Row>
+              {vurderinger.map((vurdering, index) => (
+                <VurderingsRow vurdering={vurdering} key={index} />
+              ))}
             </Table.Body>
           </Table>
         </Accordion.Content>
       </Accordion.Item>
     </Accordion>
   );
+};
+
+const VurderingsRow = ({ vurdering }: { vurdering: VilkarsvurderingDTO }) => {
+  return (
+    <Table.Row>
+      <Table.DataCell>
+        <div className="flex items-center">
+          {vurderingsIcon[vurdering.utfall]}
+          <span className="ml-2">{vurdering.utfall}</span>
+        </div>
+      </Table.DataCell>
+      <Table.DataCell>{vurdering.vilkr}</Table.DataCell>
+      <Table.DataCell>{periodeString(vurdering.periode)}</Table.DataCell>
+      <Table.DataCell>
+        <Tag variant="info" size="small">
+          A
+        </Tag>
+        <span className="ml-2">{vurdering.kilde}</span>
+      </Table.DataCell>
+    </Table.Row>
+  );
+};
+
+const vurderingsIcon = {
+  [VilkarsvurderingDTOUtfallEnum.Oppfylt]: (
+    <SuccessStroke className="text-green-400" />
+  ),
+  [VilkarsvurderingDTOUtfallEnum.IkkeOppfylt]: (
+    <Error className="text-red-400" />
+  ),
+  [VilkarsvurderingDTOUtfallEnum.Uavklart]: <WarningColored />,
+};
+
+const periodeString = (periode: PeriodeDTO | undefined) => {
+  if (!periode?.fra || !periode?.til) return '-';
+  return `${format(periode.fra, 'dd.MM.y')} - ${format(
+    periode.til,
+    'dd.MM.y'
+  )}`;
 };
 
 export default VurderingsKategori;

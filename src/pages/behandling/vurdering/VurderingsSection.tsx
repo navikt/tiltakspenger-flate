@@ -1,11 +1,13 @@
 import React from 'react';
-import { Accordion, Table, Tag, Alert } from '@navikt/ds-react';
+import { Alert } from '@navikt/ds-react';
 import VurderingsKategori from './VurderingsKategori';
-
-const statligeVurderinger = [{}];
-const kommunaleVurderinger = [];
+import { useRecoilValue } from 'recoil';
+import { vilkarsKategoriState } from '../../../state/person';
+import { VilkarsVurderingsKategori } from '../../../../generated';
 
 const VurderingsSection = () => {
+  const vilkarsKategori = useRecoilValue(vilkarsKategoriState);
+
   return (
     <div className="border-x border-gray-200 flex flex-col flex-1">
       <div className="self-start py-4 px-4 border-b border-gray-200 flex flex-col self-stretch items-start">
@@ -23,9 +25,15 @@ const VurderingsSection = () => {
         Vilkår for tiltakspenger må vurderes for perioden
       </Alert>
       <div className="px-8">
-        <VurderingsKategori title={'Statlige ytelser'} />
-        <VurderingsKategori title={'Kommunale ytelser'} />
-        <VurderingsKategori title={'Private ordninger'} />
+        {vilkarsKategori.map((kategori: VilkarsVurderingsKategori, index) => {
+          return (
+            <VurderingsKategori
+              key={index}
+              title={kategori.tittel}
+              vurderinger={kategori.vilkrsvurderinger}
+            />
+          );
+        })}
       </div>
     </div>
   );

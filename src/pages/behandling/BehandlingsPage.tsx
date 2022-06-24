@@ -1,13 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs';
 import Timelines, { Periode } from '../../components/timeline/Timelines';
-import TiltakSection from '../person/TiltakSection';
 import VurderingsSection from './vurdering/VurderingsSection';
 import ActionPanel from './ActionPanel';
 import { addMonths } from 'date-fns';
 import SummarySection from './SummarySection';
 import { getPerson } from '../../api/soknad';
-import { PersonDTO } from '../../../generated';
+import { useSetRecoilState } from 'recoil';
+import { personState } from '../../state/person';
 
 const BehandlingsPage = () => {
   const testPerioder: Periode[] = [
@@ -20,13 +20,10 @@ const BehandlingsPage = () => {
     },
   ];
 
-  const [person, setPerson] = useState<PersonDTO>();
-
+  const setPerson = useSetRecoilState(personState);
   useEffect(() => {
     getPerson().then((person) => setPerson(person));
   }, []);
-
-  person?.behandlinger?.map((behandling) => behandling.vurderinger);
 
   return (
     <div>
