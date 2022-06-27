@@ -8,6 +8,8 @@ import SummarySection from './SummarySection';
 import { getPerson } from '../../api/soknad';
 import { useSetRecoilState } from 'recoil';
 import { personState } from '../../state/person';
+import { useRequest } from '../../api/common';
+import ErrorPage from '../ErrorPage';
 
 const BehandlingsPage = () => {
   const testPerioder: Periode[] = [
@@ -20,10 +22,24 @@ const BehandlingsPage = () => {
     },
   ];
 
+  const {
+    run: runGetPerson,
+    error,
+    result: person,
+  } = useRequest(() => getPerson());
+
   const setPerson = useSetRecoilState(personState);
   useEffect(() => {
-    getPerson().then((person) => setPerson(person));
+    runGetPerson();
   }, []);
+  useEffect(() => {
+    if (!person) return;
+    setPerson(person);
+  }, [person]);
+
+  if (error) {
+    return <ErrorPage message={'Could not fetch person'} errorCode={'404'} />;
+  }
 
   return (
     <div>
