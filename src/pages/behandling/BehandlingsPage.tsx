@@ -24,6 +24,7 @@ const BehandlingsPage = () => {
 
   const {
     run: runGetPerson,
+    isLoading,
     error,
     result: person,
   } = useRequest(() => getPerson());
@@ -47,13 +48,13 @@ const BehandlingsPage = () => {
       <Timelines perioder={testPerioder} />
       <div className={'grid grid-cols-4'}>
         <div className="col-span-1">
-          <SummarySection />
+          <SummarySection isLoading={isLoading} />
         </div>
         <div className="col-span-2">
-          <VurderingsSection />
+          <VurderingsSection isLoading={isLoading} />
         </div>
         <div className="col-span-1">
-          <ActionPanel />
+          <ActionPanel isLoading={isLoading} />
         </div>
       </div>
     </div>
