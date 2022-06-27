@@ -29,14 +29,14 @@ const BehandlingsPage = () => {
     <div>
       <Breadcrumbs />
       <Timelines perioder={testPerioder} />
-      <div className={'grid grid-cols grid-flow-col'}>
-        <div className="col-span-2">
+      <div className={'grid grid-cols-4'}>
+        <div className="col-span-1">
           <SummarySection />
         </div>
-        <div className="col-span-4">
+        <div className="col-span-2">
           <VurderingsSection />
         </div>
-        <div className="col-span-2">
+        <div className="col-span-1">
           <ActionPanel />
         </div>
       </div>
