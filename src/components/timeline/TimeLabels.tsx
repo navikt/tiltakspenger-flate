@@ -53,7 +53,6 @@ const getDays = (period: Periode): number => {
 };
 
 export const TimeLabels = ({ start, end, gridSize }: Props) => {
-  console.log(gridSize);
   const periods = getPeriods(start, end, gridSize);
   const periodDays = periods.map((it) => ({
     ...it,
