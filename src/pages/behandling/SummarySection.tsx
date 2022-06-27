@@ -1,8 +1,14 @@
 import React from 'react';
 import { Success, File } from '@navikt/ds-icons';
 import { Link } from '@navikt/ds-react';
+import { useRecoilValue } from 'recoil';
+import { barnState, tiltakState } from '../../state/person';
+import { BarnDTO } from '../../../generated';
 
 const SummarySection = () => {
+  const barn: BarnDTO[] = useRecoilValue(barnState);
+  const tiltak = useRecoilValue(tiltakState);
+
   return (
     <div className="m-8 text-left">
       <h1 className="text-lg font-bold">Oppsummering</h1>
@@ -11,27 +17,26 @@ const SummarySection = () => {
 
       <div className="mt-8">
         <h1 className="text-sm font-bold">Registrerte tiltak</h1>
-        <div>Gruppe AMO</div>
-        <div>Joblearn</div>
-        <div>40% - 2 dager</div>
+        <div>{tiltak?.navn}</div>
+        <div>{tiltak?.arrangr}</div>
+        <div>{`${tiltak?.prosent}% - ${tiltak?.dagerIUken} dager i uken`}</div>
         <div className="flex items-center">
           <Success />
-          <span className="ml-2">Status: Godkjent tiltaksplass</span>
+          <span className="ml-2">Status: {tiltak?.status}</span>
         </div>
       </div>
 
       <div className="mt-8">
         <h1 className="text-sm font-bold">Barn</h1>
-        <div className="mt-2">
-          <div>Emma Flaks (7)</div>
-          <div>123456789</div>
-          <div>Bosatt: Norge</div>
-        </div>
-        <div className="mt-2">
-          <div>Emil Flaks (7)</div>
-          <div>123456789</div>
-          <div>Bosatt: Norge</div>
-        </div>
+        {barn.map(({ ident, fornavn, etternavn }, index) => {
+          return (
+            <div key={index} className="mt-2">
+              <div>{`${fornavn} ${etternavn}`}</div>
+              <div>{ident}</div>
+              <div>Bosatt: Norge</div>
+            </div>
+          );
+        })}
       </div>
 
       <div className="mt-8 flex flex-col">
