@@ -1,15 +1,15 @@
 name: Deploy to dev
 on:
-  workflow_dispatch: # This workflow can be triggered manually from: https://github.com/navikt/tpts-tiltakspenger-flate/actions/workflows/deploy-dev.yaml
+  workflow_dispatch: # This workflow can be triggered manually from: https://github.com/navikt/tiltakspenger-flate/actions/workflows/deploy-dev.yaml
   push:
     branches:
       - main
 env:
   IMAGE_TAG: ${{ github.sha }}
-  IMAGE: ghcr.io/navikt/tpts-tiltakspenger-flate
+  IMAGE: ghcr.io/navikt/tiltakspenger-flate
   IMAGE_LABEL: dev
-  docker_image: ghcr.io/navikt/tpts-tiltakspenger-flate:${{ github.sha }}
-  REACT_APP_BACKEND_API_ROOT: https://tpts-tiltakspenger.dev.intern.nav.no
+  docker_image: ghcr.io/navikt/tiltakspenger-flate:${{ github.sha }}
+  REACT_APP_BACKEND_API_ROOT: https://tiltakspenger.dev.intern.nav.no
   CI: true
   NODE_VERSION: '16.x'
 
@@ -50,7 +50,7 @@ jobs:
       - name: Notify Slack in case of build failure
         if: ${{ failure() && (github.ref == 'refs/heads/main') }}
         run: |
-          curl -X POST --data-urlencode "payload={ \"attachments\": [{ \"pretext\": \"[tpts-tiltakspenger-flate] Build failed :cry:\", \"color\": \"danger\", \"fields\": [ { \"title\": \"Author\", \"value\": \"$AUTHOR\", \"short\": false }, { \"title\": \"Commit\", \"value\": \"<https://github.com/navikt/tpts-tiltakspenger-flate/commit/$GITHUB_SHA>\", \"short\": false } ] }] }" $WEBHOOK_URL
+          curl -X POST --data-urlencode "payload={ \"attachments\": [{ \"pretext\": \"[tiltakspenger-flate] Build failed :cry:\", \"color\": \"danger\", \"fields\": [ { \"title\": \"Author\", \"value\": \"$AUTHOR\", \"short\": false }, { \"title\": \"Commit\", \"value\": \"<https://github.com/navikt/tiltakspenger-flate/commit/$GITHUB_SHA>\", \"short\": false } ] }] }" $WEBHOOK_URL
         env:
           BRANCH: ${{ github.ref }}
           AUTHOR: ${{ github.event.pusher.name }}

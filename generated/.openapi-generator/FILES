@@ -1,0 +1,13 @@
+apis/DefaultApi.ts
+apis/index.ts
+index.ts
+models/BarnDTO.ts
+models/BehandlingDTO.ts
+models/PeriodeDTO.ts
+models/PersonDTO.ts
+models/PersonaliaDTO.ts
+models/TiltakDTO.ts
+models/VilkarsVurderingsKategori.ts
+models/VilkarsvurderingDTO.ts
+models/index.ts
+runtime.ts

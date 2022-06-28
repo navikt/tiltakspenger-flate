@@ -41,6 +41,7 @@ export const setupRouting = (app: Express) => {
     createProxyMiddleware({
       target: backendUrl,
       changeOrigin: true,
+      pathRewrite: { '^/api': '' },
     })
   );
 

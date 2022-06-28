@@ -1,4 +1,4 @@
-# TPTS-tiltakspenger-flate
+# Tiltakspenger-flate
 
 Frontend til saksbehandlingssystem for tiltakspenger
 
@@ -45,6 +45,15 @@ Because we use [Wonderwall](https://github.com/nais/wonderwall) as a sidecar to 
 ### `npm run build`
 
 Builds the app for production to the `build` folder.
+
+## Generere modeller fra openapi
+Installer openapi-generator, feks via npm (eller homebrew)
+
+``npm i -g openapi-generator``
+
+Generer modeller og klienter
+
+``openapi-generator-cli generate -g typescript-fetch -i <backendUrl>/openapi.json``
 
 # Henvendelser
 

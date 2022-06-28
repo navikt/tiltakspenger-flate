@@ -6,6 +6,7 @@ import TestPage from './pages/TestPage';
 import React from 'react';
 import PersonInfo from './pages/person/PersonInfo';
 import EmptyPage from './pages/EmptyPage';
+import BehandlingsPage from './pages/behandling/BehandlingsPage';
 
 export const basePath = import.meta.env.BASE_URL || '/';
 
@@ -24,6 +25,7 @@ export const paths = {
   PaymentsTable: 'payment/:paymentId',
   Content: 'soknad/:soknadId',
   PersonFallback: '*',
+  Behandling: `${basePath}/behandling`,
   Empty: '',
   Test: '/test',
 };
@@ -37,6 +39,7 @@ export const AppRoutes = () => {
         <Route path={paths.Content} element={<PersonInfo />} />
         <Route path={paths.PersonFallback} element={<PersonInfo />} />
       </Route>
+      <Route path={paths.Behandling} element={<BehandlingsPage />} />
       <Route path={paths.Empty} element={<EmptyPage />} />
       <Route path={paths.Test} element={<TestPage />} />
     </Routes>
