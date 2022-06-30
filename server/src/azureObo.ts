@@ -1,6 +1,6 @@
-import fetch from 'node-fetch';
-import { getBody } from './httpUtils.js';
-import { getConfig } from './config.js';
+// import fetch from 'node-fetch';
+import { getBody } from './httpUtils.ts';
+import { getConfig } from './config.ts';
 
 const url = (tenant: string) =>
   `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`;

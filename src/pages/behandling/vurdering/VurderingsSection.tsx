@@ -13,6 +13,8 @@ interface Props {
 const VurderingsSection = ({ isLoading }: Props) => {
   const vilkarsKategori = useRecoilValue(vilkarsKategoriState);
 
+  console.log(vilkarsKategori);
+
   return (
     <div className="border-x border-gray-200 flex flex-col flex-1">
       <div className="self-start py-4 px-4 border-b border-gray-200 flex flex-col self-stretch items-start">

@@ -1,8 +1,6 @@
-import { Response as FetchResponse } from 'node-fetch';
+// import { Response as FetchResponse } from 'node-fetch';
 
-export const getBody = (
-  res: FetchResponse
-): Promise<Record<string, unknown>> => {
+export const getBody = (res: Response): Promise<Record<string, unknown>> => {
   const contentType = res.headers.get('content-type');
   if (contentType?.startsWith('application/json')) {
     return res.json() as Promise<Record<string, unknown>>;

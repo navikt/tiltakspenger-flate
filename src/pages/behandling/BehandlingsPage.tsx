@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import Breadcrumbs from '../../components/Breadcrumbs';
-import Timelines, { Periode } from '../../components/timeline/Timelines';
+import Timelines, {
+  NavigatablePeriode,
+} from '../../components/timeline/Timelines';
 import VurderingsSection from './vurdering/VurderingsSection';
 import ActionPanel from './ActionPanel';
 import { addMonths } from 'date-fns';
@@ -12,13 +14,14 @@ import { useRequest } from '../../api/common';
 import ErrorPage from '../ErrorPage';
 
 const BehandlingsPage = () => {
-  const testPerioder: Periode[] = [
+  const testPerioder: NavigatablePeriode[] = [
     {
       from: new Date(),
       to: addMonths(new Date(), 2),
       name: 'Tiltak',
       soknadId: '12312',
       dotted: false,
+      onClick: () => {},
     },
   ];
 
@@ -39,13 +42,14 @@ const BehandlingsPage = () => {
   }, [person]);
 
   if (error) {
+    console.error(error);
     return <ErrorPage message={'Could not fetch person'} errorCode={'404'} />;
   }
 
   return (
     <div>
       <Breadcrumbs />
-      <Timelines perioder={testPerioder} />
+      <Timelines selectedSoknadId={'12312'} perioder={testPerioder} />
       <div className={'grid grid-cols-4'}>
         <div className="col-span-1">
           <SummarySection isLoading={isLoading} />
