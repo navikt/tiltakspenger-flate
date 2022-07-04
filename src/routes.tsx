@@ -8,7 +8,7 @@ import PersonInfo from './features/person/PersonInfo';
 import EmptyPage from './features/EmptyPage';
 import BehandlingsPage from './features/behandling/BehandlingsPage';
 
-export const basePath = import.meta.env.BASE_URL || '/';
+export const basePath = process.env.NEXT_PUBLIC_BASE_URL || '/';
 
 export const soknadPath = (soknadId: string) => `${basePath}soknad/${soknadId}`;
 export const personPath = ({
