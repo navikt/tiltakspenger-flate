@@ -1,5 +1,5 @@
 import React from 'react';
-import ApplicationListPage from '../src/pages/soknadList/ApplicationListPage';
+import ApplicationListPage from '../features/soknadList/ApplicationListPage';
 
 const SøknadListPage = () => {
   return <ApplicationListPage />;

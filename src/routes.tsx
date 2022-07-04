@@ -1,12 +1,12 @@
 import { Route, Routes } from 'react-router-dom';
-import ApplicationListPage from './pages/soknadList/ApplicationListPage';
-import PersonPage from './pages/person/PersonPage';
-import PaymentsTable from './pages/person/PaymentsTable';
-import TestPage from './pages/TestPage';
+import ApplicationListPage from './features/soknadList/ApplicationListPage';
+import PersonPage from './features/person/PersonPage';
+import PaymentsTable from './features/person/PaymentsTable';
+import TestPage from './features/TestPage';
 import React from 'react';
-import PersonInfo from './pages/person/PersonInfo';
-import EmptyPage from './pages/EmptyPage';
-import BehandlingsPage from './pages/behandling/BehandlingsPage';
+import PersonInfo from './features/person/PersonInfo';
+import EmptyPage from './features/EmptyPage';
+import BehandlingsPage from './features/behandling/BehandlingsPage';
 
 export const basePath = import.meta.env.BASE_URL || '/';
 

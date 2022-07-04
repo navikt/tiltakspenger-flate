@@ -1,7 +1,11 @@
-import soknadByIdent from './soknadByIdent';
-// import complexTimeline from './complexTimeline';
+import { mockHttp } from './browser';
 
-const mockData: Record<string, object | object[]> = {
-  '/api/saker/person': soknadByIdent,
-};
-export default mockData;
+if (typeof window === 'undefined') {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { server } = require('./server');
+  server.listen();
+} else {
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { mockHttp } = require('./browser');
+  mockHttp();
+}

@@ -21,7 +21,9 @@ const BehandlingsPage = () => {
       name: 'Tiltak',
       soknadId: '12312',
       dotted: false,
-      onClick: () => {},
+      onClick: () => {
+        console.log('Click');
+      },
     },
   ];
 

@@ -1,6 +1,7 @@
-import { getToken } from '../../server/src/azureObo';
-import { getConfig } from '../../server/src/config';
+import { getToken } from '../../../server/src/azureObo';
+import { getConfig } from '../../../server/src/config';
 import { NextRequest } from 'next/server';
+import { logger } from '../../../server/src/logger';
 
 const Authorization = 'authorization';
 const backendUrl = getConfig();
@@ -29,7 +30,7 @@ export async function middleware(req: NextRequest, response) {
     const body = await (res.status === 200 ? res.json() : res.text());
     response.status(res.status).json(body);
   } catch (err) {
-    console.error(err);
+    logger.error(err);
     response.status(500).json({ message: 'Internal server error' });
   }
 }

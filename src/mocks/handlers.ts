@@ -5,7 +5,7 @@ import {
   rest,
   MockedRequest,
 } from 'msw';
-import mockData from './index';
+import mockData from './apiRoutes';
 
 type CtxWithJson<T> = typeof defaultContext & {
   json: (data: T) => ResponseTransformer;

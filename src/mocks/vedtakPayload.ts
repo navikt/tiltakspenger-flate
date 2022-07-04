@@ -1,4 +1,6 @@
-export const response = {
+import { PersonDTO } from '../../generated';
+
+export const vedtakPayload: PersonDTO = {
   personalia: {
     fornavn: 'Fornavn',
     etternavn: 'Etternavn',
@@ -26,27 +28,27 @@ export const response = {
         arrangør: 'Joblearn',
         navn: 'Gruppe AMO',
         periode: {
-          fra: '2022-04-01',
-          til: '2022-04-20',
+          fra: new Date('2022-04-01'),
+          til: new Date('2022-04-20'),
         },
         prosent: 80,
         dagerIUken: 4,
         status: 'Godkjent',
       },
       periode: {
-        fra: '2022-04-01',
-        til: '2022-04-20',
+        fra: new Date('2022-04-01'),
+        til: new Date('2022-04-20'),
       },
       vurderinger: [
         {
           tittel: 'Statlige ytelser',
           utfall: 'Uavklart',
-          vilkrsvurderinger: [
+          vilkårsvurderinger: [
             {
               utfall: 'Oppfylt',
               periode: {
-                fra: '2022-04-01',
-                til: '2022-04-20',
+                fra: new Date('2022-04-01'),
+                til: new Date('2022-04-20'),
               },
               vilkår: 'Dagpenger',
               kilde: 'Arena',
@@ -54,8 +56,8 @@ export const response = {
             {
               utfall: 'Oppfylt',
               periode: {
-                fra: '2022-04-01',
-                til: '2022-04-20',
+                fra: new Date('2022-04-01'),
+                til: new Date('2022-04-20'),
               },
               vilkår: 'AAP',
               kilde: 'Arena',
@@ -63,8 +65,8 @@ export const response = {
             {
               utfall: 'Uavklart',
               periode: {
-                fra: '2022-04-01',
-                til: '2022-04-20',
+                fra: new Date('2022-04-01'),
+                til: new Date('2022-04-20'),
               },
               vilkår: 'Tiltakspenger',
               kilde: 'Arena',
