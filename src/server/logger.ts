@@ -1,3 +1,5 @@
+const logger = require('pino')();
+/*
 import winston from 'winston';
 
 export const logger = winston.createLogger({
@@ -7,4 +9,6 @@ export const logger = winston.createLogger({
     winston.format.prettyPrint()
   ),
   transports: [new winston.transports.Console()],
-});
+});*/
+
+export default logger;
