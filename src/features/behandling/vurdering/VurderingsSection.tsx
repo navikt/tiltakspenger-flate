@@ -5,6 +5,7 @@ import { useRecoilValue } from 'recoil';
 import { vilkarsKategoriState } from '../../../state/person';
 import { VilkarsVurderingsKategori } from '../../../../generated';
 import { Skeleton } from 'antd';
+import logger from '../../../server/logger';
 
 interface Props {
   isLoading: boolean;
@@ -12,8 +13,6 @@ interface Props {
 
 const VurderingsSection = ({ isLoading }: Props) => {
   const vilkarsKategori = useRecoilValue(vilkarsKategoriState);
-
-  console.log(vilkarsKategori);
 
   return (
     <div className="border-x border-gray-200 flex flex-col flex-1">

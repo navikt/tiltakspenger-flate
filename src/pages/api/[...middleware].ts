@@ -1,12 +1,12 @@
-import { getToken } from '../../../server/src/azureObo';
-import { getConfig } from '../../../server/src/config';
-import { NextRequest } from 'next/server';
-import { logger } from '../../../server/src/logger';
+import { getToken } from '../../server/azureObo';
+import { getConfig } from '../../server/config';
+import { NextRequest, NextResponse } from 'next/server';
+import logger from '../../server/logger';
 
 const Authorization = 'authorization';
 const backendUrl = getConfig();
 
-const extractToken = (req: Request) =>
+const extractToken = (req: NextRequest) =>
   req.headers[Authorization]?.split(' ')[1];
 
 const getUrl = async (req: NextRequest): Promise<string> => {
@@ -15,7 +15,10 @@ const getUrl = async (req: NextRequest): Promise<string> => {
   return apiUrl + path;
 };
 
-export async function middleware(req: NextRequest, response) {
+export async function middleware(
+  req: NextRequest,
+  response: NextResponse
+): Promise<void> {
   try {
     const oboToken = await getToken(extractToken(req));
     const url = await getUrl(req);

@@ -12,6 +12,7 @@ import { useSetRecoilState } from 'recoil';
 import { personState } from '../../state/person';
 import { useRequest } from '../../api/common';
 import ErrorPage from '../ErrorPage';
+import logger from '../../server/logger';
 
 const BehandlingsPage = () => {
   const testPerioder: NavigatablePeriode[] = [
@@ -22,7 +23,7 @@ const BehandlingsPage = () => {
       soknadId: '12312',
       dotted: false,
       onClick: () => {
-        console.log('Click');
+        logger.info('Click');
       },
     },
   ];
