@@ -7,14 +7,14 @@ export const vedtakPayload: PersonDTO = {
     ident: '123454',
     barn: [
       {
-        fornavn: 'Emil',
-        etternavn: 'Flaks',
+        fornavn: 'SULTEN',
+        etternavn: 'TEPPE',
         ident: '987654',
         bosted: 'NORGE',
       },
       {
-        fornavn: 'Emma',
-        etternavn: 'Flaks',
+        fornavn: 'LUNKEN',
+        etternavn: 'FLAMME',
         ident: '987655',
         bosted: 'NORGE',
       },
