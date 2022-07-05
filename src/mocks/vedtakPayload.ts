@@ -23,7 +23,9 @@ export const vedtakPayload: Person = {
   behandlinger: [
     {
       id: 'behandlingId',
-      søknad: {},
+      søknad: {
+        opprettet: "2022-04-01"
+      },
       tiltak: {
         arrangør: 'Joblearn',
         navn: 'Gruppe AMO',

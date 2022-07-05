@@ -2,8 +2,8 @@ import React from 'react';
 import { Success, File } from '@navikt/ds-icons';
 import { Link } from '@navikt/ds-react';
 import { useRecoilValue } from 'recoil';
-import { barnState, soknadState, tiltakState } from '../../state/person';
-import { BarnDTO } from '../../../generated';
+import { barnState, tiltakState } from '../../state/person';
+import { Barn } from "generated";
 import { Skeleton } from 'antd';
 
 interface Props {
@@ -11,9 +11,8 @@ interface Props {
 }
 
 const SummarySection = ({ isLoading }: Props) => {
-  const barn: BarnDTO[] = useRecoilValue(barnState);
+  const barn: Barn[] = useRecoilValue(barnState);
   const tiltak = useRecoilValue(tiltakState);
-  const soknad = useRecoilValue(soknadState);
 
   const soknadDate = '21.03.22-22.04.22';
 
@@ -31,7 +30,7 @@ const SummarySection = ({ isLoading }: Props) => {
         <h1 className="text-sm font-bold">Registrerte tiltak</h1>
         <Skeleton loading={isLoading}>
           <div>{tiltak?.navn}</div>
-          <div>{tiltak?.arrangr}</div>
+          <div>{tiltak?.arrangør}</div>
           <div>{`${tiltak?.prosent}% - ${tiltak?.dagerIUken} dager i uken`}</div>
           <div className="flex items-center">
             <Success />
