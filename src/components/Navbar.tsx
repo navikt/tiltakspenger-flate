@@ -4,7 +4,6 @@ import React from 'react';
 import { SearchBar } from './SearchBar';
 import { useAddAlert, useRemoveAlert } from '../state/alerts';
 import { isValidFnr } from './fnrValidation';
-import { useNavigate } from 'react-router-dom';
 import { basePath } from '../routes';
 import { useRouter } from 'next/router';
 
@@ -12,7 +11,6 @@ const Navbar = () => {
   const addAlert = useAddAlert();
   const removeAlert = useRemoveAlert();
   const router = useRouter();
-  // const navigate = useNavigate();
   const goToHome = () => router.push(basePath);
 
   const onSearch = async (personId: string): Promise<void> => {
