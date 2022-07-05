@@ -3,9 +3,8 @@ import { Alert } from '@navikt/ds-react';
 import VurderingsKategori from './VurderingsKategori';
 import { useRecoilValue } from 'recoil';
 import { vilkarsKategoriState } from '../../../state/person';
-import { VilkarsVurderingsKategori } from '../../../../generated';
+import { VilkarsVurderingsKategori } from 'generated';
 import { Skeleton } from 'antd';
-import logger from '../../../server/logger';
 
 interface Props {
   isLoading: boolean;
@@ -34,15 +33,17 @@ const VurderingsSection = ({ isLoading }: Props) => {
       </Alert>
       <div className="px-8">
         <Skeleton loading={isLoading} paragraph={{ rows: 6 }}>
-          {vilkarsKategori.map((kategori: VilkarsVurderingsKategori, index) => {
-            return (
-              <VurderingsKategori
-                key={index}
-                title={kategori.tittel}
-                vurderinger={kategori.vilkrsvurderinger}
-              />
-            );
-          })}
+          {vilkarsKategori.map(
+            (kategori: VilkarsVurderingsKategori, index: number) => {
+              return (
+                <VurderingsKategori
+                  key={index}
+                  title={kategori.tittel}
+                  vurderinger={kategori.vilkårsvurderinger}
+                />
+              );
+            }
+          )}
         </Skeleton>
       </div>
     </div>

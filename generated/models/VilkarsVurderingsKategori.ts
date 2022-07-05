@@ -13,12 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { Vilkarsvurdering } from './Vilkarsvurdering';
 import {
-    VilkarsvurderingDTO,
-    VilkarsvurderingDTOFromJSON,
-    VilkarsvurderingDTOFromJSONTyped,
-    VilkarsvurderingDTOToJSON,
-} from './VilkarsvurderingDTO';
+    VilkarsvurderingFromJSON,
+    VilkarsvurderingFromJSONTyped,
+    VilkarsvurderingToJSON,
+} from './Vilkarsvurdering';
 
 /**
  * 
@@ -40,10 +40,10 @@ export interface VilkarsVurderingsKategori {
     utfall: VilkarsVurderingsKategoriUtfallEnum;
     /**
      * 
-     * @type {Array<VilkarsvurderingDTO>}
+     * @type {Array<Vilkarsvurdering>}
      * @memberof VilkarsVurderingsKategori
      */
-    vilkrsvurderinger: Array<VilkarsvurderingDTO>;
+    vilkårsvurderinger: Array<Vilkarsvurdering>;
 }
 
 
@@ -58,6 +58,18 @@ export const VilkarsVurderingsKategoriUtfallEnum = {
 export type VilkarsVurderingsKategoriUtfallEnum = typeof VilkarsVurderingsKategoriUtfallEnum[keyof typeof VilkarsVurderingsKategoriUtfallEnum];
 
 
+/**
+ * Check if a given object implements the VilkarsVurderingsKategori interface.
+ */
+export function instanceOfVilkarsVurderingsKategori(value: object): boolean {
+    let isInstance = true;
+    isInstance = isInstance && "tittel" in value;
+    isInstance = isInstance && "utfall" in value;
+    isInstance = isInstance && "vilkårsvurderinger" in value;
+
+    return isInstance;
+}
+
 export function VilkarsVurderingsKategoriFromJSON(json: any): VilkarsVurderingsKategori {
     return VilkarsVurderingsKategoriFromJSONTyped(json, false);
 }
@@ -70,7 +82,7 @@ export function VilkarsVurderingsKategoriFromJSONTyped(json: any, ignoreDiscrimi
         
         'tittel': json['tittel'],
         'utfall': json['utfall'],
-        'vilkrsvurderinger': ((json['vilkårsvurderinger'] as Array<any>).map(VilkarsvurderingDTOFromJSON)),
+        'vilkårsvurderinger': ((json['vilkårsvurderinger'] as Array<any>).map(VilkarsvurderingFromJSON)),
     };
 }
 
@@ -85,7 +97,7 @@ export function VilkarsVurderingsKategoriToJSON(value?: VilkarsVurderingsKategor
         
         'tittel': value.tittel,
         'utfall': value.utfall,
-        'vilkårsvurderinger': ((value.vilkrsvurderinger as Array<any>).map(VilkarsvurderingDTOToJSON)),
+        'vilkårsvurderinger': ((value.vilkårsvurderinger as Array<any>).map(VilkarsvurderingToJSON)),
     };
 }
 

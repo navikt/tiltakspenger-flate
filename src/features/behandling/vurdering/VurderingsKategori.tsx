@@ -2,10 +2,10 @@ import { Accordion, Table, Tag } from '@navikt/ds-react';
 import { Error, SuccessStroke, WarningColored } from '@navikt/ds-icons';
 import React from 'react';
 import {
-  PeriodeDTO,
-  VilkarsvurderingDTO,
-  VilkarsvurderingDTOUtfallEnum,
-} from '../../../../generated';
+  Periode,
+  Vilkarsvurdering,
+  VilkarsvurderingUtfallEnum,
+} from 'generated';
 import { format } from '../../../util/dateFormatting';
 
 const columnNames = ['Vurdering', 'Vilkår', 'Periode', 'Kilde'];
@@ -24,7 +24,7 @@ export interface Vurdering {
 
 export interface Props {
   title: string;
-  vurderinger: VilkarsvurderingDTO[];
+  vurderinger: Vilkarsvurdering[];
 }
 
 const VurderingsKategori = ({ title, vurderinger }: Props) => {
@@ -58,7 +58,7 @@ const VurderingsKategori = ({ title, vurderinger }: Props) => {
   );
 };
 
-const VurderingsRow = ({ vurdering }: { vurdering: VilkarsvurderingDTO }) => {
+const VurderingsRow = ({ vurdering }: { vurdering: Vilkarsvurdering }) => {
   return (
     <Table.Row>
       <Table.DataCell>
@@ -67,7 +67,7 @@ const VurderingsRow = ({ vurdering }: { vurdering: VilkarsvurderingDTO }) => {
           <span className="ml-2">{vurdering.utfall}</span>
         </div>
       </Table.DataCell>
-      <Table.DataCell>{vurdering.vilkr}</Table.DataCell>
+      <Table.DataCell>{vurdering.vilkår}</Table.DataCell>
       <Table.DataCell>{periodeString(vurdering.periode)}</Table.DataCell>
       <Table.DataCell>
         <Tag variant="info" size="small">
@@ -80,16 +80,14 @@ const VurderingsRow = ({ vurdering }: { vurdering: VilkarsvurderingDTO }) => {
 };
 
 const vurderingsIcon = {
-  [VilkarsvurderingDTOUtfallEnum.Oppfylt]: (
+  [VilkarsvurderingUtfallEnum.Oppfylt]: (
     <SuccessStroke className="text-green-400" />
   ),
-  [VilkarsvurderingDTOUtfallEnum.IkkeOppfylt]: (
-    <Error className="text-red-400" />
-  ),
-  [VilkarsvurderingDTOUtfallEnum.Uavklart]: <WarningColored />,
+  [VilkarsvurderingUtfallEnum.IkkeOppfylt]: <Error className="text-red-400" />,
+  [VilkarsvurderingUtfallEnum.Uavklart]: <WarningColored />,
 };
 
-const periodeString = (periode: PeriodeDTO | undefined) => {
+const periodeString = (periode: Periode | undefined) => {
   if (!periode?.fra || !periode?.til) return '-';
   return `${format(periode.fra, 'dd.MM.y')} - ${format(
     periode.til,

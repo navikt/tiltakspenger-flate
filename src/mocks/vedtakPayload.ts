@@ -1,6 +1,6 @@
-import { PersonDTO } from '../../generated';
+import { Person } from '../../generated';
 
-export const vedtakPayload: PersonDTO = {
+export const vedtakPayload: Person = {
   personalia: {
     fornavn: 'Fornavn',
     etternavn: 'Etternavn',
