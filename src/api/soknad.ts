@@ -1,7 +1,5 @@
 import { backendUrl, HTTP, Paginated } from './common';
-import { Configuration, DefaultApi, PersonDTO } from '../../generated';
-
-export type SoknadStatus = 'Behandlet' | 'Ikke behandlet' | 'Avslag';
+import { Configuration, DefaultApi, Person } from 'generated';
 
 export interface Soknad {
   id: string;
@@ -42,7 +40,4 @@ export const getSoknader = ({ offset, pageSize }: PaginationInfo = {}): Promise<
 };
 
 const api = new DefaultApi(new Configuration({ basePath: '/api' }));
-export const getPerson = (): Promise<PersonDTO> => {
-  // return getSoknader();
-  return api.personTestGet();
-};
+export const getPerson = (): Promise<Person> => api.personTestGet();
