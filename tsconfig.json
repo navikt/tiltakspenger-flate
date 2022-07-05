@@ -23,7 +23,8 @@
     "paths": {
       "test-utils": [
         "src/testUtils/test-utils.tsx"
-      ]
+      ],
+      "generated": ["generated/"]
     },
     "incremental": true
   },
