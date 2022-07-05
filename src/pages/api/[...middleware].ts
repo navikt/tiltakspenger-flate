@@ -5,11 +5,14 @@ import { NextApiRequest, NextApiResponse } from 'next';
 
 const Authorization = 'authorization';
 const backendUrl = getConfig();
+const tokenRegex = /^Bearer (?<token>(\.?([A-Za-z0-9-_]+)){3})$/m;
 
 const extractToken = (req: NextApiRequest) => {
-  const header = req.headers[Authorization]?.split(' ')[1];
-  if (!header) throw new Error('Invalid authorization header');
-  return header;
+  const authHeader = req.headers[Authorization]
+  if (!authHeader) throw new Error('No authorization header was found');
+  const token = authHeader.match(tokenRegex)?.groups?.token
+  if (!token) throw new Error('Invalid authorization header');
+  return token;
 };
 
 const getUrl = async (req: NextApiRequest): Promise<string> => {
