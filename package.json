@@ -23,7 +23,7 @@
   },
   "scripts": {
     "dev": "vite",
-    "dev-next-mock": "NODE_ENV=development PORT=8080 next dev",
+    "dev-next-mock": "NODE_ENV=development NEXT_PUBLIC_API_MOCKING=enabled PORT=8080 next dev",
     "dev-mock": "vite --mode mock",
     "build": "next build",
     "build-mock": "tsc && vite build --mode mock",
@@ -32,7 +32,8 @@
     "lint": "eslint . --ext .ts,.tsx",
     "getenv": "node ./scripts/getDevEnv.js",
     "compose": "npm run build && docker build . -t tiltakspenger-flate && docker compose up",
-    "test": "jest"
+    "test": "jest",
+    "generate-models": "openapi-generator-cli generate -g typescript-fetch -o generated --additional-properties=allowUnicodeIdentifiers=true -i "
   },
   "browserslist": {
     "production": [
