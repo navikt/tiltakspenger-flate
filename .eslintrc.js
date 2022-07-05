@@ -5,19 +5,9 @@ module.exports = {
   },
   extends: [
     'eslint:recommended',
-    'plugin:react/recommended',
     'plugin:@typescript-eslint/recommended',
-    'plugin:jsx-a11y/recommended',
+    'plugin:@next/next/recommended',
   ],
-  parser: '@typescript-eslint/parser',
-  parserOptions: {
-    ecmaFeatures: {
-      jsx: true,
-    },
-    ecmaVersion: 13,
-    sourceType: 'module',
-  },
-  plugins: ['react', '@typescript-eslint', 'jsx-a11y'],
   rules: {
     '@typescript/no-explicit-any': 'off',
     'jsx-a11y/anchor-is-valid': 'off',
