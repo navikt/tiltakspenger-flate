@@ -1,23 +1,26 @@
 import { getToken } from '../../server/azureObo';
 import { getConfig } from '../../server/config';
-import { NextRequest, NextResponse } from 'next/server';
 import logger from '../../server/logger';
+import { NextApiRequest, NextApiResponse } from 'next';
 
 const Authorization = 'authorization';
 const backendUrl = getConfig();
 
-const extractToken = (req: NextRequest) =>
-  req.headers[Authorization]?.split(' ')[1];
+const extractToken = (req: NextApiRequest) => {
+  const header = req.headers[Authorization]?.split(' ')[1];
+  if (!header) throw new Error('Invalid authorization header');
+  return header;
+};
 
-const getUrl = async (req: NextRequest): Promise<string> => {
+const getUrl = async (req: NextApiRequest): Promise<string> => {
   const apiUrl = (await backendUrl).backendUrl;
-  const path = req.url.replace('/api', '');
+  const path = req?.url?.replace('/api', '');
   return apiUrl + path;
 };
 
 export async function middleware(
-  req: NextRequest,
-  response: NextResponse
+  req: NextApiRequest,
+  response: NextApiResponse
 ): Promise<void> {
   try {
     const oboToken = await getToken(extractToken(req));
