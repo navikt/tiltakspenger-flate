@@ -2,7 +2,6 @@ import React, { FC, ReactNode } from 'react';
 import { FileContent, Calender } from '@navikt/ds-icons';
 import { useRecoilState } from 'recoil';
 import { soknadState } from '../../../state/soknad';
-import { useParams } from 'react-router-dom';
 import { format } from '../../../util/dateFormatting';
 import { Soknad } from '../../../api/soknad';
 import { useRouter } from 'next/router';

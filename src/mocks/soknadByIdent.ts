@@ -1,4 +1,4 @@
-export default {
+const soknadByIdent = {
   data: [
     {
       id: '136950219',
@@ -39,3 +39,4 @@ export default {
   pageSize: 2,
   offset: 0,
 };
+export default soknadByIdent

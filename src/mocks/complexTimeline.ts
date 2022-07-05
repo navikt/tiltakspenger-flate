@@ -1,4 +1,4 @@
-export default {
+const payload = {
   data: [
     {
       id: '549246289',
@@ -107,3 +107,4 @@ export default {
   offset: 0,
   pageSize: 20,
 };
+export default payload

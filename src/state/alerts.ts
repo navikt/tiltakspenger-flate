@@ -1,4 +1,3 @@
-import { useEffect } from 'react';
 import { atom, selector, useResetRecoilState, useSetRecoilState } from 'recoil';
 import logger from '../server/logger';
 
@@ -37,14 +36,6 @@ export const alertsForScope = selector({
     );
   },
 });
-
-export const useAlertFilter = (scope?: string) => {
-  const setAlertFilter = useSetRecoilState(alertFilterState);
-
-  useEffect(() => {
-    setAlertFilter(scope);
-  }, []);
-};
 
 export const useAddAlert = () => {
   const setAlerts = useSetRecoilState(alertsState);

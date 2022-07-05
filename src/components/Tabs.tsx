@@ -51,7 +51,7 @@ export function Tabs<T>({
       return;
     }
     onTabChange?.(value);
-  }, [value]);
+  }, [value, isFirst, onTabChange]);
 
   return (
     <div role="tablist" className={className || ''}>

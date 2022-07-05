@@ -1,7 +1,7 @@
 import React from 'react';
 import TimelineLabel from './TimelineLabel';
 import { SuccessStroke, WarningFilled } from '@navikt/ds-icons';
-import { Link } from 'react-router-dom';
+import Link from "next/link";
 
 interface Props {
   label: string;
@@ -20,7 +20,7 @@ const PaymentBox = ({
 }) => {
   return (
     <Link
-      to={`payment/${id}`}
+      href={`payment/${id}`}
       className={`flex justify-center border ${
         ok
           ? 'border-green-400 bg-green-100 '

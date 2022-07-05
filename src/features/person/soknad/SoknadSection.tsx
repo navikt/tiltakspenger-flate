@@ -4,7 +4,6 @@ import SoknadContent from './SoknadContent';
 import Spinner from '../../../components/Spinner';
 import { useRequest } from '../../../api/common';
 import { getSoknaderByIdent } from '../../../api/soknad';
-import { useParams } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import { soknadState } from '../../../state/soknad';
 import { useRouter } from 'next/router';
@@ -23,12 +22,12 @@ const SoknadSection = () => {
 
   useEffect(() => {
     runGetSoknader();
-  }, [fnr]);
+  }, [runGetSoknader]);
 
   useEffect(() => {
     if (!result) return;
     setSoknader(result?.data || []);
-  }, [result]);
+  }, [result, setSoknader]);
 
   return (
     <Spinner isLoading={isLoading}>

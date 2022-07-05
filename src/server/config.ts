@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+
 interface Config {
   oboScope: string;
   backendUrl: string;

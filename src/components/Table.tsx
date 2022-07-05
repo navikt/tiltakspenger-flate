@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
-import { useNavigate } from 'react-router-dom';
 import { soknadPath } from '../routes';
+import { useRouter } from "next/router";
 
 interface Column<Values> {
   name: string;
@@ -16,9 +16,8 @@ const Table = <T extends { soknadId: string | number }>({
   data,
   columns,
 }: Props<T>) => {
-  const navigate = useNavigate();
-
-  const handleClick = (soknadId: string) => navigate(soknadPath(soknadId));
+  const router = useRouter()
+  const handleClick = (soknadId: string) => router.push(soknadPath(soknadId))
 
   return (
     <table>

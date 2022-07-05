@@ -38,11 +38,11 @@ const BehandlingsPage = () => {
   const setPerson = useSetRecoilState(personState);
   useEffect(() => {
     runGetPerson();
-  }, []);
+  }, [runGetPerson]);
   useEffect(() => {
     if (!person) return;
     setPerson(person);
-  }, [person]);
+  }, [person, setPerson]);
 
   if (error) {
     console.error(error);

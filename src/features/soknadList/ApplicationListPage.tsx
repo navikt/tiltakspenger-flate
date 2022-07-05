@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import Periode from '../../components/Periode';
 import { useRequest } from '../../api/common';
-import { useNavigate } from 'react-router-dom';
 import { personPath } from '../../routes';
 import { getSoknader, PaginationInfo, Soknad } from '../../api/soknad';
 import { columns } from './columns';
@@ -36,9 +35,9 @@ const ApplicationListPage = () => {
 
   useEffect(() => {
     runGetSoknader();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // const navigate = useNavigate();
   const router = useRouter();
   const handleClick = ({
     soknadId,
