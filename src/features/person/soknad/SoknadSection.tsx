@@ -22,7 +22,7 @@ const SoknadSection = () => {
 
   useEffect(() => {
     runGetSoknader();
-  }, [runGetSoknader]);
+  }, []);
 
   useEffect(() => {
     if (!result) return;
