@@ -8,12 +8,10 @@ export const usePersonPageParams = (): {
   const params = (router.query?.slug || []) as unknown as [
     string,
     string,
+    string,
     string
   ];
-  const {
-    0: fnr,
-    2: selectedSoknadId,
-  } = params;
+  const { 1: fnr, 3: selectedSoknadId } = params;
   return {
     fnr,
     selectedSoknadId,

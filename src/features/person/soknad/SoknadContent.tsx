@@ -4,7 +4,7 @@ import { useRecoilState } from 'recoil';
 import { soknadState } from '../../../state/soknad';
 import { format } from '../../../util/dateFormatting';
 import { Soknad } from '../../../api/soknad';
-import { useRouter } from 'next/router';
+import { usePersonPageParams } from '../../../util/usePersonPageParams';
 
 const posts: {
   title: string;
@@ -49,9 +49,7 @@ const ContentSection: FC<{ title: string; children: ReactNode }> = ({
 
 const SoknadContent = () => {
   const [soknader] = useRecoilState(soknadState);
-  const router = useRouter();
-  const slug = router.query.slug;
-  const soknadId = slug ? slug[2] : undefined; //useParams<{ fnr: string; soknadId: string }>();
+  const { selectedSoknadId: soknadId } = usePersonPageParams();
   const soknad = soknader?.find((s) => s.id === soknadId);
 
   const start =

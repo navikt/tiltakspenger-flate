@@ -11,10 +11,6 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-jest.mock('react-router-dom', () => ({
-  useNavigate: jest.fn(),
-}));
-
 describe('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);

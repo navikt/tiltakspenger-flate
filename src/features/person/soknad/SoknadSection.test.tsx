@@ -2,16 +2,16 @@ import React from 'react';
 import { setupTestMockServer } from '../../../mocks/setupTestMock';
 import '@testing-library/jest-dom';
 import { screen, waitFor, within } from '@testing-library/react';
-import { paths } from '../../../routes';
 import { renderWithRouteMatchAndRecoilRoot } from '../../../testUtils/renderWithRouteMatch';
 import SoknadSection from './SoknadSection';
 
 const server = setupTestMockServer();
 
 jest.mock('next/router', () => ({
-  useRouter: () => ({
-    query: { slug: ['person', '20058126692', 'soknad', '136950219'] },
-  }),
+  useRouter: jest.fn(() => ({
+    query: { slug: ['person', '0', 'soknad', '0'] },
+    mock: true,
+  })),
 }));
 
 beforeAll(() => {
@@ -22,12 +22,8 @@ afterAll(() => server.close());
 
 describe('<SoknadSection />', () => {
   it('Should show kvp (true) and inst (none)', async () => {
-    const route = '/person/20058126692/soknad/136950219';
-
-    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
-      path: `${paths.PersonPage.replace('*', '')}${paths.Content}`,
-      route,
-    });
+    const path = '/person/20058126692/soknad/136950219';
+    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, { path });
 
     await waitFor(() => {
       expect(screen.getByText('Søknad: JOBBK')).toBeInTheDocument();
@@ -43,12 +39,8 @@ describe('<SoknadSection />', () => {
   });
 
   it('Should show kvp (false) and inst (Barnevern)', async () => {
-    const route = '/person/20058126692/soknad/136950210';
-
-    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
-      path: `${paths.PersonPage.replace('*', '')}${paths.Content}`,
-      route,
-    });
+    const path = '/person/20058126692/soknad/136950210';
+    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, { path });
 
     await waitFor(() => {
       expect(screen.getByText('Søknad: AMO')).toBeInTheDocument();
@@ -64,12 +56,8 @@ describe('<SoknadSection />', () => {
   });
 
   it('Should show tiltaks-arragoer and tiltaks-type (Klaras kaker)', async () => {
-    const route = '/person/20058126692/soknad/136950210';
-
-    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
-      path: `${paths.PersonPage.replace('*', '')}${paths.Content}`,
-      route,
-    });
+    const path = '/person/20058126692/soknad/136950210';
+    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, { path });
 
     await waitFor(() => {
       expect(screen.getByText('Søknad: AMO')).toBeInTheDocument();
@@ -82,12 +70,8 @@ describe('<SoknadSection />', () => {
     });
   });
   it('Should show tiltaks-arragoer and tiltaks-type (Jobbsporet)', async () => {
-    const route = '/person/20058126692/soknad/136950219';
-
-    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, {
-      path: `${paths.PersonPage.replace('*', '')}${paths.Content}`,
-      route,
-    });
+    const path = '/person/20058126692/soknad/136950219';
+    renderWithRouteMatchAndRecoilRoot(<SoknadSection />, { path });
 
     await waitFor(() => {
       expect(screen.getByText('Søknad: AMO')).toBeInTheDocument();
