@@ -15,7 +15,9 @@ if (process.env.NEXT_PUBLIC_API_MOCKING === 'enabled') {
 }
 
 export function reportWebVitals(metric: NextWebVitalsMetric) {
-  logger.info(metric);
+  if (process.env.NODE_ENV === "development") {
+    logger.info(metric);
+  }
   // Reporting results to analytics can be done here
 }
 
