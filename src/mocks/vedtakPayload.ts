@@ -1,98 +1,81 @@
-export const response = {
-  isRefreshing: false,
-  saker: [
+import { Person } from '../../generated';
+
+export const vedtakPayload: Person = {
+  personalia: {
+    fornavn: 'Fornavn',
+    etternavn: 'Etternavn',
+    ident: '123454',
+    barn: [
+      {
+        fornavn: 'SULTEN',
+        etternavn: 'TEPPE',
+        ident: '987654',
+        bosted: 'NORGE',
+      },
+      {
+        fornavn: 'LUNKEN',
+        etternavn: 'FLAMME',
+        ident: '987655',
+        bosted: 'NORGE',
+      },
+    ],
+  },
+  behandlinger: [
     {
-      id: '45jhg645jh-4k5jh6-kj54h6',
-      saksPeriode: { fra: '12-12-22', til: '01-02-23' },
-      behandlinger: [
+      id: 'behandlingId',
+      søknad: {
+        opprettet: "2022-04-01"
+      },
+      tiltak: {
+        arrangør: 'Joblearn',
+        navn: 'Gruppe AMO',
+        periode: {
+          fra: new Date('2022-04-01'),
+          til: new Date('2022-04-20'),
+        },
+        prosent: 80,
+        dagerIUken: 4,
+        status: 'Godkjent',
+      },
+      periode: {
+        fra: new Date('2022-04-01'),
+        til: new Date('2022-04-20'),
+      },
+      vurderinger: [
         {
-          type: 'Førstegangsbehandling',
-          status: 'Iverksatt',
-          periode: { fra: '2022-05-01', til: '2022-05-31' },
-          søknad: {
-            id: '12312-12313-1231',
-            vedlegg: [],
-            søknadsdato: 'asds',
-            fra: 'asda',
-            til: 'asdas',
-            tiltak: {
-              test: 'Er info om tiltak en egen ting her, eller ligger det i behandling?',
-              tiltak: 'Et kult tiltak',
-              dager:
-                'Kanskje hvilke dager det er forventet at bruker møter opp?',
-              periode: { fra: '11-12-12', til: '11-12-12' },
-            },
-          },
+          tittel: 'Statlige ytelser',
+          utfall: 'Uavklart',
           vilkårsvurderinger: [
             {
-              kategori: 'Institusjonsopphold',
-              utfall: 'IkkeOppfylt',
-              vurderinger: [
-                {
-                  utfall: 'IkkeOppfylt',
-                  vilkår: 'Opphold på institusjon',
-                  periode: { fra: '11-12-12', til: '11-12-12' },
-                  kilde: 'Inst2',
-                },
-                {
-                  utfall: 'Oppfylt',
-                  vilkår: 'Opphold på institusjon',
-                  periode: { fra: '11-12-12', til: '11-12-12' },
-                  kilde: 'Bruker',
-                },
-              ],
+              utfall: 'Oppfylt',
+              periode: {
+                fra: new Date('2022-04-01'),
+                til: new Date('2022-04-20'),
+              },
+              vilkår: 'Dagpenger',
+              kilde: 'Arena',
             },
             {
-              kategori: 'Statlige ytelser',
               utfall: 'Oppfylt',
-              vurderinger: [
-                {
-                  utfall: 'Oppfylt',
-                  vilkår: 'Ikke Dagpenger',
-                  periode: { fra: '11-12-12', til: '11-12-12' },
-                  kilde: 'Arena',
-                },
-                {
-                  utfall: 'Oppfylt',
-                  vilkår: 'Ikke AAP',
-                  periode: { fra: '11-12-12', til: '11-12-12' },
-                  kilde: 'Arena',
-                },
-              ],
+              periode: {
+                fra: new Date('2022-04-01'),
+                til: new Date('2022-04-20'),
+              },
+              vilkår: 'AAP',
+              kilde: 'Arena',
+            },
+            {
+              utfall: 'Uavklart',
+              periode: {
+                fra: new Date('2022-04-01'),
+                til: new Date('2022-04-20'),
+              },
+              vilkår: 'Tiltakspenger',
+              kilde: 'Arena',
             },
           ],
         },
       ],
     },
   ],
-  vedtak: [
-    {
-      id: '435kjh34-kj43h5-k3j4h5',
-      utfall: 'Avslag',
-      søknadsId: 'asdsa',
-    },
-  ],
-  utbetalinger: [
-    {
-      test: 'Denne må kanskje et nivå lengre ut hvis den skal gjelde alle sakene?',
-      id: '345jhg-45g5-h45h45hy-5ht',
-      periode: { fra: '2022-05-01', til: '2022-05-31' },
-      beløp: 3000,
-    },
-  ],
-  meldekort: 'Skal meldekort ligge på dette nivået?',
-  oppmøte: 'Dette nivået? Skal dette være en felles ting med meldekort?',
-  personalia: {
-    fornavn: 'asds',
-    etter: 'asds',
-    ident: '12312312312',
-    barn: [
-      {
-        fornavn: 'Emma',
-        etternavn: 'Flaks',
-        fødselsdato: '11.12.12',
-        bosatt: 'Norge',
-      },
-    ],
-  },
 };

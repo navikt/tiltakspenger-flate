@@ -6,7 +6,7 @@ const Spinner: FC<{ isLoading: boolean; children: ReactNode }> = ({
   children,
 }) => {
   return isLoading ? (
-    <div className="mt-8">
+    <div className="mt-8 flex-1 flex items-center justify-center">
       <Loader size="xlarge" />
     </div>
   ) : (

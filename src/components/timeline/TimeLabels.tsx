@@ -1,7 +1,6 @@
 import TimelineLabel from './TimelineLabel';
 import { months } from './months';
 import React from 'react';
-import { Periode } from './Timelines';
 import { monthDivide } from './gridSnapping';
 import {
   addMonths,
@@ -18,6 +17,13 @@ interface Props {
 }
 
 const defaultPeriode = { name: '', dotted: false };
+
+interface Periode {
+  name: string;
+  dotted: boolean;
+  from: Date;
+  to: Date;
+}
 
 const getPeriods = (start: Date, end: Date, gridSize: Duration): Periode[] => {
   if (isSameDay(start, end))
@@ -68,7 +74,7 @@ export const TimeLabels = ({ start, end, gridSize }: Props) => {
         {periodDays.map((periode, index) => (
           <div
             key={index}
-            className=""
+            className="text-center"
             style={{
               width: percentWidth(periode.days) + '%',
             }}

@@ -1,7 +1,17 @@
-import soknadByIdent from './soknadByIdent';
-// import complexTimeline from './complexTimeline';
+import logger from "../server/logger";
 
-const mockData: Record<string, object | object[]> = {
-  '/api/saker/person': soknadByIdent,
-};
-export default mockData;
+if (typeof window === 'undefined') {
+  import("./server")
+    .then(({ server }) => {
+      logger.info("Mocking enabled")
+      server.listen();
+    })
+} else {
+  // Changing import syntac to import().then(...) will delay mocking-setup til
+  // after onMount-requests are fired and they will not be handled by msw
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { mockHttp } = require("./browser")
+  mockHttp();
+}
+
+export {}

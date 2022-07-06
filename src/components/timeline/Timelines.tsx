@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate, useParams } from 'react-router-dom';
+import React from 'react';
 import Timeline, { TimeLineType } from './Timeline';
 import {
   addMonths,
@@ -11,45 +10,26 @@ import {
 } from 'date-fns';
 import { getGridSize } from './gridSnapping';
 import { TimeLabels } from './TimeLabels';
-import { personPath } from '../../routes';
 
-export interface Periode {
+export interface NavigatablePeriode {
   from: Date;
   to: Date;
   dotted: boolean;
   name: string;
   soknadId?: string;
+  onClick: () => void;
 }
 
-const Timelines = ({
-  onClickTimeline,
-  perioder,
-}: {
-  onClickTimeline?: (id: string) => void;
-  perioder: Periode[];
-}) => {
-  const [selected, setSelected] = useState<string | undefined>(undefined);
+export interface Props {
+  perioder: NavigatablePeriode[];
+  selectedSoknadId: string;
+}
 
-  const navigate = useNavigate();
-  const params = useParams<{ soknadId: string; fnr: string }>();
-  const { soknadId, fnr } = params as { soknadId: string; fnr: string };
-
+const Timelines = ({ perioder, selectedSoknadId }: Props) => {
   const start = startOfMonth(getTimelineStart(perioder));
   const end = startOfMonth(addMonths(getTimelineEnd(perioder), 1));
   const totalDays = differenceInDays(end, start);
-
   const gridSize = getGridSize(start, end);
-
-  useEffect(() => {
-    if (!selected) return;
-
-    if (Number.isInteger(parseInt(selected))) {
-      const url = personPath({ fnr, soknadId: selected });
-      navigate(url, { replace: true });
-    }
-
-    onClickTimeline?.(selected);
-  }, [selected]);
 
   return (
     <div className="flex  p-4 border-b border-t border-sky-400">
@@ -62,8 +42,8 @@ const Timelines = ({
             <Timeline
               key={index}
               type={TimeLineType.SOKNAD}
-              onClick={() => setSelected(periode.soknadId)}
-              selected={soknadId === periode.soknadId}
+              onClick={periode.onClick}
+              selected={selectedSoknadId === periode.soknadId}
               label={periode.name}
               style={{
                 width: Math.max(2, getWidthPercent(periode, totalDays)) + '%',
@@ -77,27 +57,30 @@ const Timelines = ({
   );
 };
 
-const getTimelineStart = (periods: Periode[]): Date => {
+const getTimelineStart = (periods: NavigatablePeriode[]): Date => {
   const starts = periods
     .map((period) => new Date(period.from))
     .filter((date) => isValid(date));
   return min(starts);
 };
 
-const getTimelineEnd = (periods: Periode[]): Date => {
+const getTimelineEnd = (periods: NavigatablePeriode[]): Date => {
   const ends = periods
     .map((period) => new Date(period.to))
     .filter((date) => isValid(date));
   return max(ends);
 };
 
-export const getWidthPercent = (period: Periode, totalDays: number): number => {
+export const getWidthPercent = (
+  period: NavigatablePeriode,
+  totalDays: number
+): number => {
   const days = differenceInDays(new Date(period.to), new Date(period.from));
   return (days / totalDays) * 100;
 };
 
 export const getOffsetPercent = (
-  period: Periode,
+  period: NavigatablePeriode,
   firstDay: Date,
   totalDays: number
 ): number => {

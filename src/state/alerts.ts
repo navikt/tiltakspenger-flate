@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
 import { atom, selector, useResetRecoilState, useSetRecoilState } from 'recoil';
+import logger from '../server/logger';
 
 export const Scopes = {
   GLOBAL: undefined,
@@ -37,14 +37,6 @@ export const alertsForScope = selector({
   },
 });
 
-export const useAlertFilter = (scope?: string) => {
-  const setAlertFilter = useSetRecoilState(alertFilterState);
-
-  useEffect(() => {
-    setAlertFilter(scope);
-  }, []);
-};
-
 export const useAddAlert = () => {
   const setAlerts = useSetRecoilState(alertsState);
 
@@ -67,7 +59,7 @@ export const useOperationErrorHandler = (operation: string) => {
   const setAlerts = useSetRecoilState(alertsState);
 
   return (ex: Error) => {
-    console.log(`Feil ved ${operation}. ${ex.message}`);
+    logger.info(`Feil ved ${operation}. ${ex.message}`);
     setAlerts((alerts) => [
       ...alerts.filter((it) => it.key !== alert.key),
       alert,

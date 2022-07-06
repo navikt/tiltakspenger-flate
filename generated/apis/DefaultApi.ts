@@ -14,10 +14,12 @@
 
 
 import * as runtime from '../runtime';
+import type {
+  Person,
+} from '../models';
 import {
-    PersonDTO,
-    PersonDTOFromJSON,
-    PersonDTOToJSON,
+    PersonFromJSON,
+    PersonToJSON,
 } from '../models';
 
 /**
@@ -27,11 +29,19 @@ export class DefaultApi extends runtime.BaseAPI {
 
     /**
      */
-    async personTestGetRaw(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<runtime.ApiResponse<PersonDTO>> {
+    async personTestGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("jwtAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
         const response = await this.request({
             path: `/person/test`,
             method: 'GET',
@@ -39,12 +49,12 @@ export class DefaultApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => PersonDTOFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
     }
 
     /**
      */
-    async personTestGet(initOverrides?: RequestInit | runtime.InitOverideFunction): Promise<PersonDTO> {
+    async personTestGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
         const response = await this.personTestGetRaw(initOverrides);
         return await response.value();
     }

@@ -18,13 +18,20 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx",
+    "jsx": "preserve",
     "baseUrl": ".",
     "paths": {
-      "test-utils": ["src/testUtils/test-utils.tsx"]
-    }
+      "test-utils": [
+        "src/testUtils/test-utils.tsx"
+      ],
+      "generated": ["generated/"]
+    },
+    "incremental": true
   },
   "include": [
     "src"
+  ],
+  "exclude": [
+    "node_modules"
   ]
 }

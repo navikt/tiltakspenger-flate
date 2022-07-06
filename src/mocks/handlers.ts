@@ -5,7 +5,7 @@ import {
   rest,
   MockedRequest,
 } from 'msw';
-import mockData from './index';
+import mockData from './apiRoutes';
 
 type CtxWithJson<T> = typeof defaultContext & {
   json: (data: T) => ResponseTransformer;
@@ -20,20 +20,21 @@ interface ErrorMessage {
   message: string;
 }
 
+/*
 const wait = (ms: number): Promise<void> => {
   return new Promise<void>((resolve) => {
     setTimeout(() => {
       resolve(undefined);
     }, ms);
   });
-};
+};*/
 
 const resolveWith =
   <T>(
     data: T
   ): ResponseResolver<MockedRequest, CtxWithJson<T | ErrorMessage>> =>
   async (req, res, ctx) => {
-    await wait(500);
+    // await wait(500);
     if ((req as MockedRequestWithParams)?.params?.soknadId == '11710') {
       return res(
         ctx.status(404),

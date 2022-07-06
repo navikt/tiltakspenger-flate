@@ -1,7 +1,7 @@
 import { atom, selector } from 'recoil';
-import { PersonDTO } from '../../generated';
+import { Person } from "generated";
 
-export const personState = atom<PersonDTO | undefined>({
+export const personState = atom<Person | undefined>({
   key: 'person',
   default: undefined,
 });
@@ -25,9 +25,4 @@ export const barnState = selector({
 export const tiltakState = selector({
   key: 'tiltak',
   get: ({ get }) => get(behandlingsState)?.tiltak,
-});
-
-export const soknadState = selector({
-  key: 'soknad',
-  get: ({ get }) => get(behandlingsState)?.sknad,
 });
