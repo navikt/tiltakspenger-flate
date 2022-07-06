@@ -28,17 +28,6 @@ jobs:
         run: npm run lint
       - name: Run tests
         run: npm run test
-      - name: Build
-        run: npm run build
-      - name: Install express server deps
-        run: npm ci
-        working-directory: server
-      - name: Run server tests
-        run: npm run test
-        working-directory: server
-      - name: Build express server
-        run: npm run build
-        working-directory: server
       - name: Build and publish Docker image
         if: github.ref == 'refs/heads/main'
         env:
