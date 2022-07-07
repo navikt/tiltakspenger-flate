@@ -29,10 +29,3 @@ spec:
       replyURLs:
         - "https://tiltakspenger-flate.dev.intern.nav.no/oauth2/callback"
         - "http://127.0.0.1:3000/oauth2/callback"
-  env:
-    - name: CORS_DOMAIN
-      value: "*"
-    - name: OBO_SCOPE
-      value: "api://eafda703-c821-44de-990c-950dec1ad22f/.default"
-    - name: BACKEND_URL
-      value: "https://tiltakspenger-vedtak.dev.intern.nav.no"
