@@ -57,7 +57,7 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
           RESOURCE: .nais/nais.yaml
-          VARS: .nais/vars/prod.yml
+          VARS: .nais/vars/dev.yaml
           VAR: image=${{ env.docker_image }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -73,5 +73,5 @@ jobs:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: prod-gcp
           RESOURCE: .nais/nais.yml
-          VARS: .nais/vars/prod.yml
+          VARS: .nais/vars/prod.yaml
           VAR: image=${{ env.docker_image }}
