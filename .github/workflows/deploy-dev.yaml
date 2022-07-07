@@ -56,7 +56,22 @@ jobs:
         env:
           APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
           CLUSTER: dev-gcp
-          RESOURCE: .nais/nais-dev.yaml
-          VARS: .nais/dev-gcp.yaml
+          RESOURCE: .nais/nais.yaml
+          VARS: .nais/vars/prod.yml
           VAR: image=${{ env.docker_image }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy-prod:
+    name: Deploy to NAIS prod
+    needs: deploy-dev
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: nais/deploy/actions/deploy@v1
+        env:
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+          CLUSTER: prod-gcp
+          RESOURCE: .nais/nais.yml
+          VARS: .nais/vars/prod.yml
+          VAR: image=${{ env.docker_image }}

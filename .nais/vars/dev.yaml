@@ -1,0 +1,5 @@
+ingress:
+  - https://tiltakspenger-flate.dev.intern.nav.no
+replyURLs:
+  - https://tiltakspenger-flate.dev.intern.nav.no/oauth2/callback
+  - http://127.0.0.1:3000/oauth2/callback
