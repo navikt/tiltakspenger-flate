@@ -28,5 +28,5 @@ spec:
         replyURLs:
         {{#each replyUrls}}
           - {{ this }}
-        {{\each}}
-      {{\if}}
+        {{/each}}
+      {{/if}}
