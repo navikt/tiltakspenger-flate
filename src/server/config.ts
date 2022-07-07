@@ -7,18 +7,21 @@ interface Config {
   clientSecret: string;
 }
 
-const devConfig: Config = {
-  oboScope: 'api://eafda703-c821-44de-990c-950dec1ad22f/.default',
-  backendUrl: 'https://tiltakspenger-vedtak.dev.intern.nav.no',
+const baseConfig = {
   clientId: process.env.AZURE_APP_CLIENT_ID!,
   clientSecret: process.env.AZURE_APP_CLIENT_SECRET!,
 };
 
+const devConfig: Config = {
+  ...baseConfig,
+  oboScope: 'api://eafda703-c821-44de-990c-950dec1ad22f/.default',
+  backendUrl: 'https://tiltakspenger-vedtak.dev.intern.nav.no',
+};
+
 const prodConfig: Config = {
-  oboScope: 'api://<prod-client-id>/.default',
-  backendUrl: 'Prod url here',
-  clientId: process.env.AZURE_APP_CLIENT_ID!,
-  clientSecret: process.env.AZURE_APP_CLIENT_SECRET!,
+  ...baseConfig,
+  oboScope: 'api://9dd72d44-f3f7-48d1-846b-94f317d10119/.default',
+  backendUrl: 'https://tiltakspenger-vedtak.prod.intern.nav.no',
 };
 
 export const getConfig = (): Config => {

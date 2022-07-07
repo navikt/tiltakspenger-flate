@@ -1,4 +1,3 @@
-// import fetch from 'node-fetch';
 import { getBody } from './httpUtils';
 import { getConfig } from './config';
 
