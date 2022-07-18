@@ -6,7 +6,7 @@
     "@navikt/ds-css": "^0.18.24",
     "@navikt/ds-css-internal": "^0.7.7",
     "@navikt/ds-icons": "^0.8.18",
-    "@navikt/ds-react": "^0.19.18",
+    "@navikt/ds-react": "^0.19.24",
     "@navikt/ds-react-internal": "^0.14.19",
     "antd": "^4.21.4",
     "date-fns": "^2.28.0",
