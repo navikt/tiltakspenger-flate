@@ -1,9 +1,7 @@
-name: Deploy to dev
-on:
-  workflow_dispatch: # This workflow can be triggered manually from: https://github.com/navikt/tiltakspenger-flate/actions/workflows/deploy-dev.yaml
-  push:
-    branches:
-      - main
+name: Build, push, and deploy
+
+on: push
+
 env:
   IMAGE_TAG: ${{ github.sha }}
   IMAGE: ghcr.io/navikt/tiltakspenger-flate
