@@ -7,7 +7,7 @@
     "@navikt/ds-css-internal": "^0.7.7",
     "@navikt/ds-icons": "^0.8.19",
     "@navikt/ds-react": "^0.19.25",
-    "@navikt/ds-react-internal": "^0.14.26",
+    "@navikt/ds-react-internal": "^1.2.1",
     "antd": "^4.22.1",
     "date-fns": "^2.28.0",
     "jest-environment-jsdom": "^28.1.2",
