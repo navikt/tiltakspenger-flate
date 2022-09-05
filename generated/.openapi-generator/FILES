@@ -5,7 +5,7 @@ models/Barn.ts
 models/Behandling.ts
 models/Periode.ts
 models/Person.ts
-models/Personalia.ts
+models/Personopplysninger.ts
 models/Tiltak.ts
 models/VilkarsVurderingsKategori.ts
 models/Vilkarsvurdering.ts

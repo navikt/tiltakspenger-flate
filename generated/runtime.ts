@@ -192,8 +192,8 @@ export class BaseAPI {
                     }) || response;
                 }
             }
-            if (response === undefined) {
-                throw new FetchError(e as Error, 'The request failed and the interceptors did not return an alternative response');
+            if (response !== undefined) {
+                throw new FetchError(e, 'The request failed and the interceptors did not return an alternative response');
             }
         }
         for (const middleware of this.middleware) {
@@ -238,7 +238,7 @@ export class ResponseError extends Error {
 
 export class FetchError extends Error {
     name: "FetchError" = "FetchError";
-    constructor(public cause: Error, msg?: string) {
+    constructor(public cause: unknown, msg?: string) {
         super(msg);
     }
 }

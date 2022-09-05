@@ -29,7 +29,7 @@ export class DefaultApi extends runtime.BaseAPI {
 
     /**
      */
-    async personTestGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
+    async sakerPersonGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -43,7 +43,7 @@ export class DefaultApi extends runtime.BaseAPI {
             }
         }
         const response = await this.request({
-            path: `/person/test`,
+            path: `/saker/person`,
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -54,8 +54,40 @@ export class DefaultApi extends runtime.BaseAPI {
 
     /**
      */
-    async personTestGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
-        const response = await this.personTestGetRaw(initOverrides);
+    async sakerPersonGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
+        const response = await this.sakerPersonGetRaw(initOverrides);
+        return await response.value();
+    }
+
+    /**
+     */
+    async sakerPersonTestGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        if (this.configuration && this.configuration.accessToken) {
+            const token = this.configuration.accessToken;
+            const tokenString = await token("jwtAuth", []);
+
+            if (tokenString) {
+                headerParameters["Authorization"] = `Bearer ${tokenString}`;
+            }
+        }
+        const response = await this.request({
+            path: `/saker/person/test`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
+    }
+
+    /**
+     */
+    async sakerPersonTestGet(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<Person> {
+        const response = await this.sakerPersonTestGetRaw(initOverrides);
         return await response.value();
     }
 
