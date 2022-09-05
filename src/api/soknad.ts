@@ -40,4 +40,4 @@ export const getSoknader = ({ offset, pageSize }: PaginationInfo = {}): Promise<
 };
 
 const api = new DefaultApi(new Configuration({ basePath: '/api' }));
-export const getPerson = (): Promise<Person> => api.personTestGet();
+export const getPerson = (): Promise<Person> => api.sakerPersonGet();

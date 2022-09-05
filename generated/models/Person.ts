@@ -19,12 +19,12 @@ import {
     BehandlingFromJSONTyped,
     BehandlingToJSON,
 } from './Behandling';
-import type { Personalia } from './Personalia';
+import type { Personopplysninger } from './Personopplysninger';
 import {
-    PersonaliaFromJSON,
-    PersonaliaFromJSONTyped,
-    PersonaliaToJSON,
-} from './Personalia';
+    PersonopplysningerFromJSON,
+    PersonopplysningerFromJSONTyped,
+    PersonopplysningerToJSON,
+} from './Personopplysninger';
 
 /**
  * 
@@ -40,10 +40,10 @@ export interface Person {
     behandlinger: Array<Behandling>;
     /**
      * 
-     * @type {Personalia}
+     * @type {Personopplysninger}
      * @memberof Person
      */
-    personalia: Personalia;
+    personopplysninger: Personopplysninger;
 }
 
 /**
@@ -52,7 +52,7 @@ export interface Person {
 export function instanceOfPerson(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "behandlinger" in value;
-    isInstance = isInstance && "personalia" in value;
+    isInstance = isInstance && "personopplysninger" in value;
 
     return isInstance;
 }
@@ -68,7 +68,7 @@ export function PersonFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pe
     return {
         
         'behandlinger': ((json['behandlinger'] as Array<any>).map(BehandlingFromJSON)),
-        'personalia': PersonaliaFromJSON(json['personalia']),
+        'personopplysninger': PersonopplysningerFromJSON(json['personopplysninger']),
     };
 }
 
@@ -82,7 +82,7 @@ export function PersonToJSON(value?: Person | null): any {
     return {
         
         'behandlinger': ((value.behandlinger as Array<any>).map(BehandlingToJSON)),
-        'personalia': PersonaliaToJSON(value.personalia),
+        'personopplysninger': PersonopplysningerToJSON(value.personopplysninger),
     };
 }
 

@@ -4,7 +4,7 @@ import React from 'react';
 import { SearchBar } from './SearchBar';
 import { useAddAlert, useRemoveAlert } from '../state/alerts';
 import { isValidFnr } from './fnrValidation';
-import { basePath } from '../routes';
+import { basePath, behandlingsPath } from '../routes';
 import { useRouter } from 'next/router';
 
 const Navbar = () => {
@@ -26,7 +26,7 @@ const Navbar = () => {
       });
       return Promise.reject('Invalid ident');
     } else {
-      router.push(`/person/${personId}`);
+      router.push(behandlingsPath('123'));
       return;
     }
   };

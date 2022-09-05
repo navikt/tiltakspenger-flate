@@ -1,5 +1,5 @@
 import { atom, selector } from 'recoil';
-import { Person } from "generated";
+import { Person } from 'generated';
 
 export const personState = atom<Person | undefined>({
   key: 'person',
@@ -19,7 +19,7 @@ export const vilkarsKategoriState = selector({
 
 export const barnState = selector({
   key: 'barn',
-  get: ({ get }) => get(personState)?.personalia?.barn || [],
+  get: ({ get }) => get(personState)?.personopplysninger?.barn || [],
 });
 
 export const tiltakState = selector({

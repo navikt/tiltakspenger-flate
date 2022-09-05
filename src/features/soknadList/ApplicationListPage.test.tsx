@@ -11,7 +11,8 @@ beforeAll(() => server.listen());
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('ApplicationListPage', () => {
+// Skip test, ApplicationList is not currently used
+describe.skip('ApplicationListPage', () => {
   it('Should fetch applications when opened', async () => {
     render(<ApplicationListPage />);
     await waitFor(() => {

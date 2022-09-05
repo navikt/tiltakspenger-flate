@@ -1,7 +1,7 @@
-import { Person } from '../../generated';
+import { Person } from 'generated';
 
 export const vedtakPayload: Person = {
-  personalia: {
+  personopplysninger: {
     fornavn: 'Fornavn',
     etternavn: 'Etternavn',
     ident: '123454',
@@ -24,7 +24,7 @@ export const vedtakPayload: Person = {
     {
       id: 'behandlingId',
       søknad: {
-        opprettet: "2022-04-01"
+        opprettet: '2022-04-01',
       },
       tiltak: {
         arrangør: 'Joblearn',
