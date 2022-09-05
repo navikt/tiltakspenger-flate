@@ -11,7 +11,7 @@ export const usePersonPageParams = (): {
     string,
     string
   ];
-  const { 1: fnr, 3: selectedSoknadId } = params;
+  const { 0: fnr, 2: selectedSoknadId } = params;
   return {
     fnr,
     selectedSoknadId,

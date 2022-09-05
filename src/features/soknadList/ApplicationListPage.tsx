@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Table } from 'antd';
 import Periode from '../../components/Periode';
 import { useRequest } from '../../api/common';
-import { personPath } from '../../routes';
+import { behandlingsPath, personPath } from '../../routes';
 import { getSoknader, PaginationInfo, Soknad } from '../../api/soknad';
 import { columns } from './columns';
 import ErrorPage from '../ErrorPage';
@@ -33,12 +33,13 @@ const ApplicationListPage = () => {
       ),
     })) || [];
 
+  const router = useRouter();
+
   useEffect(() => {
-    runGetSoknader();
+    router.replace(behandlingsPath('123'));
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const router = useRouter();
   const handleClick = ({
     soknadId,
     fnr,
