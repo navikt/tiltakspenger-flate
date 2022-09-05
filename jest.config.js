@@ -18,10 +18,6 @@ const customJestConfig = {
     'generated',
     '<rootDir>/',
   ],
-  resolver: `${__dirname}/jestResolvers/uuidFixResolver.js`,
-  moduleNameMapper: {
-    generated: `${__dirname}/generated`,
-  },
   testEnvironment: 'jest-environment-jsdom',
 };
 
