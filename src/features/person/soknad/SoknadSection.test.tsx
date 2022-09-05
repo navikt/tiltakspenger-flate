@@ -20,7 +20,8 @@ beforeAll(() => {
 afterEach(() => server.resetHandlers());
 afterAll(() => server.close());
 
-describe('<SoknadSection />', () => {
+// Skip test, SoknadSection is not currently used
+describe.skip('<SoknadSection />', () => {
   it('Should show kvp (true) and inst (none)', async () => {
     const path = '/person/20058126692/soknad/136950219';
     renderWithRouteMatchAndRecoilRoot(<SoknadSection />, { path });
