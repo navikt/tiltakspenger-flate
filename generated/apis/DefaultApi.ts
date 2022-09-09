@@ -49,6 +49,12 @@ export class DefaultApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
+        const ecsFormat = require('@elastic/ecs-pino-format')
+        const pino = require('pino')
+        const log = pino(ecsFormat())
+
+        log.console.error(response.body);
+        
         return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
     }
 
