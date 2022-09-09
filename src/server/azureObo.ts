@@ -1,5 +1,6 @@
 import { getBody } from './httpUtils';
 import { getConfig } from './config';
+import logger from './logger';
 
 const url = (tenant: string) =>
   `https://login.microsoftonline.com/${tenant}/oauth2/v2.0/token`;
@@ -37,12 +38,14 @@ const onBehalfOfGrant = async (token: string) => {
 
   const resBody = await getBody(res);
 
-  if (!res.ok)
+  if (!res.ok) {
+    logger.error(resBody.toString());
     return Promise.reject({
       status: res.status,
       content: res.headers.get('content-type'),
       body: resBody,
     });
+  }
 
   return (resBody as unknown as TokenResponse).access_token;
 };

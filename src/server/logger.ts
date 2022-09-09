@@ -59,4 +59,5 @@ const logger = pino( {
             return { level: label.toUpperCase() }
         },
     }});
+logger.info('Jeg har laget en logger')
 export default logger;
