@@ -39,6 +39,7 @@ export async function middleware(
     const body = await (res.status === 200 ? res.json() : res.text());
     response.status(res.status).json(body);
   } catch (err) {
+    logger.error('Her kommer det en feil');
     logger.error(err);
     response.status(500).json({ message: 'Internal server error' });
   }
