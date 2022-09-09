@@ -39,7 +39,7 @@ const onBehalfOfGrant = async (token: string) => {
   const resBody = await getBody(res);
 
   if (!res.ok) {
-    logger.error(resBody.toString());
+    logger.error("OBO-kall med status " + res.status + " og body " + resBody);
     return Promise.reject({
       status: res.status,
       content: res.headers.get('content-type'),
