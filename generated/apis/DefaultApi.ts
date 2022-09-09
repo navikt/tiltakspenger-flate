@@ -21,6 +21,7 @@ import {
     PersonFromJSON,
     PersonToJSON,
 } from '../models';
+import logger from 'src/server/logger';
 
 /**
  * 
@@ -30,15 +31,12 @@ export class DefaultApi extends runtime.BaseAPI {
     /**
      */
     async sakerPersonGetRaw(initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<Person>> {
-        const ecsFormat = require('@elastic/ecs-pino-format')
-        const pino = require('pino')
-        const log = pino(ecsFormat())
         const queryParameters: any = {};
 
         const headerParameters: runtime.HTTPHeaders = {};
 
-        log.info('Hello')
-        log.error({ err: new Error('boom') }, 'oops there is a problem')
+        logger.info('Hello')
+        logger.error({ err: new Error('boom') }, 'oops there is a problem')
 
         if (this.configuration && this.configuration.accessToken) {
             const token = this.configuration.accessToken;
@@ -55,9 +53,7 @@ export class DefaultApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-
-
-        log.error(response.body);
+        logger.error(response.body);
         
         return new runtime.JSONApiResponse(response, (jsonValue) => PersonFromJSON(jsonValue));
     }
