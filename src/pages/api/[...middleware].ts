@@ -41,6 +41,8 @@ export async function middleware(
   } catch (err) {
     logger.error('Her kommer det en feil');
     logger.error(err);
+    logger.error( {err});
+    logger.error("Error: ", err);
     response.status(500).json({ message: 'Internal server error' });
   }
 }
