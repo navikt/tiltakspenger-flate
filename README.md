@@ -1,3 +1,5 @@
+DEPRECATED REPO, TO BE DELETED
+
 # Tiltakspenger-flate
 
 Frontend til saksbehandlingssystem for tiltakspenger
